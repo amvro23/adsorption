@@ -1,7 +1,7 @@
 # adsorption
 A python package for estimating the best isotherm (i.e., Langmuir, Freundlich, Temkin, Toth, Sips, DR) and kinetic models (i.e., PFO, PSO, Weber-Morris, Avrami, Bangham, Elovich) as well as Arrhenius parameters (i.e., Ea, A).
 
-[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms)
+[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics)
 
 # Install
 First, make sure you have a Python 3 environment installed.
@@ -103,3 +103,4 @@ Out
 array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
+## Kinetics
