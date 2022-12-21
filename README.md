@@ -66,6 +66,7 @@ You can also obtain a dataframe with all the calculated parameters with their un
 isotherm.all_params()
 ```
 ```Python
+Out
                                            Parameters               Values
 0                                   K_Langmuir [L/mg]  0.05971152127312045
 1                                qmax_Langmuir [mg/g]   211.83876099132755
