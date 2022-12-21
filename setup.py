@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
    name='adsorption',
-   version='0.1.0.rc2',
+   version='0.1.0.rc1',
    description='Adsorption package.',
    long_description=long_description,
    author='Amvrosios Georgiadis',
