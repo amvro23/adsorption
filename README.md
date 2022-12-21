@@ -84,11 +84,20 @@ Out
 12                                       E_DR [J/mol]   147.67076438840127
 13                                     qmax_DR [mg/g]    192.6633619518013
 ```
-You can also have access in model parameters individually in order to create your own plots.
+Or you can have access in model parameters individually in order to create your own plots.
 ```Python
 isotherm.dubinin_radushkevich_params()
 ```
 ```
+Out
 {'E_DR [J/mol]': 147.67076438840127, 
 'qmax_DR [mg/g]': 192.6633619518013}
+```
+```Python
+isotherm.sips_curve(x)
+```
+```
+Out
+array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
+        1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
