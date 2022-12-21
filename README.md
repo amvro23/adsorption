@@ -27,7 +27,7 @@ y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.9
 
 isotherm = Isotherms(x, y)
 ```
-You can obtain either a single model plot (e.g., Langmuir model, Freundlich model).
+You can obtain either a single isotherm model plot (e.g., Langmuir model, Freundlich model).
 ```Python
 isotherm.plot_langmuir_fit()
 ```
@@ -37,13 +37,13 @@ isotherm.plot_freundlich_fit()
 ```
 ![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
 
-Or you can obtain all fitting isotherm models.
+Or you can obtain all isotherm fitting models.
 ```Python
 isotherm.plot_all_models()
 ```
 ![all_isotherms](https://user-images.githubusercontent.com/91277572/208971930-40142a78-459c-4e70-840b-88829d8ffe2a.png)
 
-You can assess the fitting of isotherm models.
+You can assess the isotherm fitting models.
 ```Python
 isotherm.assess_fit()
 ```
@@ -112,3 +112,8 @@ y = df.loc[:, 'qt'].values
 
 kinetic = Kinetics(x, y)
 ```
+You can obtain either a single kinetic model plot (e.g., Bangham model).
+```Python
+kinetic.plot_bangham_fit()
+```
+![bangham](https://user-images.githubusercontent.com/91277572/208979002-cfb89967-123a-498c-b9ff-423ceb0dd7c3.png)
