@@ -55,11 +55,31 @@ Out
 ```
  The package can directly return the best fitting model.
 ```Python
- isotherm.best_fit()
+isotherm.best_fit()
 ```
 ```Python
 Out
 The best model is that of Langmuir R2 = 0.9853798413181968
 ```
-
+You can also obtain a dataframe with all the calculated parameters with their units.
+```Python
+isotherm.all_params()
+```
+```Python
+                                           Parameters               Values
+0                                   K_Langmuir [L/mg]  0.05971152127312045
+1                                qmax_Langmuir [mg/g]   211.83876099132755
+2   K_Freundlich [L^(1/n_Freundlich)·mg^(1-1/n_Fre...     71.6650763022144
+3                                        n_Freundlich    6.254943331258903
+4                                     A_Temkin [L/mg]   2.9827960331000063
+5                                    B_Temkin [J/mol]     90.1390756026659
+6                             K_Toth [mg^z·L^-n_toth]   15.637639450829793
+7                                              n_Toth   0.9832070920173336
+8                                    qmax_Toth [mg/g]   212.27301879029434
+9                        K_Sips [L^n_Sips·mg^-n_Sips]   0.0685096207219515
+10                                             n_Sips    1.056671824783758
+11                                   qmax_Sips [mg/g]    213.6471311521534
+12                                       E_DR [J/mol]   147.67076438840127
+13                                     qmax_DR [mg/g]    192.6633619518013
+```
 
