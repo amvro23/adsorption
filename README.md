@@ -187,3 +187,13 @@ array([ 0.        ,  0.08073146,  0.16136812, ..., 67.24288195,
 ```
 ## Arrhenius
 After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object, where x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the same temperatures. In this example Bangham model was the best to describe the process of CO2 adsorption.
+  ```Python
+df_kin = pd.DataFrame({'Value':[0.00478, 0.00583, 0.00728, 0.01956],
+                      'Temperature':[298.15, 308.15, 323.15, 373.15]})
+
+x = df_kin.loc[:, 'Temperature'].values
+y = df_kin.loc[:, 'Value'].values
+
+arrh = ModifiedArrhenius(x, y)
+```
+
