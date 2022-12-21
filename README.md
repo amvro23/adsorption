@@ -18,4 +18,9 @@ from adsorption import (Isotherms, Kinetics, ModifiedArrhenius)
 import numpy as np
 import pandas as pd
 ```
+Create x and y arrays where x represents the dimensionless equilibrium concentration [%] and y represents the equilibrium capacity [mg/g]
+```Python
+x = np.array([0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1])   
+y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.90])
+```
 
