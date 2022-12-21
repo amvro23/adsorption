@@ -25,7 +25,7 @@ y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.9
 
 isotherm = Isotherms(x, y)
 ```
-You can obtain either a single model plot (e.g., Langmuir model).
+You can obtain either a single model plot (e.g., Langmuir model, Freundlich model).
 ```Python
 isotherm.plot_langmuir_fit()
 ```
@@ -34,6 +34,10 @@ isotherm.plot_langmuir_fit()
 isotherm.plot_freundlich_fit()
 ```
 ![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
-
+Or you can obtain all fitting models.
+```Python
+isotherm.plot_all_models()
+```
+![all_isotherms](https://user-images.githubusercontent.com/91277572/208971930-40142a78-459c-4e70-840b-88829d8ffe2a.png)
 
 
