@@ -123,3 +123,17 @@ Or you can obtain all isotherm fitting models.
 kinetic.plot_all_models()
 ```
 ![kinetic_models](https://user-images.githubusercontent.com/91277572/208979310-532873b0-2073-4a32-92f4-730991f1ff28.png)
+
+You can assess the isotherm fitting models.
+```Python
+kinetic.assess_fit()
+```
+```
+Out
+{'PFO R2': 0.9862768756329133,
+ 'PSO R2': 0.9787375821197556,
+ 'WEBER-MORRIS R2': 0.9568081287159736,
+ 'AVRAMI R2': 0.9967027963259552,
+ 'BANGHAM R2': 0.9983438488830458,
+ 'ELOVICH R2': nan}
+ ```
