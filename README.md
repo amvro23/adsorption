@@ -45,12 +45,21 @@ You can assess the fitting of isotherm models.
 isotherm.assess_fit()
 ```
 ```Python
+Out
 {'Langmuir R2': 0.9853798413181968,
  'Freundlich R2': 0.7822175305642807,
  'Temkin R2': 0.8766497302509872,
  'Toth R2': 0.9852294550091175,
  'Sips R2': 0.9851843142530591,
  'DR R2': 0.8808791659298837}
- ```
+```
+ The package can directly return the best fitting model.
+```Python
+ isotherm.best_fit()
+```
+```Python
+Out
+The best model is that of Langmuir R2 = 0.9853798413181968
+```
 
 
