@@ -6,7 +6,6 @@ A python package for estimating the best isotherm (i.e., Langmuir, Freundlich, T
 # Install
 First, make sure you have a Python 3 environment installed.
 To install from github:
-# Install
 ```Python
 pip install -e git+https://github.com/amvro23/adsorption/#egg=adsorption
 ```
