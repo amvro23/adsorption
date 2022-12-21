@@ -37,13 +37,13 @@ isotherm.plot_freundlich_fit()
 ```
 ![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
 
-Or you can obtain all isotherm fitting models.
+Or you can obtain all isotherm models.
 ```Python
 isotherm.plot_all_models()
 ```
 ![all_isotherms](https://user-images.githubusercontent.com/91277572/208971930-40142a78-459c-4e70-840b-88829d8ffe2a.png)
 
-You can assess the isotherm fitting models.
+You can assess the isotherm models.
 ```Python
 isotherm.assess_fit()
 ```
@@ -56,7 +56,7 @@ Out
  'Sips R2': 0.9851843142530591,
  'DR R2': 0.8808791659298837}
 ```
- The package can directly return the best fitting isotherm model.
+ The package can directly return the best isotherm model.
 ```Python
 isotherm.best_fit()
 ```
@@ -118,13 +118,13 @@ kinetic.plot_bangham_fit()
 ```
 ![bangham](https://user-images.githubusercontent.com/91277572/208979002-cfb89967-123a-498c-b9ff-423ceb0dd7c3.png)
 
-Or you can obtain all isotherm fitting models.
+Or you can obtain all isotherm models.
 ```Python
 kinetic.plot_all_models()
 ```
 ![kinetic_models](https://user-images.githubusercontent.com/91277572/208979310-532873b0-2073-4a32-92f4-730991f1ff28.png)
 
-You can assess the isotherm fitting models.
+You can assess the isotherm models.
 ```Python
 kinetic.assess_fit()
 ```
@@ -136,4 +136,12 @@ Out
  'AVRAMI R2': 0.9967027963259552,
  'BANGHAM R2': 0.9983438488830458,
  'ELOVICH R2': nan}
+ ```
+ The package can directly return the best kinetic model.
+ ```Python
+kinetic.best_fit()
+```
+ ```
+Out
+ The best model is that of BANGHAM R2 = 0.9983438488830458
  ```
