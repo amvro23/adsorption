@@ -1,7 +1,7 @@
 # adsorption
 A python package for estimating the best isotherm (i.e., Langmuir, Freundlich, Temkin, Toth, Sips, DR) and kinetic models (i.e., PFO, PSO, Weber-Morris, Avrami, Bangham, Elovich) as well as Arrhenius parameters (i.e., Ea, A).
 
-[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius)
+[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [References](#References)
 
 # Install
 First, make sure you have a Python 3 environment installed.
@@ -219,4 +219,10 @@ arrh.assess_fit()
 Out
 {'Arrhenius R2': 0.9967098965071525}
 ```
+
+#References
+
+Georgiadis, A. G., Charisiou, N. D., Gaber, S., Polychronopoulou, K., Yentekakis, I. V., & Goula, M. A. (2021). Adsorption of hydrogen sulfide at low temperatures using an industrial molecular sieve: an experimental and theoretical study. Acs Omega, 6(23), 14774-14787.
+
+Yentekakis, I. V., Georgiadis, A. G., Drosou, C., Charisiou, N. D., & Goula, M. A. (2022). Selective Catalytic Reduction of NOx over Perovskite-Based Catalysts Using CxHy (Oz), H2 and CO as Reducing Agents—A Review of the Latest Developments. Nanomaterials, 12(7), 1042.
 
