@@ -25,7 +25,11 @@ y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.9
 
 isotherm = Isotherms(x, y)
 ```
-You can obtain single model plot (e.g., Langmuir model).
-
+You can obtain either a single model plot (e.g., Langmuir model).
+```Python
+isotherm.plot_langmuir_fit()
+```
 ![langmuir](https://user-images.githubusercontent.com/91277572/208971022-c8579a81-6659-48c3-886b-a8dd92372c69.png)
+
+
 
