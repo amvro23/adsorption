@@ -10,5 +10,6 @@ To install from github:
 ```Python
 pip install -e git+https://github.com/amvro23/adsorption/#egg=adsorption
 ```
+Note: It might be useful to write "git+https://github.com/amvro23/adsorption/#egg=adsorption" if installing directly from a Python interpreter as # can be interpreted as a comment.
 
 # Usage
