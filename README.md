@@ -84,4 +84,11 @@ Out
 12                                       E_DR [J/mol]   147.67076438840127
 13                                     qmax_DR [mg/g]    192.6633619518013
 ```
-
+You can also have access in model parameters individually in order to create your own plots.
+```Python
+isotherm.dubinin_radushkevich_params()
+```
+```
+{'E_DR [J/mol]': 147.67076438840127, 
+'qmax_DR [mg/g]': 192.6633619518013}
+```
