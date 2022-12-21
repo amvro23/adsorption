@@ -197,3 +197,14 @@ y = df_kin.loc[:, 'Value'].values
 arrh = ModifiedArrhenius(x, y)
 ```
 
+You can obtain the values of Arrhenius parameters A [1/min^n] and Ea [J/mol]
+  ```Python
+arrh.arrhenius_params()
+```
+  ```
+Out
+{'Ea [J/mol]': 18300.09180621676, 
+'A [same as k]': 0.008242440438229868}
+```
+
+
