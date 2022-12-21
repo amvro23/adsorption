@@ -35,7 +35,7 @@ isotherm.plot_freundlich_fit()
 ```
 ![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
 
-Or you can obtain all fitting models.
+Or you can obtain all fitting isotherm models.
 ```Python
 isotherm.plot_all_models()
 ```
@@ -54,7 +54,7 @@ Out
  'Sips R2': 0.9851843142530591,
  'DR R2': 0.8808791659298837}
 ```
- The package can directly return the best fitting model.
+ The package can directly return the best fitting isotherm model.
 ```Python
 isotherm.best_fit()
 ```
@@ -62,7 +62,7 @@ isotherm.best_fit()
 Out
 The best model is that of Langmuir R2 = 0.9853798413181968
 ```
-You can also obtain a dataframe with all the calculated parameters with their units.
+You can also obtain a dataframe with all the calculated parameters of isotherm equations with their units.
 ```Python
 isotherm.all_params()
 ```
@@ -84,7 +84,7 @@ Out
 12                                       E_DR [J/mol]   147.67076438840127
 13                                     qmax_DR [mg/g]    192.6633619518013
 ```
-Or you can have access in model parameters individually in order to create your own plots.
+Or you can have access in isotherm parameters individually in order to create your own plots.
 ```Python
 isotherm.dubinin_radushkevich_params()
 ```
