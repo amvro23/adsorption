@@ -104,3 +104,11 @@ array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
 ## Kinetics
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values.
+```Python
+df = pd.read_csv('adsorption_kinetics.csv')
+x = df.loc[:, 'minutes'].values
+y = df.loc[:, 'qt'].values
+
+kinetic = Kinetics(x, y)
+```
