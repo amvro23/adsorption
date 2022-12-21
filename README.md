@@ -206,5 +206,17 @@ Out
 {'Ea [J/mol]': 18300.09180621676, 
 'A [same as k]': 0.008242440438229868}
 ```
+You can also obtain the plot and assess the fitting.
+  ```Python
+arrh.plot_arrhenius_fit()
+```
+![arrhenius](https://user-images.githubusercontent.com/91277572/208984298-0a54b650-b829-4062-8aaf-3f9bedb324e5.png)
 
+  ```Python
+arrh.assess_fit()
+```
+  ```
+Out
+{'Arrhenius R2': 0.9967098965071525}
+```
 
