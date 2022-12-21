@@ -44,7 +44,7 @@ You can assess the fitting of isotherm models.
 ```Python
 isotherm.assess_fit()
 ```
-```Python
+```
 Out
 {'Langmuir R2': 0.9853798413181968,
  'Freundlich R2': 0.7822175305642807,
@@ -57,7 +57,7 @@ Out
 ```Python
 isotherm.best_fit()
 ```
-```Python
+```
 Out
 The best model is that of Langmuir R2 = 0.9853798413181968
 ```
@@ -65,7 +65,7 @@ You can also obtain a dataframe with all the calculated parameters with their un
 ```Python
 isotherm.all_params()
 ```
-```Python
+```
 Out
                                            Parameters               Values
 0                                   K_Langmuir [L/mg]  0.05971152127312045
