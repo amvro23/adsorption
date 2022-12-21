@@ -118,13 +118,13 @@ kinetic.plot_bangham_fit()
 ```
 ![bangham](https://user-images.githubusercontent.com/91277572/208979002-cfb89967-123a-498c-b9ff-423ceb0dd7c3.png)
 
-Or you can obtain all isotherm models.
+Or you can obtain all kinetic models.
 ```Python
 kinetic.plot_all_models()
 ```
 ![kinetic_models](https://user-images.githubusercontent.com/91277572/208979310-532873b0-2073-4a32-92f4-730991f1ff28.png)
 
-You can assess the isotherm models.
+You can assess the kinetic models.
 ```Python
 kinetic.assess_fit()
 ```
