@@ -222,7 +222,9 @@ Out
 
 #References
 
+brackets [https://pubs.acs.org/doi/full/10.1021/acsomega.0c06157]
+
 Georgiadis, A. G., Charisiou, N. D., Gaber, S., Polychronopoulou, K., Yentekakis, I. V., & Goula, M. A. (2021). Adsorption of hydrogen sulfide at low temperatures using an industrial molecular sieve: an experimental and theoretical study. Acs Omega, 6(23), 14774-14787.
 
-Yentekakis, I. V., Georgiadis, A. G., Drosou, C., Charisiou, N. D., & Goula, M. A. (2022). Selective Catalytic Reduction of NOx over Perovskite-Based Catalysts Using CxHy (Oz), H2 and CO as Reducing Agents—A Review of the Latest Developments. Nanomaterials, 12(7), 1042.
+Siakavelas, G. I., Georgiadis, A. G., Charisiou, N. D., Yentekakis, I. V., & Goula, M. A. (2021). Cost‐Effective Adsorption of Oxidative Coupling‐Derived Ethylene Using a Molecular Sieve. Chemical Engineering & Technology, 44(11), 2041-2048.
 
