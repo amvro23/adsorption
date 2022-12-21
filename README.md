@@ -39,6 +39,7 @@ Or you can obtain all fitting models.
 isotherm.plot_all_models()
 ```
 ![all_isotherms](https://user-images.githubusercontent.com/91277572/208971930-40142a78-459c-4e70-840b-88829d8ffe2a.png)
+
 You can assess the fitting of isotherm models.
 ```Python
 isotherm.assess_fit()
