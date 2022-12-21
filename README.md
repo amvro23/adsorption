@@ -12,3 +12,10 @@ pip install -e git+https://github.com/amvro23/adsorption/#egg=adsorption
 Note: It might be useful to write "git+https://github.com/amvro23/adsorption/#egg=adsorption" if installing directly from a Python interpreter as # can be interpreted as a comment.
 
 # Usage
+
+```Python
+from adsorption import (Isotherms, Kinetics, ModifiedArrhenius)
+import numpy as np
+import pandas as pd
+```
+
