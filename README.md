@@ -145,3 +145,25 @@ kinetic.best_fit()
 Out
  The best model is that of BANGHAM R2 = 0.9983438488830458
  ```
+You can also obtain a dataframe with all the calculated parameters of kinetic equations with their units.
+ ```Python
+kinetic.all_params()
+```
+ ```
+Out
+                 Parameters                  Values
+0             k_pfo [1/min]    0.018620160753212878
+1           qmax_PFO [mg/g]       74.01352655075553
+2    k_pso [g mg^-1 min^-1]  0.00012514880623542925
+3           qmax_PSO [mg/g]      109.00232132690607
+4   k_wm [mg g^-1 min^-0.5]       6.184044312110834
+5                         C   6.836063566443158e-18
+6          k_avrami [1/min]    0.035198182776525935
+7        qmax_avrami [mg/g]       65.19974372878553
+8                  n_avrami      1.7755718014035597
+9       k_bangham [1/min^n]   0.0047733638932455965
+10     qmax__bangham [mg/g]       63.29831524175902
+11                n_bangham      1.4416628511124052
+12     a_elovich [mg/g/min]       4.602398573502221
+13        b__elovich [g/mg]     0.05477589170964753
+ ```
