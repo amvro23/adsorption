@@ -226,5 +226,7 @@ Out
 
 [Georgiadis, A. G., Charisiou, N. D., & Goula, M. A. (2020). Removal of hydrogen sulfide from various industrial gases: A review of the most promising adsorbing materials. Catalysts, 10(5), 521.](https://www.mdpi.com/2073-4344/10/5/521)
 
+[Georgiadis, A. G., Charisiou, N., Yentekakis, I. V., & Goula, M. A. (2020). Hydrogen sulfide (H2S) removal via MOFs. Materials, 13(16), 3640.](https://www.mdpi.com/1996-1944/13/16/3640)
+
 [Siakavelas, G. I., Georgiadis, A. G., Charisiou, N. D., Yentekakis, I. V., & Goula, M. A. (2021). Cost‐Effective Adsorption of Oxidative Coupling‐Derived Ethylene Using a Molecular Sieve. Chemical Engineering & Technology, 44(11), 2041-2048.](https://onlinelibrary.wiley.com/doi/abs/10.1002/ceat.202100147)
 
