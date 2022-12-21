@@ -632,3 +632,10 @@ class ModifiedArrhenius(object):
         ax.set_ylabel("k", fontsize=10, fontweight='bold')
         ax.set_title("Modified Arrhenius", fontsize=10, fontweight='bold')
         ax.grid(linestyle=':')
+     
+    def assess_fit(self):
+        y_observed = self.y
+        y_arrh = self.arrhenius_curve(self.x)
+        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_arrh)
+        R_arrhenius = r**2
+        return {"Arrhenius R2": R_arrhenius}
