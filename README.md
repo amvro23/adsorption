@@ -1,7 +1,7 @@
 # adsorption
 A python package for estimating the best isotherm (i.e., Langmuir, Freundlich, Temkin, Toth, Sips, DR) and kinetic models (i.e., PFO, PSO, Weber-Morris, Avrami, Bangham, Elovich) as well as Arrhenius parameters (i.e., Ea, A).
 
-[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics)
+[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius)
 
 # Install
 First, make sure you have a Python 3 environment installed.
@@ -185,4 +185,5 @@ kinetic.pso_curve(x)
 array([ 0.        ,  0.08073146,  0.16136812, ..., 67.24288195,
        67.25473634, 67.266584  ])
 ```
+## Arrhenius
 After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object, where x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the same temperatures. In this example Bangham model was the best to describe the process of CO2 adsorption.
