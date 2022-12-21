@@ -39,5 +39,17 @@ Or you can obtain all fitting models.
 isotherm.plot_all_models()
 ```
 ![all_isotherms](https://user-images.githubusercontent.com/91277572/208971930-40142a78-459c-4e70-840b-88829d8ffe2a.png)
+You can assess the fitting of isotherm models.
+```Python
+isotherm.assess_fit()
+```
+```Python
+{'Langmuir R2': 0.9853798413181968,
+ 'Freundlich R2': 0.7822175305642807,
+ 'Temkin R2': 0.8766497302509872,
+ 'Toth R2': 0.9852294550091175,
+ 'Sips R2': 0.9851843142530591,
+ 'DR R2': 0.8808791659298837}
+ ```
 
 
