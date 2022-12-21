@@ -34,6 +34,7 @@ isotherm.plot_langmuir_fit()
 isotherm.plot_freundlich_fit()
 ```
 ![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
+
 Or you can obtain all fitting models.
 ```Python
 isotherm.plot_all_models()
