@@ -167,3 +167,13 @@ Out
 12     a_elovich [mg/g/min]       4.602398573502221
 13        b__elovich [g/mg]     0.05477589170964753
  ```
+ Or you can have access in kinetic parameters individually in order to create your own plots.
+  ```Python
+kinetic.avrami_params()
+```
+ ```
+Out
+{'k_avrami [1/min]': 0.035198182776525935,
+ 'qmax_avrami [mg/g]': 65.19974372878553,
+ 'n_avrami': 1.7755718014035597}
+```
