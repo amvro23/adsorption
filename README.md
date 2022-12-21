@@ -30,6 +30,10 @@ You can obtain either a single model plot (e.g., Langmuir model).
 isotherm.plot_langmuir_fit()
 ```
 ![langmuir](https://user-images.githubusercontent.com/91277572/208971022-c8579a81-6659-48c3-886b-a8dd92372c69.png)
+```Python
+isotherm.plot_freundlich_fit()
+```
+![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
 
 
 
