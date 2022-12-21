@@ -220,7 +220,7 @@ Out
 {'Arrhenius R2': 0.9967098965071525}
 ```
 
-#References
+# References
 
 [Georgiadis, A. G., Charisiou, N. D., Gaber, S., Polychronopoulou, K., Yentekakis, I. V., & Goula, M. A. (2021). Adsorption of hydrogen sulfide at low temperatures using an industrial molecular sieve: an experimental and theoretical study. Acs Omega, 6(23), 14774-14787.](https://pubs.acs.org/doi/full/10.1021/acsomega.0c06157)
 
