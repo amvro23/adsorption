@@ -470,13 +470,13 @@ class Kinetics(object):
         self.q = FitParams[1]
         self.n = FitParams[2]
         return {'k_bangham [1/min^n]': self.k,
-                'qmax__bangham [mg/g]': self.q,
+                'qmax_bangham [mg/g]': self.q,
                 'n_bangham': self.n}
     
     def bangham_curve(self, x):
         yfit = self.bangham(x, 
                            self.bangham_params()['k_bangham [1/min^n]'],
-                           self.bangham_params()['qmax__bangham [mg/g]'],
+                           self.bangham_params()['qmax_bangham [mg/g]'],
                            self.bangham_params()['n_bangham'])
         return yfit
 
@@ -504,12 +504,12 @@ class Kinetics(object):
         self.a = FitParams[0]
         self.b = FitParams[1]
         return {'a_elovich [mg/g/min]': self.a,
-                'b__elovich [g/mg]': self.b}
+                'b_elovich [g/mg]': self.b}
     
     def elovich_curve(self, x):
         yfit = self.elovich(x, 
                            self.elovich_params()['a_elovich [mg/g/min]'],
-                           self.elovich_params()['b__elovich [g/mg]'])
+                           self.elovich_params()['b_elovich [g/mg]'])
         return yfit
 
     def plot_elovich_fit(self):
@@ -721,12 +721,12 @@ class AdsorptionDynamics(object):
         self.k = FitParams[0]
         self.q = FitParams[1]
         return {'k_thomas [ml/mg/min]': self.k,
-                'qmax__thomas [mg/g]': self.q}       
+                'qmax_thomas [mg/g]': self.q}       
 
     def thomas_curve(self, x):
         yfit = self.thomas(x, 
                            self.thomas_params()['k_thomas [ml/mg/min]'],
-                           self.thomas_params()['qmax__thomas [mg/g]'])
+                           self.thomas_params()['qmax_thomas [mg/g]'])
         return yfit
 
     def plot_thomas_fit(self):
