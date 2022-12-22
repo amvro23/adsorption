@@ -646,7 +646,7 @@ class ModifiedArrhenius(object):
 class AdsorptionDynamics(object):
     
     def __init__(self, x, y, C=0.1, Mr=44.01, T=298.15, 
-                 P=1, h=2, r=0.9, Q=100, W=1, U=0.1, R=8.205e-5):
+                 P=1, h=2, r=0.45, Q=100, W=1, U=0.1, R=8.205e-5):
         """Class for calculating 3 different empirical adsorpion dynamic models.            
         Parameters
         ----------
@@ -702,7 +702,7 @@ class AdsorptionDynamics(object):
         self.R = R
         
         self.c0 = self.C*(self.P*self.Mr)/self.R/self.T/1000
-        self.A = np.pi*(self.r**2)*self.h
+        self.A = np.pi*(self.r**2)
         self.v = self.Q/self.A
         self.yy = self.y[self.y <= self.U]
         self.xx = self.x[np.where(self.y <= self.U)[0]]
@@ -762,7 +762,7 @@ class AdsorptionDynamics(object):
         return yfit
 
     def plot_yoon_nelson_fit(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
         ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
         ax.plot(self.x, self.yoon_nelson_curve(self.x), 'r--', mfc = 'none', label = 'Predicted')
         ax.set_xlabel("Time [min]", fontsize=10, fontweight='bold')
@@ -892,7 +892,7 @@ class AdsorptionEnthalpy(object):
         enthlapy = -slope*8.314
         entropy = intercept*8.314
         return {'enthalpy [J/mol]': enthlapy, 
-                'entropy [J/mol/K]': entropy, 
+                'entropy [J/mol/K]': entropy,
                 'R2': r**2, 
                 'slope': slope, 
                 'intercept': intercept}
@@ -900,10 +900,10 @@ class AdsorptionEnthalpy(object):
     def vant_hoff_line(self, x):
         yfit = list(map(lambda x: self.vant_hoff_params()['slope']*x 
                         + self.vant_hoff_params()['intercept'], x))
-        return yfit
+        return np.array(yfit)
     
     def plot_vant_hoff(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
         ax.plot(1/self.x, self.lnKd, 'ko', mfc = 'none', label = 'Observed')
         ax.plot(1/self.x, self.vant_hoff_line(1/self.x), 'r--', mfc = 'none', label = 'Vant Hoff')
         ax.set_xlabel("1/T [1/K]", fontsize=10, fontweight='bold')
