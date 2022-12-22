@@ -874,6 +874,7 @@ class AdsorptionEnthalpy(object):
                   Converted equilibrium concentration [mg/L]
         lnKd    : float
                   Ratio of ln(qe/Ce)
+        x_inv   : inverse predictor
         """   
         self.x = x
         self.y = y
@@ -885,13 +886,14 @@ class AdsorptionEnthalpy(object):
         
         self.c0 = self.C*(self.P*self.Mr)/self.R/self.T
         self.lnKd = np.log(self.y/self.c0)
+        self.x_inv = 1/self.x
 
         
     def vant_hoff_params(self):
-        slope, intercept, r, p, std_err = stats.linregress(1/self.x, self.lnKd)
+        slope, intercept, r, p, std_err = stats.linregress(self.x_inv, self.lnKd)
         enthlapy = -slope*8.314
         entropy = intercept*8.314
-        return {'enthalpy [J/mol]': enthlapy, 
+        return {'enthalpy [J/mol]': enthlapy,
                 'entropy [J/mol/K]': entropy,
                 'R2': r**2, 
                 'slope': slope, 
@@ -899,13 +901,13 @@ class AdsorptionEnthalpy(object):
     
     def vant_hoff_line(self, x):
         yfit = list(map(lambda x: self.vant_hoff_params()['slope']*x 
-                        + self.vant_hoff_params()['intercept'], x))
+                        + self.vant_hoff_params()['intercept'], 1/x))
         return np.array(yfit)
     
     def plot_vant_hoff(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
-        ax.plot(1/self.x, self.lnKd, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(1/self.x, self.vant_hoff_line(1/self.x), 'r--', mfc = 'none', label = 'Vant Hoff')
+        ax.plot(self.x_inv, self.lnKd, 'ko', mfc = 'none', label = 'Observed')
+        ax.plot(self.x_inv, self.vant_hoff_line(self.x), 'r--', mfc = 'none', label = 'Vant Hoff')
         ax.set_xlabel("1/T [1/K]", fontsize=10, fontweight='bold')
         ax.set_ylabel("lnK$_d$", fontsize=10, fontweight='bold')
         ax.legend()
