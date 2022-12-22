@@ -250,9 +250,16 @@ Out
 ```
 
 # AdsorptionEnthalpy
-Create an object with two required parameters x and y, where x represents the adsorption temperature [K] and y represents the equilibrium adsorption capacity at different temperature for a specific concentration of the adsorbed molecule (e.g., CO2 = 0.01 at 298.15 K, 308.15 K, 323.15 K, 348.15 K, 373.15 K).
+Create an object with two required parameters x and y, where x represents the adsorption temperature [K] and y represents the equilibrium adsorption capacity [mg/g] at different temperatures for a specific concentration of the adsorbed molecule (e.g., CO2 = 0.01 at 298.15 K, 308.15 K, 323.15 K, 348.15 K, 373.15 K). Default optional values are C=0.01, Mr=44.01 g/mol, T=298.15 K, P=1 atm, R=8.205e-5 atm.m3/mol/K.
 
-![image](https://user-images.githubusercontent.com/91277572/209179733-c902a652-44d2-4369-91a7-e1c05fc66f2e.png)
+```Python
+x = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
+y = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
+ads_H = AdsorptionEnthalpy(x,y)
+```
+
+
+ads_H.vant_hoff_line(x)
 
 
 # References
