@@ -43,7 +43,7 @@ isotherm.plot_all_models()
 ```
 ![all_isotherms](https://user-images.githubusercontent.com/91277572/208971930-40142a78-459c-4e70-840b-88829d8ffe2a.png)
 
-You can assess the isotherm models.
+You can assess the fit of isotherm models.
 ```Python
 isotherm.assess_fit()
 ```
@@ -104,7 +104,8 @@ array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
 ## Kinetics
-Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values.
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values. The file can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+
 ```Python
 df = pd.read_csv('adsorption_kinetics.csv')
 x = df.loc[:, 'minutes'].values
@@ -124,7 +125,7 @@ kinetic.plot_all_models()
 ```
 ![kinetic_models](https://user-images.githubusercontent.com/91277572/208979310-532873b0-2073-4a32-92f4-730991f1ff28.png)
 
-You can assess the kinetic models.
+You can assess the fit of kinetic models.
 ```Python
 kinetic.assess_fit()
 ```
@@ -186,7 +187,7 @@ array([ 0.        ,  0.08073146,  0.16136812, ..., 67.24288195,
        67.25473634, 67.266584  ])
 ```
 ## Arrhenius
-After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object, where x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the same temperatures. In this example Bangham model was the best to describe the process of CO2 adsorption.
+After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object, where x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the corresponding temperatures. In this example Bangham model was the best to describe the process of CO2 adsorption.
   ```Python
 df_kin = pd.DataFrame({'Value':[0.00478, 0.00583, 0.00728, 0.01956],
                       'Temperature':[298.15, 308.15, 323.15, 373.15]})
@@ -220,7 +221,7 @@ Out
 ```
 
 ## AdsorptionDynamics
-Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%).
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The file can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 
 ```Python
 df = pd.read_csv('Co_10%.csv')
@@ -249,7 +250,7 @@ Out
 ```
 
 # AdsorptionEnthalpy
-Create an object with two required parameters x and y, where x represents the adsorption temperature [K] and y represents the equilibrium adsorption capacity [mg/g] at different temperatures for a specific concentration of the adsorbed molecule (e.g., CO2 = 0.01 at 298.15 K, 308.15 K, 323.15 K, 348.15 K, 373.15 K). Default optional values are C=0.01, Mr=44.01 g/mol, T=298.15 K, P=1 atm, R=8.205e-5 atm.m3/mol/K.
+Create an object with two required parameters x and y, where x represents the adsorption temperature [K] and y represents the equilibrium adsorption capacity [mg/g] at different temperatures for a fixed concentration of the adsorbed molecule (e.g., CO2 = 0.01 at 298.15 K, 308.15 K, 323.15 K, 348.15 K, 373.15 K). Default optional values are C=0.01, Mr=44.01 g/mol, T=298.15 K, P=1 atm, R=8.205e-5 atm.m3/mol/K.
 
 ```Python
 x = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
