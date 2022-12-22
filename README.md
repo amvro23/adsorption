@@ -270,6 +270,11 @@ Out
  'intercept': -6.292664146507331}
 ```
 
+```Python
+ads_H.plot_vant_hoff()
+```
+![vant_hoff](https://user-images.githubusercontent.com/91277572/209182117-d14334b4-bc00-4aff-8d5a-77437551a8c8.png)
+
 
 # References
 
