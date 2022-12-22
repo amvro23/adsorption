@@ -276,6 +276,13 @@ ads_H.plot_vant_hoff()
 
 Or your can obtain the numerical values to create your own plot.
 ```Python
+ads_H.lnKd
+```
+```
+Out
+array([2.4267528 , 2.19922383, 1.86621433, 1.28675816, 0.65010871])
+```
+```Python
 ads_H.vant_hoff_line(x)
 ```
 ```
