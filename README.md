@@ -104,7 +104,7 @@ array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
 ## Kinetics
-Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values. The file can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 
 ```Python
 df = pd.read_csv('adsorption_kinetics.csv')
@@ -221,7 +221,7 @@ Out
 ```
 
 ## AdsorptionDynamics
-Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The file can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 
 ```Python
 df = pd.read_csv('Co_10%.csv')
