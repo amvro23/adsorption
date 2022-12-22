@@ -190,14 +190,13 @@ After finding the best kinetic model, the equation is applied to the data obtain
   ```Python
 df_kin = pd.DataFrame({'Value':[0.00478, 0.00583, 0.00728, 0.01956],
                       'Temperature':[298.15, 308.15, 323.15, 373.15]})
-
 x = df_kin.loc[:, 'Temperature'].values
 y = df_kin.loc[:, 'Value'].values
 
 arrh = ModifiedArrhenius(x, y)
 ```
 
-You can obtain the values of Arrhenius parameters A [1/min^n] and Ea [J/mol]
+You can obtain the values of Arrhenius parameters A and Ea
   ```Python
 arrh.arrhenius_params()
 ```
@@ -255,11 +254,21 @@ Create an object with two required parameters x and y, where x represents the ad
 ```Python
 x = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
 y = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
+
 ads_H = AdsorptionEnthalpy(x,y)
 ```
-
-
-ads_H.vant_hoff_line(x)
+You can obtain the values of Vant Hoff parameters enthalpy and entropy
+```Python
+ads_H.vant_hoff_params()
+```
+```
+Out
+{'enthalpy [J/mol]': -21754.33170685983,
+ 'entropy [J/mol/K]': -52.31720971406195,
+ 'R2': 0.9923449042417911,
+ 'slope': 2616.5902943059696,
+ 'intercept': -6.292664146507331}
+```
 
 
 # References
