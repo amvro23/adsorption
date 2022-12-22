@@ -240,7 +240,7 @@ ads_dyn.all_params()
 Out
                           Parameters              Values
 0               k_thomas [ml/mg/min]   2.678369108434965
-1                qmax_thomas [mg/g]  202.16211953564525
+1                qmax_thomas [mg/g]   202.16211953564525
 2              k_yoon_nelson [1/min]  0.4818450777710938
 3              tau_yoon_nelson [min]  11.237299942413042
 4  k_adams_bohart_params [ml/mg/min]   5.913583287817446
