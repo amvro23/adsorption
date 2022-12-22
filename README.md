@@ -245,8 +245,8 @@ Out
 1                qmax__thomas [mg/g]  202.16211953564525
 2              k_yoon_nelson [1/min]  0.4818450777710938
 3              tau_yoon_nelson [min]  11.237299942413042
-4  k_adams_bohart_params [ml/mg/min]   5.913583531499893
-5     N0_adams_bohart_params [mg/ml]   17.20073677066194
+4  k_adams_bohart_params [ml/mg/min]   5.913583287817446
+5     N0_adams_bohart_params [mg/ml]   137.6058956768907
 ```
 
 # AdsorptionEnthalpy
