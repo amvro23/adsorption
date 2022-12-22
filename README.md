@@ -1,7 +1,7 @@
 # adsorption
 A python package for estimating the best isotherm (i.e., Langmuir, Freundlich, Temkin, Toth, Sips, DR) and kinetic models (i.e., PFO, PSO, Weber-Morris, Avrami, Bangham, Elovich) as well as Arrhenius parameters (i.e., Ea, A).
 
-[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [References](#References)
+[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [AdsorptionDynamics](#AdsorptionDynamics) / [References](#References)
 
 # Install
 First, make sure you have a Python 3 environment installed.
@@ -219,6 +219,8 @@ arrh.assess_fit()
 Out
 {'Arrhenius R2': 0.9967098965071525}
 ```
+
+## AdsorptionDynamics
 
 # References
 
