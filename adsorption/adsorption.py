@@ -7,7 +7,7 @@ import pandas as pd
 class Isotherms(object):
     
     def __init__(self, x, y, P = 1, Mr = 44.01, T = 298.15, R = 8.205e-5):
-        """Class for 6 different adsorption isotherms.
+        """Class for evaluating 6 different adsorption isotherms.
         Parameters
         ----------
         x  : 1d array of floats
@@ -41,6 +41,7 @@ class Isotherms(object):
         self.factor = (self.P*self.Mr)/self.R/self.T
         self.x_obs = self.factor*self.x
         self.xfit = np.linspace(min(self.x_obs), max(self.x_obs), 50)
+
     
     def langmuir(self, x, k, q):
         x = np.array(x)
@@ -312,7 +313,7 @@ class Isotherms(object):
 class Kinetics(object):
 
     def __init__(self, x, y):
-        """Class for 6 different adsorption kinetic models.
+        """Class for evaluating 6 different adsorption kinetic models.
         Parameters
         ----------
         x  : 1d array of floats
@@ -322,6 +323,7 @@ class Kinetics(object):
         """
         self.x = x
         self.y = y
+
         
     def pfo(self, x, k, q):
         x = np.array(x)
@@ -592,7 +594,7 @@ class Kinetics(object):
 class ModifiedArrhenius(object):
     
     def __init__(self, x, y):
-        """Class for calculatin Arrhenius parameters.
+        """Class for calculating Arrhenius parameters.
         Parameters
         ----------
         x  : 1d array of floats
@@ -624,18 +626,288 @@ class ModifiedArrhenius(object):
         return yfit
         
     def plot_arrhenius_fit(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
         xfit = np.linspace(min(self.x), max(self.x), 200)
         ax.plot(self.x, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(xfit, self.arrhenius_curve(xfit), 'r--', mfc = 'none', label = 'Arrhenius')
+        ax.plot(xfit, self.arrhenius_curve(xfit), 'g--', mfc = 'none', label = 'Arrhenius')
         ax.set_xlabel("Temperature [K]", fontsize=10, fontweight='bold')
         ax.set_ylabel("k", fontsize=10, fontweight='bold')
         ax.set_title("Modified Arrhenius", fontsize=10, fontweight='bold')
         ax.grid(linestyle=':')
-     
+        
     def assess_fit(self):
         y_observed = self.y
         y_arrh = self.arrhenius_curve(self.x)
         slope, intercept, r, p, std_err = stats.linregress(y_observed, y_arrh)
         R_arrhenius = r**2
         return {"Arrhenius R2": R_arrhenius}
+
+    
+class AdsorptionDynamics(object):
+    
+    def __init__(self, x, y, C=0.1, Mr=44.01, T=298.15, 
+                 P=1, h=2, r=0.9, Q=100, W=1, U=0.1, R=8.205e-5):
+        """Class for calculating 3 different empirical adsorpion dynamic models.            
+        Parameters
+        ----------
+        x  : 1d array of floats
+             Adsorption time [min]
+        y  : 1d array of floats
+             Ct/C0 dimensionless concentration
+        C  : float or integer, optional
+             Initial concentration of adsorbed molecule [%], by default 0.1 (10% CO2)
+        Mr : float, optional
+             Molar mass of adsorbed molecule [g/mol], by default 44.01 for CO2
+        T  : float or integer, optional
+             Adsorption temperature [K], by default 298.15
+        P  : float or integer, optional
+             Adsorption pressure [atm], by default 298.15
+        h  : float or integer, optional
+             Height of adsorption bed [cm], by default 2
+        r  : float or integer, optional
+             Adsorption bed inner radius [cm], by default 0.9
+        Q  : integer, optional
+             Total flow rate of gas mixture [ml/min], by default 0.9
+        W  : float or integer, optional
+             Weight of adsorbent used [g], by default 1
+        U  : float or integer, optional
+             Considering part of adsorption process, by default 0.1 (10% of Ct/C0 for Adams-Bohart eq.)
+        R  : float, optional
+             Gas constant [atm.m3/mol/K], by default 8.205e-5
+        
+        Calculated Parameters
+        ----------
+        c0      : float
+                  Converted equilibrium concentration [mg/ml]
+        A       : float
+                  Cross-sectional area of the reactor bed [cm2]
+        v       : float
+                  Superficial velocity [cm/min]
+        yy      : 1d array of floats
+                  Initial stage of adsorption process for Adams-Bohart equation (Ct/C0 = 0.1)
+        xx      : 1d array of floats
+                  Minutes correspond to Ct/C0 = 0.1                
+        """             
+        self.x = x
+        self.y = y
+        self.C = C
+        self.Mr = Mr
+        self.T = T
+        self.P = P
+        self.h = h
+        self.r = r
+        self.Q = Q
+        self.W = W
+        self.U = U
+        self.R = R
+        
+        self.c0 = self.C*(self.P*self.Mr)/self.R/self.T/1000
+        self.A = np.pi*(self.r**2)*self.h
+        self.v = self.Q/self.A
+        self.yy = self.y[self.y <= self.U]
+        self.xx = self.x[np.where(self.y <= self.U)[0]]
+
+
+    def thomas(self, x, k, q):
+        x = np.array(x)
+        return 1/(1 + np.exp(k*q*(self.W/self.Q) - k*self.c0*x)) 
+
+    def thomas_params(self):
+        FitParams, FitCov = curve_fit(self.thomas,
+                                      self.x, 
+                                      self.y,
+                                      np.array([1, 1]),
+                                      bounds=(0, [np.inf, np.inf]))
+        self.k = FitParams[0]
+        self.q = FitParams[1]
+        return {'k_thomas [ml/mg/min]': self.k,
+                'qmax__thomas [mg/g]': self.q}       
+
+    def thomas_curve(self, x):
+        yfit = self.thomas(x, 
+                           self.thomas_params()['k_thomas [ml/mg/min]'],
+                           self.thomas_params()['qmax__thomas [mg/g]'])
+        return yfit
+
+    def plot_thomas_fit(self):
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
+        ax.plot(self.x, self.thomas_curve(self.x), 'r--', mfc = 'none', label = 'Predicted')
+        ax.set_xlabel("Time [min]", fontsize=10, fontweight='bold')
+        ax.set_ylabel("C$_t$/C$_0$", fontsize=10, fontweight='bold')
+        ax.legend()
+        ax.set_title('Thomas fit')
+        ax.grid(ls=":")
+
+        
+    def yoon_nelson(self, x, k, tau):
+        x = np.array(x)
+        return np.exp(k*(x-tau))/(1+np.exp(k*(x-tau)))         
+        
+    def yoon_nelson_params(self):
+        FitParams, FitCov = curve_fit(self.yoon_nelson,
+                                      self.x, 
+                                      self.y,
+                                      np.array([1, 1]),
+                                      bounds=(0, [np.inf, np.inf]))
+        self.k = FitParams[0]
+        self.tau = FitParams[1]
+        return {'k_yoon_nelson [1/min]': self.k,
+                'tau_yoon_nelson [min]': self.tau} 
+
+    def yoon_nelson_curve(self, x):
+        yfit = self.yoon_nelson(x, 
+                                self.yoon_nelson_params()['k_yoon_nelson [1/min]'],
+                                self.yoon_nelson_params()['tau_yoon_nelson [min]'])
+        return yfit
+
+    def plot_yoon_nelson_fit(self):
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
+        ax.plot(self.x, self.yoon_nelson_curve(self.x), 'r--', mfc = 'none', label = 'Predicted')
+        ax.set_xlabel("Time [min]", fontsize=10, fontweight='bold')
+        ax.set_ylabel("C$_t$/C$_0$", fontsize=10, fontweight='bold')
+        ax.legend()
+        ax.set_title('Yoon-Nelson fit')
+        ax.grid(ls=":")
+
+
+    def adams_bohart(self, x, k, N0):
+        x = np.array(x)
+        return np.exp(k*self.c0*x - k*N0*(self.h/self.v))
+    
+    def adams_bohart_params(self):
+        FitParams, FitCov = curve_fit(self.adams_bohart,
+                                      self.xx, 
+                                      self.yy,
+                                      np.array([1, 1]),
+                                      bounds=(0, [np.inf, np.inf]))
+        self.k = FitParams[0]
+        self.N0 = FitParams[1]
+        return {'k_adams_bohart_params [ml/mg/min]': self.k,
+                'N0_adams_bohart_params [mg/ml]': self.N0}
+    
+    def adams_bohart_curve(self, x):
+        yfit = self.adams_bohart(x, 
+                                self.adams_bohart_params()['k_adams_bohart_params [ml/mg/min]'],
+                                self.adams_bohart_params()['N0_adams_bohart_params [mg/ml]'])
+        return yfit
+
+    def plot_adams_bohart_fit(self):
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
+        ax.plot(self.xx, self.adams_bohart_curve(self.xx), 'r--', mfc = 'none', label = 'Predicted')
+        ax.set_xlabel("Time [min]", fontsize=10, fontweight='bold')
+        ax.set_ylabel("C$_t$/C$_0$", fontsize=10, fontweight='bold')
+        ax.legend()
+        ax.set_title('Adams-Bohart fit')
+        ax.grid(ls=":")
+
+    def plot_all_models(self):
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
+        ax.plot(self.x, self.thomas_curve(self.x), 'r--', mfc = 'none', label = 'Thomas')
+        ax.plot(self.x, self.yoon_nelson_curve(self.x), 'b--', mfc = 'none', label = 'Yoon-Nelson')
+        ax.plot(self.xx, self.adams_bohart_curve(self.xx), 'm--', mfc = 'none', label = 'Adams-Bohart')
+        ax.set_xlabel("Time [min]", fontsize=10, fontweight='bold')
+        ax.set_ylabel("C$_t$/C$_0$", fontsize=10, fontweight='bold')
+        ax.legend()
+        ax.set_title('All models') 
+        ax.grid(ls=":")
+        
+    def assess_fit(self):
+        y_obs1 = self.y
+        y_obs2 = self.yy
+        y_thomas = self.thomas_curve(self.x)
+        y_yoon_nelson = self.yoon_nelson_curve(self.x)
+        y_adams_bohart = self.adams_bohart_curve(self.xx)
+        slope, intercept, r, p, std_err = stats.linregress(y_obs1, y_thomas)
+        R_thomas = r**2
+        slope, intercept, r, p, std_err = stats.linregress(y_obs1, y_yoon_nelson)
+        R_yoon_nelson = r**2
+        slope, intercept, r, p, std_err = stats.linregress(y_obs2, y_adams_bohart)
+        R_adams_bohart = r**2
+        return {"THOMAS R2": R_thomas, 
+                "YOON-NELSON R2": R_yoon_nelson,
+                "ADAMS-BOHART R2": R_adams_bohart}
+    
+    def best_fit(self):
+        model = max(self.assess_fit(), key=self.assess_fit().get)
+        value = self.assess_fit().get(model)
+        return print("The best model is that of", model, "=", value)
+    
+    def all_params(self):
+        
+        def get_params(*args):
+            params = np.vstack(args)
+            return params
+        
+        all_p = get_params(list(self.thomas_params().items()), 
+                           list(self.yoon_nelson_params().items()),
+                           list(self.adams_bohart_params().items()))
+        
+        df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
+        return df
+
+class AdsorptionEnthalpy(object):
+    
+    def __init__(self, x, y, C=0.01, Mr=44.01, T=298.15, P=1, R=8.205e-5):
+        """Class for calculating 3 different empirical adsorpion dynamic models.            
+        Parameters
+        ----------
+        x  : 1d array of floats
+             Adsorption time [min]
+        y  : 1d array of floats
+             Ct/C0 dimensionless concentration
+        C  : float or integer, optional
+             Initial concentration of adsorbed molecule [%], by default 0.01 (1% CO2)
+        Mr : float, optional
+             Molar mass of adsorbed molecule [g/mol], by default 44.01 for CO2
+        T  : float or integer, optional
+             Adsorption temperature [K], by default 298.15
+        R  : float, optional
+             Gas constant [atm.m3/mol/K], by default 8.205e-5
+        
+        Calculated Parameters
+        ----------
+        c0      : float
+                  Converted equilibrium concentration [mg/L]
+        lnKd    : float
+                  Ratio of ln(qe/Ce)
+        """   
+        self.x = x
+        self.y = y
+        self.C = C
+        self.Mr = Mr
+        self.T = T
+        self.P = P
+        self.R = R
+        
+        self.c0 = self.C*(self.P*self.Mr)/self.R/self.T
+        self.lnKd = np.log(self.y/self.c0)
+
+        
+    def vant_hoff_params(self):
+        slope, intercept, r, p, std_err = stats.linregress(1/self.x, self.lnKd)
+        enthlapy = -slope*8.314
+        entropy = intercept*8.314
+        return {'enthalpy [J/mol]': enthlapy, 
+                'entropy [J/mol/K]': entropy, 
+                'R2': r**2, 
+                'slope': slope, 
+                'intercept': intercept}
+    
+    def vant_hoff_line(self, x):
+        yfit = list(map(lambda x: self.vant_hoff_params()['slope']*x 
+                        + self.vant_hoff_params()['intercept'], x))
+        return yfit
+    
+    def plot_vant_hoff(self):
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        ax.plot(1/self.x, self.lnKd, 'ko', mfc = 'none', label = 'Observed')
+        ax.plot(1/self.x, self.vant_hoff_line(1/self.x), 'r--', mfc = 'none', label = 'Vant Hoff')
+        ax.set_xlabel("1/T [1/K]", fontsize=10, fontweight='bold')
+        ax.set_ylabel("lnK$_d$", fontsize=10, fontweight='bold')
+        ax.legend()
+        ax.set_title('Vant Hoff') 
+        ax.grid(ls=":")
