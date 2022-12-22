@@ -163,10 +163,10 @@ Out
 7        qmax_avrami [mg/g]       65.19974372878553
 8                  n_avrami      1.7755718014035597
 9       k_bangham [1/min^n]   0.0047733638932455965
-10     qmax__bangham [mg/g]       63.29831524175902
+10     qmax_bangham [mg/g]        63.29831524175902
 11                n_bangham      1.4416628511124052
 12     a_elovich [mg/g/min]       4.602398573502221
-13        b__elovich [g/mg]     0.05477589170964753
+13        b_elovich [g/mg]      0.05477589170964753
  ```
  Or you can have access in kinetic parameters individually in order to create your own plots.
   ```Python
@@ -240,7 +240,7 @@ ads_dyn.all_params()
 Out
                           Parameters              Values
 0               k_thomas [ml/mg/min]   2.678369108434965
-1                qmax__thomas [mg/g]  202.16211953564525
+1                qmax_thomas [mg/g]  202.16211953564525
 2              k_yoon_nelson [1/min]  0.4818450777710938
 3              tau_yoon_nelson [min]  11.237299942413042
 4  k_adams_bohart_params [ml/mg/min]   5.913583287817446
