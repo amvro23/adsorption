@@ -230,8 +230,9 @@ y = df.loc[:, 'y']
 
 ads_dyn = AdsorptionDynamics(x,y)
 ```
+You can obtain either a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 
-
+![yoon-nelson](https://user-images.githubusercontent.com/91277572/209157798-10560dff-e06f-439c-8dbd-cdab689c226c.png)
 
 # References
 
