@@ -221,7 +221,7 @@ Out
 ```
 
 ## AdsorptionDynamics
-Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values.
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Optional default values include C = 0.1 that represents the initial concentration of the adsorbed molecule (CO2: 10%).
 
   ```Python
 df = pd.read_csv('Co_10%.csv')
@@ -233,6 +233,19 @@ ads_dyn = AdsorptionDynamics(x,y)
 You can obtain either a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 
 ![yoon-nelson](https://user-images.githubusercontent.com/91277572/209157798-10560dff-e06f-439c-8dbd-cdab689c226c.png)
+
+You can also obtain a dataframe with all the calculated parameters of dynamic adsorption equations with their units.
+```
+Out
+                          Parameters              Values
+0               k_thomas [ml/mg/min]   2.678369108434965
+1                qmax__thomas [mg/g]  202.16211953564525
+2              k_yoon_nelson [1/min]  0.4818450777710938
+3              tau_yoon_nelson [min]  11.237299942413042
+4  k_adams_bohart_params [ml/mg/min]   5.913583531499893
+5     N0_adams_bohart_params [mg/ml]   17.20073677066194
+```
+
 
 # References
 
