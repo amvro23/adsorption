@@ -221,7 +221,7 @@ Out
 ```
 
 ## AdsorptionDynamics
-Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.9 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%).
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%).
 
 ```Python
 df = pd.read_csv('Co_10%.csv')
@@ -250,6 +250,10 @@ Out
 ```
 
 # AdsorptionEnthalpy
+Create an object with two required parameters x and y, where x represents the adsorption temperature [K] and y represents the equilibrium adsorption capacity at different temperature for a specific concentration of the adsorbed molecule (e.g., CO2 = 0.01 at 298.15 K, 308.15 K, 323.15 K, 348.15 K, 373.15 K).
+
+![image](https://user-images.githubusercontent.com/91277572/209179733-c902a652-44d2-4369-91a7-e1c05fc66f2e.png)
+
 
 # References
 
