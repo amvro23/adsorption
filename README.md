@@ -273,8 +273,17 @@ Out
 ```Python
 ads_H.plot_vant_hoff()
 ```
-![vant_hoff](https://user-images.githubusercontent.com/91277572/209182117-d14334b4-bc00-4aff-8d5a-77437551a8c8.png)
+![vant_hoff](https://user-images.githubusercontent.com/91277572/209183090-dc532404-7ee1-4f77-9846-a4345adb1050.png)
 
+Or your can obtain the numerical values to create your own plot.
+```Python
+ads_H.vant_hoff_line(x)
+```
+```
+Out
+array([780130.10358318, 806296.00652624, 845544.86094083, 910959.61829848,
+       976374.37565613])
+```
 
 # References
 
