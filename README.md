@@ -221,6 +221,17 @@ Out
 ```
 
 ## AdsorptionDynamics
+Create an object with two required parameters x and y, where x represents the adsorption time [min] and y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values.
+
+  ```Python
+df = pd.read_csv('Co_10%.csv')
+x = df.loc[:, 'x']
+y = df.loc[:, 'y']
+
+ads_dyn = AdsorptionDynamics(x,y)
+```
+
+
 
 # References
 
