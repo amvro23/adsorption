@@ -27,7 +27,7 @@ y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.9
 
 isotherm = Isotherms(x, y)
 ```
-You can obtain either a single isotherm model plot (e.g., Langmuir model, Freundlich model).
+You can obtain either a single isotherm model plot (e.g., Langmuir model, Freundlich model),
 ```Python
 isotherm.plot_langmuir_fit()
 ```
@@ -37,7 +37,7 @@ isotherm.plot_freundlich_fit()
 ```
 ![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
 
-Or you can obtain all isotherm models.
+or you can obtain all isotherm models.
 ```Python
 isotherm.plot_all_models()
 ```
@@ -64,7 +64,7 @@ isotherm.best_fit()
 Out
 The best model is that of Langmuir R2 = 0.9853798413181968
 ```
-You can also obtain a dataframe with all the calculated parameters of isotherm equations with their units.
+You can also obtain a dataframe with all the calculated parameters of isotherm equations with their units,
 ```Python
 isotherm.all_params()
 ```
@@ -86,7 +86,7 @@ Out
 12                                       E_DR [J/mol]   147.67076438840127
 13                                     qmax_DR [mg/g]    192.6633619518013
 ```
-Or you can have access in isotherm parameters individually in order to create your own plots.
+or you can have access in isotherm parameters individually in order to create your own plots.
 ```Python
 isotherm.dubinin_radushkevich_params()
 ```
@@ -113,13 +113,13 @@ y = df.loc[:, 'qt'].values
 
 kinetic = Kinetics(x, y)
 ```
-You can obtain either a single kinetic model plot (e.g., Bangham model).
+You can obtain either a single kinetic model plot (e.g., Bangham model),
 ```Python
 kinetic.plot_bangham_fit()
 ```
 ![bangham](https://user-images.githubusercontent.com/91277572/208979002-cfb89967-123a-498c-b9ff-423ceb0dd7c3.png)
 
-Or you can obtain all kinetic models.
+or you can obtain all kinetic models.
 ```Python
 kinetic.plot_all_models()
 ```
@@ -146,7 +146,7 @@ kinetic.best_fit()
 Out
  The best model is that of BANGHAM R2 = 0.9983438488830458
  ```
-You can also obtain a dataframe with all the calculated parameters of kinetic equations with their units.
+You can also obtain a dataframe with all the calculated parameters of kinetic equations with their units,
  ```Python
 kinetic.all_params()
 ```
@@ -168,7 +168,7 @@ Out
 12     a_elovich [mg/g/min]       4.602398573502221
 13        b_elovich [g/mg]      0.05477589170964753
  ```
- Or you can have access in kinetic parameters individually in order to create your own plots.
+or you can have access in kinetic parameters individually in order to create your own plots.
   ```Python
 kinetic.avrami_params()
 ```
@@ -195,7 +195,7 @@ y = np.array([0.00478, 0.00583, 0.00728, 0.01956])
 arrh = ModifiedArrhenius(x, y)
 ```
 
-You can obtain the values of Arrhenius parameters A and Ea
+You can obtain the values of Arrhenius parameters A and Ea.
   ```Python
 arrh.arrhenius_params()
 ```
@@ -228,7 +228,7 @@ y = df.loc[:, 'y']
 
 ads_dyn = AdsorptionDynamics(x,y)
 ```
-You can obtain either a single adsorption dynamic model plot (e.g., Yoon-nelson model).
+You can obtain a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 
 ![yoon-nelson](https://user-images.githubusercontent.com/91277572/209157798-10560dff-e06f-439c-8dbd-cdab689c226c.png)
 
@@ -256,7 +256,7 @@ y = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
 
 ads_H = AdsorptionEnthalpy(x,y)
 ```
-You can obtain the values of Vant Hoff parameters enthalpy and entropy
+You can obtain the values of Vant Hoff parameters enthalpy and entropy,
 ```Python
 ads_H.vant_hoff_params()
 ```
@@ -274,7 +274,7 @@ ads_H.plot_vant_hoff()
 ```
 ![vant_hoff](https://user-images.githubusercontent.com/91277572/209183090-dc532404-7ee1-4f77-9846-a4345adb1050.png)
 
-Or your can obtain the numerical values to create your own plot.
+or your can obtain the numerical values to create your own plot.
 ```Python
 ads_H.lnKd
 ```
