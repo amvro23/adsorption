@@ -136,7 +136,7 @@ Out
  'WEBER-MORRIS R2': 0.9568081287159736,
  'AVRAMI R2': 0.9967027963259552,
  'BANGHAM R2': 0.9983438488830458,
- 'ELOVICH R2': nan}
+ 'ELOVICH R2': 0.8749670564977801}
  ```
  The package can directly return the best kinetic model.
  ```Python
