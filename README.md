@@ -233,11 +233,8 @@ ads_dyn = AdsorptionDynamics()
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
 df_dyn = pd.read_csv('Co_10%.csv')
-x = df_dyn.loc[:, 'x'].values
-y = df_dyn.loc[:, 'y'].values
-
-ads_dyn.x = x
-ads_dyn.y = y
+ads_dyn.x = df_dyn.loc[:, 'x'].values
+ads_dyn.y = df_dyn.loc[:, 'y'].values
 ```
 You can obtain a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 
