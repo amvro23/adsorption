@@ -547,7 +547,7 @@ class Kinetics(object):
         y_wm = self.weber_morris_curve(self.x)
         y_avrami = self.avrami_curve(self.x)
         y_bangham = self.bangham_curve(self.x)
-        y_elovich = self.elovich_curve(self.x)
+        y_elovich = self.elovich_curve(self.x[1:])
         slope, intercept, r, p, std_err = stats.linregress(y_observed, y_pfo)
         R_pfo = r**2
         slope, intercept, r, p, std_err = stats.linregress(y_observed, y_pso)
@@ -558,7 +558,7 @@ class Kinetics(object):
         R_avrami = r**2
         slope, intercept, r, p, std_err = stats.linregress(y_observed, y_bangham)
         R_bangham = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_elovich)
+        slope, intercept, r, p, std_err = stats.linregress(y_observed[1:], y_elovich)
         R_elovich = r**2  
         return {"PFO R2": R_pfo, 
                 "PSO R2": R_pso,
