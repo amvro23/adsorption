@@ -3,16 +3,18 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 from scipy import stats
 import pandas as pd
+from ads_data import (x_iso, y_iso, x_kin, y_kin, x_arrh, y_arrh, 
+                      x_dyn, y_dyn, x_h, y_h)
 
 class Isotherms(object):
     
-    def __init__(self, x, y, P = 1, Mr = 44.01, T = 298.15, R = 8.205e-5):
+    def __init__(self, x=x_iso, y=y_iso, P = 1, Mr = 44.01, T = 298.15, R = 8.205e-5):
         """Class for evaluating 6 different adsorption isotherms.
         Parameters
         ----------
-        x  : 1d array of floats
+        x  : 1d array of floats, optional
              Equilibrium concentration dimensionless [%]
-        y  : 1d array of floats
+        y  : 1d array of floats, optional
              Equilibrium adsorption capacity [mg/g]
         P  : float or integer, optional
              Adsorption pressure [atm], by default 1
@@ -312,13 +314,13 @@ class Isotherms(object):
 
 class Kinetics(object):
 
-    def __init__(self, x, y):
+    def __init__(self, x=x_kin, y=y_kin):
         """Class for evaluating 6 different adsorption kinetic models.
         Parameters
         ----------
-        x  : 1d array of floats
+        x  : 1d array of floats, optional
              Adsorption time [min]
-        y  : 1d array of floats
+        y  : 1d array of floats, optional
              Accumulative adsorption capacity [mg/g]   
         """
         self.x = x
@@ -593,13 +595,13 @@ class Kinetics(object):
     
 class ModifiedArrhenius(object):
     
-    def __init__(self, x, y):
+    def __init__(self, x=x_arrh, y=y_arrh):
         """Class for calculating Arrhenius parameters.
         Parameters
         ----------
-        x  : 1d array of floats
+        x  : 1d array of floats, optional
              Adsorption temperatures [K]
-        y  : 1d array of floats
+        y  : 1d array of floats, optional
              Kinetic constants of the best fitted model at different temperatures   
         """
         self.x = x
@@ -645,14 +647,14 @@ class ModifiedArrhenius(object):
     
 class AdsorptionDynamics(object):
     
-    def __init__(self, x, y, C=0.1, Mr=44.01, T=298.15, 
+    def __init__(self, x=x_dyn, y=y_dyn, C=0.1, Mr=44.01, T=298.15, 
                  P=1, h=2, r=0.45, Q=100, W=1, U=0.1, R=8.205e-5):
         """Class for calculating 3 different empirical adsorpion dynamic models.            
         Parameters
         ----------
-        x  : 1d array of floats
+        x  : 1d array of floats, optional
              Adsorption time [min]
-        y  : 1d array of floats
+        y  : 1d array of floats, optional
              Ct/C0 dimensionless concentration
         C  : float or integer, optional
              Initial concentration of adsorbed molecule [%], by default 0.1 (10% CO2)
@@ -851,13 +853,13 @@ class AdsorptionDynamics(object):
 
 class AdsorptionEnthalpy(object):
     
-    def __init__(self, x, y, C=0.01, Mr=44.01, T=298.15, P=1, R=8.205e-5):
+    def __init__(self, x=x_h, y=y_h, C=0.01, Mr=44.01, T=298.15, P=1, R=8.205e-5):
         """Class for calculating 3 different empirical adsorpion dynamic models.            
         Parameters
         ----------
-        x  : 1d array of floats
+        x  : 1d array of floats, optional
              Adsorption time [min]
-        y  : 1d array of floats
+        y  : 1d array of floats, optional
              Ct/C0 dimensionless concentration
         C  : float or integer, optional
              Initial concentration of adsorbed molecule [%], by default 0.01 (1% CO2)
