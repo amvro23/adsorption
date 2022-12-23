@@ -626,7 +626,7 @@ class ModifiedArrhenius(object):
         return yfit
         
     def plot_arrhenius_fit(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         xfit = np.linspace(min(self.x), max(self.x), 200)
         ax.plot(self.x, self.y, 'ko', mfc = 'none', label = 'Observed')
         ax.plot(xfit, self.arrhenius_curve(xfit), 'g--', mfc = 'none', label = 'Arrhenius')
