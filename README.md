@@ -24,7 +24,7 @@ Create an object. Optional parameter x represents the dimensionless equilibrium 
 ```Python
 isotherm = Isotherms()
 ```
-Adjust the values of x and y parameters (the default values are the following).
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
 isotherm.x = np.array([0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]) 
 isotherm.y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.90])
@@ -114,11 +114,11 @@ kinetic = Kinetics()
 ```Python
 kinetic = Kinetics()
 ```
-Adjust the values of x and y parameters (the default values are the following).
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
-df = pd.read_csv('adsorption_kinetics.csv')
-kinetic.x = df.loc[:, 'minutes'].values
-kinetic.y = df.loc[:, 'qt'].values
+df_kin = pd.read_csv('adsorption_kinetics.csv')
+kinetic.x = df_kin.loc[:, 'minutes'].values
+kinetic.y = df_kin.loc[:, 'qt'].values
 ```
 You can obtain either a single kinetic model plot (e.g., Bangham model),
 ```Python
@@ -198,7 +198,7 @@ After finding the best kinetic model, the equation is applied to the data obtain
   ```Python
 arrh = ModifiedArrhenius()
 ```
-Adjust the values of x and y parameters (the default values are the following).
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 
 ```Python
 arrh.x = np.array([298.15, 308.15, 323.15, 373.15])
@@ -233,7 +233,7 @@ Create an object. Optional parameter x represents the adsorption time [min] and 
 ```Python
 ads_dyn = AdsorptionDynamics()
 ```
-Adjust the values of x and y parameters (the default values are the following).
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
 df_dyn = pd.read_csv('Co_10%.csv')
 x = df_dyn.loc[:, 'x'].values
@@ -265,10 +265,12 @@ Out
 Create an object. Optional parameter x represents the adsorption temperature [K] and optional parameter y represents the equilibrium adsorption capacity [mg/g] at different temperatures for a fixed concentration of the adsorbed molecule (e.g., CO2 = 0.01 at 298.15 K, 308.15 K, 323.15 K, 348.15 K, 373.15 K). Other default optional values are C=0.01, Mr=44.01 g/mol, T=298.15 K, P=1 atm, R=8.205e-5 atm.m3/mol/K.
 
 ```Python
-x = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
-y = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
-
-ads_H = AdsorptionEnthalpy(x,y)
+ads_H = AdsorptionEnthalpy()
+```
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).
+```Python
+ads_H.x = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
+ads_H.y = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
 ```
 You can obtain the values of Vant Hoff parameters enthalpy and entropy,
 ```Python
