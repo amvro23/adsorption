@@ -225,7 +225,7 @@ Out
 ```
 
 ## AdsorptionDynamics
-Create an object. Optional parameter x represents the adsorption time [min] and optional parameter y represents the dimensionless concentration Ct/C0. In this example a csv file was used to obtain these values. Other default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+Create an object. Optional parameter x represents the adsorption time [min] and optional parameter y represents the dimensionless concentration Ct/C0. Other default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C = represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 
 ```Python
 ads_dyn = AdsorptionDynamics()
