@@ -240,6 +240,10 @@ You can obtain a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 
 ![yoon-nelson](https://user-images.githubusercontent.com/91277572/209157798-10560dff-e06f-439c-8dbd-cdab689c226c.png)
 
+Note that Adams-Bohart fit is used for the description of the initial part of the breakthrough cure
+
+![adams-bohart](https://user-images.githubusercontent.com/91277572/209345944-27d0e596-f95c-4a3b-a680-e880e2ebb204.png)
+
 You can also obtain a dataframe with all the calculated parameters of dynamic adsorption equations with their units.
 ```Python
 ads_dyn.all_params()
