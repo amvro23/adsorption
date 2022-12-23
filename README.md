@@ -98,7 +98,7 @@ Out
 'qmax_DR [mg/g]': 192.6633619518013}
 ```
 ```Python
-isotherm.sips_curve(x)
+isotherm.sips_curve(isotherm.x)
 ```
 ```
 Out
@@ -183,7 +183,7 @@ Out
  'n_avrami': 1.7755718014035597}
 ```
   ```Python
-kinetic.pso_curve(x)
+kinetic.pso_curve(kinetic.x)
 ```
   ```
   Out
