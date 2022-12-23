@@ -195,7 +195,7 @@ y = np.array([0.00478, 0.00583, 0.00728, 0.01956])
 arrh = ModifiedArrhenius(x, y)
 ```
 
-You can obtain the values of Arrhenius parameters A and Ea.
+You can obtain the values of Arrhenius parameters A and Ea. Given that bangham model is more suitable to describe the process, A adopts the units from k_bangham [1/min^n].
   ```Python
 arrh.arrhenius_params()
 ```
