@@ -111,9 +111,6 @@ Create an object. Optional parameter x represent the adsorption time [min] and o
 ```Python
 kinetic = Kinetics()
 ```
-```Python
-kinetic = Kinetics()
-```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
 df_kin = pd.read_csv('adsorption_kinetics.csv')
