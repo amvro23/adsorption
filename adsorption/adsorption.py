@@ -784,13 +784,13 @@ class AdsorptionDynamics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.N0 = FitParams[1]
-        return {'k_adams_bohart_params [ml/mg/min]': self.k,
-                'N0_adams_bohart_params [mg/ml]': self.N0}
+        return {'k_adams_bohart [ml/mg/min]': self.k,
+                'N0_adams_bohart [mg/ml]': self.N0}
     
     def adams_bohart_curve(self, x):
         yfit = self.adams_bohart(x, 
-                                self.adams_bohart_params()['k_adams_bohart_params [ml/mg/min]'],
-                                self.adams_bohart_params()['N0_adams_bohart_params [mg/ml]'])
+                                self.adams_bohart_params()['k_adams_bohart [ml/mg/min]'],
+                                self.adams_bohart_params()['N0_adams_bohart [mg/ml]'])
         return yfit
 
     def plot_adams_bohart_fit(self):
