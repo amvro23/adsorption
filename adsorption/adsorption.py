@@ -259,6 +259,11 @@ class Isotherms(object):
         ax.set_title('All models') 
         ax.grid(ls=":")        
 
+    @staticmethod
+    def linearity(y_observed, y_predicted):
+        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_predicted)
+        return {"r":r, "slope":slope, "intercept":intercept}
+        
 
     def assess_fit(self):
         y_observed = self.y
@@ -268,18 +273,21 @@ class Isotherms(object):
         y_toth = self.toth_curve(self.x_obs)
         y_sips = self.sips_curve(self.x_obs)
         y_DR = self.dr_curve(self.x_obs)
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_langmuir)
-        R_langmuir = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_freundlich)
-        R_freundlich = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_temkin)
-        R_temkin = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_toth)
-        R_toth = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_sips)
-        R_sips = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_DR)
-        R_dr = r**2   
+        
+        lin_langmuir = self.linearity(y_observed, y_langmuir)
+        lin_freundlich = self.linearity(y_observed, y_freundlich)
+        lin_temkin = self.linearity(y_observed, y_temkin)
+        lin_toth = self.linearity(y_observed, y_toth)
+        lin_sips = self.linearity(y_observed, y_sips)
+        lin_dr = self.linearity(y_observed, y_DR)
+        
+        R_langmuir = lin_langmuir["r"]**2
+        R_freundlich = lin_freundlich["r"]**2
+        R_temkin = lin_temkin["r"]**2
+        R_toth = lin_toth["r"]**2
+        R_sips = lin_sips["r"]**2
+        R_dr = lin_dr["r"]**2
+        
         return {"Langmuir R2": R_langmuir, 
                 "Freundlich R2": R_freundlich,
                 "Temkin R2": R_temkin,
@@ -541,6 +549,10 @@ class Kinetics(object):
         ax.set_ylim(0, np.max(self.y)+20)
         ax.grid(ls=":")
 
+    @staticmethod
+    def linearity(y_observed, y_predicted):
+        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_predicted)
+        return {"r":r, "slope":slope, "intercept":intercept}
 
     def assess_fit(self):
         y_observed = self.y
@@ -550,18 +562,20 @@ class Kinetics(object):
         y_avrami = self.avrami_curve(self.x)
         y_bangham = self.bangham_curve(self.x)
         y_elovich = self.elovich_curve(self.x[1:])
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_pfo)
-        R_pfo = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_pso)
-        R_pso = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_wm)
-        R_wm = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_avrami)
-        R_avrami = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_bangham)
-        R_bangham = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_observed[1:], y_elovich)
-        R_elovich = r**2  
+        
+        lin_pfo = self.linearity(y_observed, y_pfo)
+        lin_pso = self.linearity(y_observed, y_pso)
+        lin_wm = self.linearity(y_observed, y_wm)
+        lin_avrami = self.linearity(y_observed, y_avrami)
+        lin_bangham = self.linearity(y_observed, y_bangham)
+        lin_elovich = self.linearity(y_observed[1:], y_elovich)
+        
+        R_pfo = lin_pfo['r']**2
+        R_pso = lin_pso['r']**2
+        R_wm = lin_wm['r']**2
+        R_avrami = lin_avrami['r']**2
+        R_bangham = lin_bangham['r']**2
+        R_elovich = lin_elovich['r']**2  
         return {"PFO R2": R_pfo, 
                 "PSO R2": R_pso,
                 "WEBER-MORRIS R2": R_wm,
@@ -796,7 +810,7 @@ class AdsorptionDynamics(object):
         return yfit
 
     def plot_adams_bohart_fit(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
         ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
         ax.plot(self.xx, self.adams_bohart_curve(self.xx), 'r--', mfc = 'none', label = 'Predicted')
         ax.set_xlabel("Time [min]", fontsize=10, fontweight='bold')
@@ -817,18 +831,25 @@ class AdsorptionDynamics(object):
         ax.set_title('All models') 
         ax.grid(ls=":")
         
+    @staticmethod
+    def linearity(y_observed, y_predicted):
+        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_predicted)
+        return {"r":r, "slope":slope, "intercept":intercept}
+        
     def assess_fit(self):
         y_obs1 = self.y
         y_obs2 = self.yy
         y_thomas = self.thomas_curve(self.x)
         y_yoon_nelson = self.yoon_nelson_curve(self.x)
         y_adams_bohart = self.adams_bohart_curve(self.xx)
-        slope, intercept, r, p, std_err = stats.linregress(y_obs1, y_thomas)
-        R_thomas = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_obs1, y_yoon_nelson)
-        R_yoon_nelson = r**2
-        slope, intercept, r, p, std_err = stats.linregress(y_obs2, y_adams_bohart)
-        R_adams_bohart = r**2
+        
+        lin_thomas = self.linearity(y_obs1, y_thomas)
+        lin_yoon_nelson = self.linearity(y_obs1, y_yoon_nelson)
+        lin_adams_bohart = self.linearity(y_obs2, y_adams_bohart)       
+        
+        R_thomas = lin_thomas['r']**2
+        R_yoon_nelson = lin_yoon_nelson['r']**2
+        R_adams_bohart = lin_adams_bohart['r']**2
         return {"THOMAS R2": R_thomas, 
                 "YOON-NELSON R2": R_yoon_nelson,
                 "ADAMS-BOHART R2": R_adams_bohart}
