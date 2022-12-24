@@ -106,7 +106,7 @@ array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
 ## Kinetics
-Create an object. Optional parameter x represent the adsorption time [min] and optional parameter y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+Create an object. Optional parameter x represents the adsorption time [min] and optional parameter y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 
 ```Python
 kinetic = Kinetics()
