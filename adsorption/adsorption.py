@@ -3,7 +3,7 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 from scipy import stats
 import pandas as pd
-from ads_data import (x_iso, y_iso, x_kin, y_kin, x_arrh, y_arrh, 
+from adsorption.ads_data import (x_iso, y_iso, x_kin, y_kin, x_arrh, y_arrh, 
                       x_dyn, y_dyn, x_h, y_h)
 
 class Isotherms(object):
