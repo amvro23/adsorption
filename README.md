@@ -14,7 +14,7 @@ Note: It might be useful to write "git+https://github.com/amvro23/adsorption/#eg
 # Usage
 
 ```Python
-from adsorption.adsorption import (Isotherms, Kinetics, ModifiedArrhenius, AdsorptionDynamics, AdsorptionEnthalpy)
+from adsorption.models import (Isotherms, Kinetics, ModifiedArrhenius, AdsorptionDynamics, AdsorptionEnthalpy)
 import numpy as np
 import pandas as pd
 ```
