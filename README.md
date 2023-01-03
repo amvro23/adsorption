@@ -200,15 +200,20 @@ array([ 0.,  0.08073146,  0.16136812, ..., 67.24288195,
        67.25473634, 67.266584  ])
 ```
 ## Arrhenius
-After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object, where x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the corresponding temperatures. In this example Bangham model was the best to describe the process of CO2 adsorption.
+After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object. In this example Bangham model was the best to describe the process of CO2 adsorption.
   ```Python
 arrh = ModifiedArrhenius()
+```
+Set inlet values for modified Arrhenius. Optional parameter x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the corresponding temperatures.
+  ```Python
+arrh.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 
 ```Python
-arrh.x = np.array([298.15, 308.15, 323.15, 373.15])
-arrh.y = np.array([0.00478, 0.00583, 0.00728, 0.01956])
+x = np.array([298.15, 308.15, 323.15, 373.15])
+y = np.array([0.00478, 0.00583, 0.00728, 0.01956])
+arrh.set_inlet(x, y)
 ```
 You can obtain the values of Arrhenius parameters A and Ea. Given that bangham model is more suitable to describe the process, A adopts the units from k_bangham [1/min^n].
   ```Python
