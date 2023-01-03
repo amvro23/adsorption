@@ -111,16 +111,20 @@ array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
 ## Kinetics
-Create an object. Optional parameter x represents the adsorption time [min] and optional parameter y represents the cumulative adsorption capacity [mg/g]. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
-
+Create an object. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 ```Python
 kinetic = Kinetics()
+```
+Set inlet values for adsorption kinetics. Optional parameter x represents the adsorption time [min] and optional parameter y represents the cumulative adsorption capacity [mg/g].
+```Python
+kinetic.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
 df_kin = pd.read_csv('adsorption_kinetics.csv')
-kinetic.x = df_kin.loc[:, 'minutes'].values
-kinetic.y = df_kin.loc[:, 'qt'].values
+x = df_kin.loc[:, 'minutes'].values
+y = df_kin.loc[:, 'qt'].values
+kinetic.set_inlet(x, y)
 ```
 You can obtain either a single kinetic model plot (e.g., Bangham model),
 ```Python
