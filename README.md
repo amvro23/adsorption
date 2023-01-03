@@ -24,7 +24,7 @@ Create an object. Default optional values are P = 1 atm, Mr = 44.01 g/mol for CO
 ```Python
 isotherm = Isotherms()
 ```
-Set inlet values for adsorption isotherms. Optional parameter x represents the dimensionless equilibrium concentration [%] and optional parameter y represents the equilibrium capacity [mg/g].
+Set inlet values for adsorption isotherm equations. Optional parameter x represents the dimensionless equilibrium concentration [%] and optional parameter y represents the equilibrium capacity [mg/g].
 ```Python
 isotherm.set_inlet()
 ```
@@ -111,11 +111,12 @@ array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
 ## Kinetics
+
 Create an object. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 ```Python
 kinetic = Kinetics()
 ```
-Set inlet values for adsorption kinetics. Optional parameter x represents the adsorption time [min] and optional parameter y represents the cumulative adsorption capacity [mg/g].
+Set inlet values for adsorption kinetic equations. Optional parameter x represents the adsorption time [min] and optional parameter y represents the cumulative adsorption capacity [mg/g].
 ```Python
 kinetic.set_inlet()
 ```
@@ -200,11 +201,12 @@ array([ 0.,  0.08073146,  0.16136812, ..., 67.24288195,
        67.25473634, 67.266584  ])
 ```
 ## Arrhenius
+
 After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object. In this example Bangham model was the best to describe the process of CO2 adsorption.
   ```Python
 arrh = ModifiedArrhenius()
 ```
-Set inlet values for modified Arrhenius. Optional parameter x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the corresponding temperatures.
+Set inlet values for modified Arrhenius equation. Optional parameter x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the corresponding temperatures.
   ```Python
 arrh.set_inlet()
 ```
@@ -239,16 +241,20 @@ Out
 ```
 
 ## AdsorptionDynamics
-Create an object. Optional parameter x represents the adsorption time [min] and optional parameter y represents the dimensionless concentration Ct/C0. Other default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
-
+Create an object. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 ```Python
 ads_dyn = AdsorptionDynamics()
+```
+Set inlet values for adsorption dynamic equations. Optional parameter x represents the adsorption time [min] and optional parameter y represents the dimensionless concentration Ct/C0.
+```Python
+ads_dyn.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
 df_dyn = pd.read_csv('Co_10%.csv')
-ads_dyn.x = df_dyn.loc[:, 'x'].values
-ads_dyn.y = df_dyn.loc[:, 'y'].values
+x = df_dyn.loc[:, 'x'].values
+y = df_dyn.loc[:, 'y'].values
+ads_dyn.set_inlet(x, y)
 ```
 You can obtain a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 
@@ -274,15 +280,21 @@ Out
 ```
 
 # AdsorptionEnthalpy
-Create an object. Optional parameter x represents the adsorption temperature [K] and optional parameter y represents the equilibrium adsorption capacity [mg/g] at different temperatures for a fixed concentration of the adsorbed molecule (e.g., CO2 = 0.01 at 298.15 K, 308.15 K, 323.15 K, 348.15 K, 373.15 K). Other default optional values are C=0.01, Mr=44.01 g/mol, T=298.15 K, P=1 atm, R=8.205e-5 atm.m3/mol/K.
+
+Create an object. Default optional values are C=0.01, Mr=44.01 g/mol, T=298.15 K, P=1 atm, R=8.205e-5 atm.m3/mol/K.
 
 ```Python
 ads_H = AdsorptionEnthalpy()
 ```
+Set inlet values for adsorption kinetics. Optional parameter x represents the adsorption temperature [K] and optional parameter y represents the equilibrium adsorption capacity [mg/g].
+```Python
+ads_H.set_inlet()
+```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
-ads_H.x = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
-ads_H.y = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
+x = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
+y = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
+ads_H.set_inlet(x, y)
 ```
 You can obtain the values of Vant Hoff parameters enthalpy and entropy,
 ```Python
