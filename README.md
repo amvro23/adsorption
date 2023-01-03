@@ -111,6 +111,10 @@ Out
 array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
+You can get an excel file with the dataframe with all the calculated parameters.
+```Python
+isotherm.to_excel("Isotherms")
+```
 
 ## Kinetics
 
@@ -202,6 +206,10 @@ kinetic.pso_curve(kinetic.x)
 array([ 0.,  0.08073146,  0.16136812, ..., 67.24288195,
        67.25473634, 67.266584  ])
 ```
+You can get an excel file with the dataframe with all the calculated parameters.
+```Python
+kinetic.to_excel("Kinetics")
+```
 
 ## Arrhenius
 
@@ -281,6 +289,10 @@ Out
 3              tau_yoon_nelson [min]   11.237299942413042
 4         k_adams_bohart [ml/mg/min]    5.913583287817446
 5            N0_adams_bohart [mg/ml]    137.6058956768907
+```
+You can get an excel file with the dataframe with all the calculated parameters.
+```Python
+ads_dyn.to_excel("AdsDynamics")
 ```
 
 # AdsorptionEnthalpy
