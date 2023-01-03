@@ -20,14 +20,19 @@ import pandas as pd
 ```
 ## Isotherms
 
-Create an object. Optional parameter x represents the dimensionless equilibrium concentration [%] and optional parameter y represents the equilibrium capacity [mg/g]. Default optional values other than x, and y are P = 1 atm, Mr = 44.01 g/mol for CO2 adsorption, T = 298.15 K, R = 8.205e-5 atm.m3/mol/K).
+Create an object. Default optional values are P = 1 atm, Mr = 44.01 g/mol for CO2 adsorption, T = 298.15 K, R = 8.205e-5 atm.m3/mol/K).
 ```Python
 isotherm = Isotherms()
 ```
+Set inlet values for adsorption isotherms. Optional parameter x represents the dimensionless equilibrium concentration [%] and optional parameter y represents the equilibrium capacity [mg/g].
+```Python
+isotherm.set_inlet()
+```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
-isotherm.x = np.array([0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]) 
-isotherm.y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.90])
+x = np.array([0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]) 
+y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.90])
+isotherm.set_inlet(x, y)
 ```
 You can obtain either a single isotherm model plot (e.g., Langmuir model, Freundlich model),
 ```Python
