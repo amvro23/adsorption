@@ -52,7 +52,7 @@ class Isotherms(object):
         self.factor = (self.P*self.Mr)/self.R/self.T
         self.x_obs = self.factor*self.x
         self.xfit = np.linspace(min(self.x_obs), max(self.x_obs), 50)
-
+   
     def langmuir(self, x, k, q):
         x = np.array(x)
         return k*q*x/(1+k*x)
@@ -83,7 +83,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Langmuir fit')
         ax.grid(ls=":")
-      
+       
     def freundlich(self, x, k, n):
         x = np.array(x)
         return k*x**(1/n)
@@ -114,7 +114,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Freundlich fit')
         ax.grid(ls=":")
-     
+       
     def temkin(self, x, a, b):
         x = np.array(x)
         return (8.314*298.15/b)*(np.log(a*x))
@@ -145,7 +145,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Temkin fit')
         ax.grid(ls=":")
-      
+        
     def toth(self, x, k, n, q):
         x = np.array(x)
         return q*x/(k+x**n)**(1/n)
@@ -179,7 +179,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Toth fit')
         ax.grid(ls=":")
-        
+            
     def sips(self, x, k, n, q):
         x = np.array(x)
         return (q*k*x**(1/n))/(1+k*x**(1/n))
@@ -214,7 +214,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Sips fit')  
         ax.grid(ls=":")
-        
+            
     def dubinin_radushkevich(self, x, E, q):
         x = np.array(x)
         return q*np.exp((8.314*298.15*np.log(1+1/x))**2/(-2*E**2))
@@ -295,12 +295,12 @@ class Isotherms(object):
                 "Toth R2": R_toth,
                 "Sips R2": R_sips,
                 "DR R2": R_dr}
-    
+        
     def best_fit(self):
         model = max(self.assess_fit(), key=self.assess_fit().get)
         value = self.assess_fit().get(model)
         return print("The best model is that of", model, "=", value)
-    
+        
     def all_params(self):
         
         def get_params(*args):
@@ -337,7 +337,7 @@ class Kinetics(object):
         y = np.array(y)
         self.x = x
         self.y = y
-        
+         
     def pfo(self, x, k, q):
         x = np.array(x)
         return q*(1-np.exp(-k*x))
@@ -399,7 +399,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title('PSO fit')
         ax.grid(ls=":")
-   
+        
     def weber_morris(self, x, k, c):
         x = np.array(x)
         return k*x**(0.5)+c
@@ -464,7 +464,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title('Avrami fit')
         ax.grid(ls=":")
-        
+            
     def bangham(self, x, k, q, n):
         x = np.array(x)
         return q*(1-np.exp(-k*x**n))
@@ -498,7 +498,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title('Bangham fit')
         ax.grid(ls=":")
-  
+        
     def elovich(self, x, a, b):
         x = np.array(x)
         return (1/b)*np.log(a*b*x)
@@ -580,12 +580,12 @@ class Kinetics(object):
                 "AVRAMI R2": R_avrami,
                 "BANGHAM R2": R_bangham,
                 "ELOVICH R2": R_elovich}
-
+    
     def best_fit(self):
         model = max(self.assess_fit(), key=self.assess_fit().get)
         value = self.assess_fit().get(model)
         return print("The best model is that of", model, "=", value)
-    
+        
     def all_params(self):
         
         def get_params(*args):
@@ -696,7 +696,7 @@ class AdsorptionDynamics(object):
         A       : float
                   Cross-sectional area of the reactor bed [cm2]
         v       : float
-                  Superficial velocity [cm/min]             
+                  Superficial velocity [cm/min]           
         """             
         self.C = C
         self.Mr = Mr
@@ -765,7 +765,7 @@ class AdsorptionDynamics(object):
         ax.legend()
         ax.set_title('Thomas fit')
         ax.grid(ls=":")
-  
+        
     def yoon_nelson(self, x, k, tau):
         x = np.array(x)
         return np.exp(k*(x-tau))/(1+np.exp(k*(x-tau)))         
@@ -880,6 +880,7 @@ class AdsorptionDynamics(object):
         
         df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
         return df
+
 
 class AdsorptionEnthalpy(object):
     
