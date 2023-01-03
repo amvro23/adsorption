@@ -715,11 +715,7 @@ class AdsorptionDynamics(object):
         A       : float
                   Cross-sectional area of the reactor bed [cm2]
         v       : float
-                  Superficial velocity [cm/min]
-        yy      : 1d array of floats
-                  Initial stage of adsorption process for Adams-Bohart equation (Ct/C0 = 0.1)
-        xx      : 1d array of floats
-                  Minutes correspond to Ct/C0 = 0.1                
+                  Superficial velocity [cm/min]             
         """             
         self.C = C
         self.Mr = Mr
