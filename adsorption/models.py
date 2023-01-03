@@ -317,6 +317,17 @@ class Isotherms(object):
         df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
         return df
     
+    def to_excel(self, filename, **options):
+        """Saves the pandas.DataFrame of profiles in an Excel file.
+        Parameters
+        ----------
+        filename : str
+            Name of destination file without suffix .xlsx.
+        """
+        path = filename + '.xlsx'
+        with pd.ExcelWriter(path) as writer:
+            self.all_params().to_excel(writer, sheet_name='Isotherms')
+    
 
 class Kinetics(object):
 
@@ -602,6 +613,17 @@ class Kinetics(object):
         df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
         return df
 
+    def to_excel(self, filename, **options):
+        """Saves the pandas.DataFrame of profiles in an Excel file.
+        Parameters
+        ----------
+        filename : str
+            Name of destination file without suffix .xlsx.
+        """
+        path = filename + '.xlsx'
+        with pd.ExcelWriter(path) as writer:
+            self.all_params().to_excel(writer, sheet_name='Kinetics')
+
     
 class ModifiedArrhenius(object):
     
@@ -880,6 +902,17 @@ class AdsorptionDynamics(object):
         
         df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
         return df
+    
+    def to_excel(self, filename, **options):
+        """Saves the pandas.DataFrame of profiles in an Excel file.
+        Parameters
+        ----------
+        filename : str
+            Name of destination file without suffix .xlsx.
+        """
+        path = filename + '.xlsx'
+        with pd.ExcelWriter(path) as writer:
+            self.all_params().to_excel(writer, sheet_name='AdsDynamics')
 
 
 class AdsorptionEnthalpy(object):
@@ -943,7 +976,7 @@ class AdsorptionEnthalpy(object):
                 'R2': r**2, 
                 'slope': slope, 
                 'intercept': intercept}
-    
+        
     def vant_hoff_line(self, x):
         yfit = list(map(lambda x: self.vant_hoff_params()['slope']*x 
                         + self.vant_hoff_params()['intercept'], 1/x))
