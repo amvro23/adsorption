@@ -53,7 +53,6 @@ class Isotherms(object):
         self.x_obs = self.factor*self.x
         self.xfit = np.linspace(min(self.x_obs), max(self.x_obs), 50)
 
-    
     def langmuir(self, x, k, q):
         x = np.array(x)
         return k*q*x/(1+k*x)
