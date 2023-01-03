@@ -84,8 +84,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Langmuir fit')
         ax.grid(ls=":")
-    
-    
+      
     def freundlich(self, x, k, n):
         x = np.array(x)
         return k*x**(1/n)
@@ -116,8 +115,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Freundlich fit')
         ax.grid(ls=":")
-    
-    
+     
     def temkin(self, x, a, b):
         x = np.array(x)
         return (8.314*298.15/b)*(np.log(a*x))
@@ -148,8 +146,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('Temkin fit')
         ax.grid(ls=":")
-    
-    
+      
     def toth(self, x, k, n, q):
         x = np.array(x)
         return q*x/(k+x**n)**(1/n)
@@ -184,7 +181,6 @@ class Isotherms(object):
         ax.set_title('Toth fit')
         ax.grid(ls=":")
         
-    
     def sips(self, x, k, n, q):
         x = np.array(x)
         return (q*k*x**(1/n))/(1+k*x**(1/n))
@@ -220,7 +216,6 @@ class Isotherms(object):
         ax.set_title('Sips fit')  
         ax.grid(ls=":")
         
-    
     def dubinin_radushkevich(self, x, E, q):
         x = np.array(x)
         return q*np.exp((8.314*298.15*np.log(1+1/x))**2/(-2*E**2))
@@ -252,7 +247,6 @@ class Isotherms(object):
         ax.set_title('DR fit') 
         ax.grid(ls=":")
     
-
     def plot_all_models(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
@@ -273,7 +267,6 @@ class Isotherms(object):
         slope, intercept, r, p, std_err = stats.linregress(y_observed, y_predicted)
         return {"r":r, "slope":slope, "intercept":intercept}
         
-
     def assess_fit(self):
         y_observed = self.y
         y_langmuir = self.langmuir_curve(self.x_obs)
@@ -304,12 +297,10 @@ class Isotherms(object):
                 "Sips R2": R_sips,
                 "DR R2": R_dr}
     
-    
     def best_fit(self):
         model = max(self.assess_fit(), key=self.assess_fit().get)
         value = self.assess_fit().get(model)
         return print("The best model is that of", model, "=", value)
-    
     
     def all_params(self):
         
@@ -327,7 +318,6 @@ class Isotherms(object):
         df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
         return df
     
-
 
 class Kinetics(object):
 
@@ -349,7 +339,6 @@ class Kinetics(object):
         self.x = x
         self.y = y
         
- 
     def pfo(self, x, k, q):
         x = np.array(x)
         return q*(1-np.exp(-k*x))
@@ -381,7 +370,6 @@ class Kinetics(object):
         ax.set_title('PFO fit')
         ax.grid(ls=":")
      
-
     def pso(self, x, k, q):
         x = np.array(x)
         return k*q**2*x/(1+k*q*x)
@@ -412,8 +400,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title('PSO fit')
         ax.grid(ls=":")
-
-        
+   
     def weber_morris(self, x, k, c):
         x = np.array(x)
         return k*x**(0.5)+c
@@ -445,7 +432,6 @@ class Kinetics(object):
         ax.set_title('Weber-Morris fit')
         ax.grid(ls=":")
      
-
     def avrami(self, x, k, q, n):
         x = np.array(x)
         return q*(1-np.exp(-k*x))**n
@@ -480,7 +466,6 @@ class Kinetics(object):
         ax.set_title('Avrami fit')
         ax.grid(ls=":")
         
-    
     def bangham(self, x, k, q, n):
         x = np.array(x)
         return q*(1-np.exp(-k*x**n))
@@ -514,8 +499,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title('Bangham fit')
         ax.grid(ls=":")
-
-        
+  
     def elovich(self, x, a, b):
         x = np.array(x)
         return (1/b)*np.log(a*b*x)
@@ -598,12 +582,10 @@ class Kinetics(object):
                 "BANGHAM R2": R_bangham,
                 "ELOVICH R2": R_elovich}
 
-    
     def best_fit(self):
         model = max(self.assess_fit(), key=self.assess_fit().get)
         value = self.assess_fit().get(model)
         return print("The best model is that of", model, "=", value)
-    
     
     def all_params(self):
         
@@ -731,7 +713,6 @@ class AdsorptionDynamics(object):
         self.A = np.pi*(self.r**2)
         self.v = self.Q/self.A
 
-
     def set_inlet(self, x=x_dyn, y=y_dyn):
         """Set inlet parameters for dynamic equations.
         Parameters
@@ -785,8 +766,7 @@ class AdsorptionDynamics(object):
         ax.legend()
         ax.set_title('Thomas fit')
         ax.grid(ls=":")
-
-        
+  
     def yoon_nelson(self, x, k, tau):
         x = np.array(x)
         return np.exp(k*(x-tau))/(1+np.exp(k*(x-tau)))         
@@ -817,7 +797,6 @@ class AdsorptionDynamics(object):
         ax.legend()
         ax.set_title('Yoon-Nelson fit')
         ax.grid(ls=":")
-
 
     def adams_bohart(self, x, k, N0):
         x = np.array(x)
@@ -933,7 +912,6 @@ class AdsorptionEnthalpy(object):
         self.R = R
         self.c0 = self.C*(self.P*self.Mr)/self.R/self.T
         
-
     def set_inlet(self, x=x_h, y=y_h):
         """Set inlet parameters for modified Vant Hoff equation.
         Parameters
