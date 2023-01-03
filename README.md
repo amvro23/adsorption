@@ -18,6 +18,7 @@ from adsorption.models import (Isotherms, Kinetics, ModifiedArrhenius, Adsorptio
 import numpy as np
 import pandas as pd
 ```
+
 ## Isotherms
 
 Create an object. Default optional values are P = 1 atm, Mr = 44.01 g/mol for CO2 adsorption, T = 298.15 K, R = 8.205e-5 atm.m3/mol/K).
@@ -110,6 +111,7 @@ Out
 array([ 0.04084583,  0.09719205,  0.18721156,  0.36046663,  0.85595811,
         1.64334054,  3.14432104,  7.33485598, 13.69841098])
 ```
+
 ## Kinetics
 
 Create an object. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
@@ -200,6 +202,7 @@ kinetic.pso_curve(kinetic.x)
 array([ 0.,  0.08073146,  0.16136812, ..., 67.24288195,
        67.25473634, 67.266584  ])
 ```
+
 ## Arrhenius
 
 After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following object. In this example Bangham model was the best to describe the process of CO2 adsorption.
@@ -241,6 +244,7 @@ Out
 ```
 
 ## AdsorptionDynamics
+
 Create an object. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 ```Python
 ads_dyn = AdsorptionDynamics()
