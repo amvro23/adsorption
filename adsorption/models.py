@@ -910,7 +910,7 @@ class AdsorptionDynamics(object):
 class AdsorptionEnthalpy(object):
     
     def __init__(self, C=0.01, Mr=44.01, T=298.15, P=1, R=8.205e-5):
-        """Class for calculating 3 different empirical adsorpion dynamic models.            
+        """Class for assessing thermodynamic parameters (i.e., Enthalpy, Entropy).            
         Parameters
         ----------
         C  : float or integer, optional
