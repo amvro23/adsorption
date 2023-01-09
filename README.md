@@ -118,7 +118,7 @@ isotherm.to_excel("Isotherms")
 
 # Kinetics
 
-Create an instance. In this example a csv file was used to obtain these values. The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+Create an instance. In this example a csv file was used to obtain these values.
 ```Python
 kinetic = Kinetics()
 ```
@@ -126,7 +126,7 @@ Set inlet values for adsorption kinetic equations. Optional parameter x represen
 ```Python
 kinetic.set_inlet()
 ```
-Adjust the values of x and y parameters according to your experimental results (the default values are the following).
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).  The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 ```Python
 df_kin = pd.read_csv('adsorption_kinetics.csv')
 x = df_kin.loc[:, 'minutes'].values
