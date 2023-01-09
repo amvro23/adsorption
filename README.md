@@ -118,7 +118,7 @@ isotherm.to_excel("Isotherms")
 
 # Kinetics
 
-Create an instance. In this example a csv file was used to obtain these values.
+Create an instance.
 ```Python
 kinetic = Kinetics()
 ```
@@ -126,7 +126,9 @@ Set inlet values for adsorption kinetic equations. Optional parameter x represen
 ```Python
 kinetic.set_inlet()
 ```
-Adjust the values of x and y parameters according to your experimental results (the default values are the following).  The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+Adjust the values of x and y parameters according to your experimental results (the default values are the following). 
+
+The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 ```Python
 df_kin = pd.read_csv('adsorption_kinetics.csv')
 x = df_kin.loc[:, 'minutes'].values
@@ -253,7 +255,7 @@ Out
 
 # AdsorptionDynamics
 
-Create an instance. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C represents the initial concentration of the adsorbed molecule (CO2: 10%). In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+Create an instance. Default optional values are C=0.1, Mr=44.01 g/mol, T=298.15 K, P=1 atm, h=2 cm, r=0.45 cm, Q=100 ml/min, W=1 g, U=0.1, R=8.205e-5 atm.m3/mol/K) where C represents the initial concentration of the adsorbed molecule (CO2: 10%).
 ```Python
 ads_dyn = AdsorptionDynamics()
 ```
@@ -262,6 +264,8 @@ Set inlet values for adsorption dynamic equations. Optional parameter x represen
 ads_dyn.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
+
+In this example a csv file was used to obtain these values. The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
 ```Python
 df_dyn = pd.read_csv('Co_10%.csv')
 x = df_dyn.loc[:, 'x'].values
