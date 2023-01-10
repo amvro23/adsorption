@@ -128,7 +128,8 @@ kinetic.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following). 
 
-The csv file 'adsorption_kinetics.csv' can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+The csv file 'adsorption_kinetics.csv' can be found in the following link: 
+https://github.com/amvro23/essentials-ChEng/tree/master/Adsorption%20Processes
 ```Python
 df_kin = pd.read_csv('adsorption_kinetics.csv')
 x = df_kin.loc[:, 'minutes'].values
@@ -265,7 +266,8 @@ ads_dyn.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 
-The csv file ('Co_10%.csv') can be found in the following link: https://github.com/amvro23/Essentials_of_Chemical_Engineering/tree/master/Adsorption%20Processes
+The csv file ('Co_10%.csv') can be found in the following link: 
+https://github.com/amvro23/essentials-ChEng/tree/master/Adsorption%20Processes
 ```Python
 df_dyn = pd.read_csv('Co_10%.csv')
 x = df_dyn.loc[:, 'x'].values
