@@ -277,7 +277,9 @@ y = df_dyn.loc[:, 'y'].values
 ads_dyn.set_inlet(x, y)
 ```
 You can obtain a single adsorption dynamic model plot (e.g., Yoon-nelson model).
-
+```Python
+ads_dyn.plot_yoon_nelson_fit()
+```
 ![yoon-nelson](https://user-images.githubusercontent.com/91277572/209157798-10560dff-e06f-439c-8dbd-cdab689c226c.png)
 
 Note that Adams-Bohart fit is used for the description of the initial part of the breakthrough curve ranging from 10-15% (default value is U=0.1).
