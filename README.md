@@ -142,13 +142,13 @@ You can obtain either a single kinetic model plot (e.g., Bangham model),
 ```Python
 kinetic.plot_bangham_fit()
 ```
-![bangham](https://user-images.githubusercontent.com/91277572/208979002-cfb89967-123a-498c-b9ff-423ceb0dd7c3.png)
+![bangham](https://user-images.githubusercontent.com/91277572/212331223-b793d59e-ca09-43f4-9073-8276a9046582.png)
 
 or you can obtain all kinetic models.
 ```Python
 kinetic.plot_all_models()
 ```
-![kinetic_models](https://user-images.githubusercontent.com/91277572/208979310-532873b0-2073-4a32-92f4-730991f1ff28.png)
+![kinetics_all](https://user-images.githubusercontent.com/91277572/212331580-23b4c03d-374d-4f8a-9013-e8ecb94758e7.png)
 
 You can assess the fit of kinetic models.
 ```Python
