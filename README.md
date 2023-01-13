@@ -342,7 +342,7 @@ Out
 ```Python
 ads_H.plot_vant_hoff()
 ```
-![vant_hoff](https://user-images.githubusercontent.com/91277572/209183090-dc532404-7ee1-4f77-9846-a4345adb1050.png)
+![enthalpy](https://user-images.githubusercontent.com/91277572/212332811-dbbf7adf-8918-4907-b8cc-485135d77f8c.png)
 
 or your can obtain the numerical values to create your own plot.
 ```Python
