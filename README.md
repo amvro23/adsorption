@@ -282,6 +282,9 @@ You can obtain a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 
 Note that Adams-Bohart fit is used for the description of the initial part of the breakthrough curve ranging from 10-15% (default value is U=0.1).
 
+```Python
+ads_dyn.plot_adams_bohart_fit()
+```
 ![adams-bohart](https://user-images.githubusercontent.com/91277572/209345944-27d0e596-f95c-4a3b-a680-e880e2ebb204.png)
 
 You can also obtain a dataframe with all the calculated parameters of dynamic adsorption equations with their units.
