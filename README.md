@@ -39,17 +39,18 @@ You can obtain either a single isotherm model plot (e.g., Langmuir model, Freund
 ```Python
 isotherm.plot_langmuir_fit()
 ```
-![langmuir](https://user-images.githubusercontent.com/91277572/208971022-c8579a81-6659-48c3-886b-a8dd92372c69.png)
+![langmuir](https://user-images.githubusercontent.com/91277572/212330579-c1fedef5-444a-4712-98a7-b8ed61e2dbf7.png)
+
 ```Python
 isotherm.plot_freundlich_fit()
 ```
-![freundlich](https://user-images.githubusercontent.com/91277572/208971538-1b98051e-b8c1-47ad-b55d-8837146c31ed.png)
+![freundlich](https://user-images.githubusercontent.com/91277572/212330713-9117b5e4-7ba2-462e-bb01-6a09edc09ad0.png)
 
 or you can obtain all isotherm models.
 ```Python
 isotherm.plot_all_models()
 ```
-![all_isotherms](https://user-images.githubusercontent.com/91277572/208971930-40142a78-459c-4e70-840b-88829d8ffe2a.png)
+![all_isotherms](https://user-images.githubusercontent.com/91277572/212330912-1888f094-28f6-44f9-bb0c-146cc679b23f.png)
 
 You can assess the fit of isotherm models.
 ```Python
