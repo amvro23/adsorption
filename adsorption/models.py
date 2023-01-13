@@ -810,7 +810,7 @@ class AdsorptionDynamics(object):
         return yfit
 
     def plot_yoon_nelson_fit(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
         ax.plot(self.x, self.yoon_nelson_curve(self.x), 'r--', label = 'Predicted')
         ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
@@ -841,7 +841,7 @@ class AdsorptionDynamics(object):
         return yfit
 
     def plot_adams_bohart_fit(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
         ax.plot(self.xx, self.adams_bohart_curve(self.xx), 'r--', label = 'Predicted')
         ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
@@ -983,7 +983,7 @@ class AdsorptionEnthalpy(object):
         return np.array(yfit)
     
     def plot_vant_hoff(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         ax.plot(self.x_inv, self.lnKd, 'ko', mfc = 'none', label = 'Observed')
         ax.plot(self.x_inv, self.vant_hoff_line(self.x), 'r--', label = 'Vant Hoff')
         ax.set_xlabel("$1/T$ $[1/K]$", fontsize=10, fontweight='bold')
