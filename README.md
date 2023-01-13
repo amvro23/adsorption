@@ -246,7 +246,7 @@ You can also obtain the plot and assess the fitting.
   ```Python
 arrh.plot_arrhenius_fit()
 ```
-![arrhenius](https://user-images.githubusercontent.com/91277572/208984298-0a54b650-b829-4062-8aaf-3f9bedb324e5.png)
+![arrhenius](https://user-images.githubusercontent.com/91277572/212331978-eeaf215a-9b78-4c47-b7ad-784e1bea20aa.png)
 
   ```Python
 arrh.assess_fit()
