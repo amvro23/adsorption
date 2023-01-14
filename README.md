@@ -222,7 +222,7 @@ After finding the best kinetic model, the equation is applied to the data obtain
   ```Python
 arrh = ModifiedArrhenius()
 ```
-Set inlet values for modified Arrhenius equation. Optional parameter x represents the temperatures in which adsorption tests were performed and y represents the k value of the best kinetic model at the corresponding temperatures.
+Set inlet values for modified Arrhenius equation. Optional parameter x represents the temperatures [K] in which adsorption tests were performed and y represents the k value of the best kinetic model, which also carries the units (e.g., if Bangham model is more suitable k carries the units of k in bangham model) at the corresponding temperatures.
   ```Python
 arrh.set_inlet()
 ```
