@@ -188,10 +188,10 @@ Out
 7        qmax_avrami [mg/g]       65.19974372878553
 8                  n_avrami      1.7755718014035597
 9       k_bangham [1/min^n]   0.0047733638932455965
-10     qmax_bangham [mg/g]        63.29831524175902
+10      qmax_bangham [mg/g]       63.29831524175902
 11                n_bangham      1.4416628511124052
 12     a_elovich [mg/g/min]       4.602398573502221
-13        b_elovich [g/mg]      0.05477589170964753
+13         b_elovich [g/mg]     0.05477589170964753
  ```
 or you can have access in kinetic parameters individually in order to create your own plots.
   ```Python
