@@ -156,12 +156,12 @@ kinetic.assess_fit()
 ```
 ```
 Out
-{'PFO R2': 0.9862768756329133,
- 'PSO R2': 0.9787375821197556,
- 'WEBER-MORRIS R2': 0.9568081287159736,
- 'AVRAMI R2': 0.9967027963259552,
- 'BANGHAM R2': 0.9983438488830458,
- 'ELOVICH R2': 0.8749670564977801}
+{'PFO R2': 0.9835043733020796,
+ 'PSO R2': 0.9762472082928675,
+ 'WEBER-MORRIS R2': 0.9280676006898012,
+ 'AVRAMI R2': 0.9964111275988798,
+ 'BANGHAM R2': 0.9980776118158825,
+ 'ELOVICH R2': 0.874909009634501}
  ```
  The package can directly return the best kinetic model.
  ```Python
@@ -169,7 +169,7 @@ kinetic.best_fit()
 ```
  ```
 Out
- The best model is that of BANGHAM R2 = 0.9983438488830458
+ The best model is that of BANGHAM R2 = 0.9980776118158825
  ```
 You can also obtain a dataframe with all the calculated parameters of kinetic equations with their units,
  ```Python
