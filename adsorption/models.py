@@ -260,8 +260,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title('All models') 
         ax.grid(ls=":")        
-
-        
+    
     def assess_fit(self):
         y_observed = self.y
         y_langmuir = self.langmuir_curve(self.x_obs)
