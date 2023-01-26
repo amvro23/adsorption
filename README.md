@@ -58,12 +58,12 @@ isotherm.assess_fit()
 ```
 ```
 Out
-{'Langmuir R2': 0.9853798413181968,
- 'Freundlich R2': 0.7822175305642807,
- 'Temkin R2': 0.8766497302509872,
- 'Toth R2': 0.9852294550091175,
- 'Sips R2': 0.9851843142530591,
- 'DR R2': 0.8808791659298837}
+{'Langmuir R2': 0.9817163923417866,
+ 'Freundlich R2': 0.7463363496394846,
+ 'Temkin R2': 0.8590282631439854,
+ 'Toth R2': 0.9786970833618412,
+ 'Sips R2': 0.9794054428262444,
+ 'DR R2': 0.7707376307818574}
 ```
  The package can directly return the best isotherm model.
 ```Python
