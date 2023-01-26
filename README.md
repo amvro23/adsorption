@@ -290,6 +290,16 @@ ads_dyn.plot_adams_bohart_fit()
 ```
 ![adams_bohart](https://user-images.githubusercontent.com/91277572/212332359-5aae8a1e-c02b-4c2a-b0a7-629b792ec550.png)
 
+You can assess the fit of dynamic models.
+```Python
+ads_dyn.assess_fit()
+```
+```
+Out
+{'THOMAS R2': 0.9958327653626917,
+ 'YOON-NELSON R2': 0.9958327653619077,
+ 'ADAMS-BOHART R2': 0.9983541738775606}
+```
 You can also obtain a dataframe with all the calculated parameters of dynamic adsorption equations with their units.
 ```Python
 ads_dyn.all_params()
