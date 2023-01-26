@@ -261,10 +261,6 @@ class Isotherms(object):
         ax.set_title('All models') 
         ax.grid(ls=":")        
 
-    @staticmethod
-    def linearity(y_observed, y_predicted):
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_predicted)
-        return {"r":r, "slope":slope, "intercept":intercept}
         
     def assess_fit(self):
         y_observed = self.y
@@ -274,20 +270,32 @@ class Isotherms(object):
         y_toth = self.toth_curve(self.x_obs)
         y_sips = self.sips_curve(self.x_obs)
         y_DR = self.dr_curve(self.x_obs)
+        n = len(y_observed)
         
-        lin_langmuir = self.linearity(y_observed, y_langmuir)
-        lin_freundlich = self.linearity(y_observed, y_freundlich)
-        lin_temkin = self.linearity(y_observed, y_temkin)
-        lin_toth = self.linearity(y_observed, y_toth)
-        lin_sips = self.linearity(y_observed, y_sips)
-        lin_dr = self.linearity(y_observed, y_DR)
+        R_langmuir = 1-((np.sum((y_observed - y_langmuir)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.langmuir_params().items())))
         
-        R_langmuir = lin_langmuir["r"]**2
-        R_freundlich = lin_freundlich["r"]**2
-        R_temkin = lin_temkin["r"]**2
-        R_toth = lin_toth["r"]**2
-        R_sips = lin_sips["r"]**2
-        R_dr = lin_dr["r"]**2
+        R_freundlich = 1-((np.sum((y_observed - y_freundlich)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.freundlich_params().items())))
+        
+        R_temkin = 1-((np.sum((y_observed - y_temkin)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.temkin_params().items())))
+        
+        R_toth = 1-((np.sum((y_observed - y_toth)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.toth_params().items())))
+        
+        
+        R_sips = 1-((np.sum((y_observed - y_sips)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.sips_params().items())))
+                   
+        R_dr = 1-((np.sum((y_observed - y_DR)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.dubinin_radushkevich_params().items())))
         
         return {"Langmuir R2": R_langmuir, 
                 "Freundlich R2": R_freundlich,
@@ -558,11 +566,6 @@ class Kinetics(object):
         ax.set_ylim(0, np.max(self.y)+20)
         ax.grid(ls=":")
 
-    @staticmethod
-    def linearity(y_observed, y_predicted):
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_predicted)
-        return {"r":r, "slope":slope, "intercept":intercept}
-
     def assess_fit(self):
         y_observed = self.y
         y_pfo = self.pfo_curve(self.x)
@@ -571,20 +574,33 @@ class Kinetics(object):
         y_avrami = self.avrami_curve(self.x)
         y_bangham = self.bangham_curve(self.x)
         y_elovich = self.elovich_curve(self.x[1:])
+        n = len(y_observed)
+               
+        R_pfo = 1-((np.sum((y_observed - y_pfo)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.pfo_params().items())))
         
-        lin_pfo = self.linearity(y_observed, y_pfo)
-        lin_pso = self.linearity(y_observed, y_pso)
-        lin_wm = self.linearity(y_observed, y_wm)
-        lin_avrami = self.linearity(y_observed, y_avrami)
-        lin_bangham = self.linearity(y_observed, y_bangham)
-        lin_elovich = self.linearity(y_observed[1:], y_elovich)
+        R_pso = 1-((np.sum((y_observed - y_pso)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.pso_params().items())))
         
-        R_pfo = lin_pfo['r']**2
-        R_pso = lin_pso['r']**2
-        R_wm = lin_wm['r']**2
-        R_avrami = lin_avrami['r']**2
-        R_bangham = lin_bangham['r']**2
-        R_elovich = lin_elovich['r']**2  
+        R_wm = 1-((np.sum((y_observed - y_wm)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.weber_morris_params().items())))
+                   
+        R_avrami = 1-((np.sum((y_observed - y_avrami)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.avrami_params().items())))
+        
+        R_bangham = 1-((np.sum((y_observed - y_bangham)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.bangham_params().items())))
+        
+        
+        R_elovich = 1-((np.sum((y_observed[1:] - y_elovich)**2))/\
+                   (np.sum((y_observed[1:] - np.mean(y_observed[1:]))**2)))\
+                   *((n-1)/(n-len(self.elovich_params().items())))  
+        
         return {"PFO R2": R_pfo, 
                 "PSO R2": R_pso,
                 "WEBER-MORRIS R2": R_wm,
@@ -678,8 +694,10 @@ class ModifiedArrhenius(object):
     def assess_fit(self):
         y_observed = self.y
         y_arrh = self.arrhenius_curve(self.x)
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_arrh)
-        R_arrhenius = r**2
+        n = len(y_observed)
+        R_arrhenius = 1-((np.sum((y_observed - y_arrh)**2))/\
+                   (np.sum((y_observed - np.mean(y_observed))**2)))\
+                   *((n-1)/(n-len(self.arrhenius_params().items())))
         return {"Arrhenius R2": R_arrhenius}
 
     
@@ -862,25 +880,27 @@ class AdsorptionDynamics(object):
         ax.set_title('All models') 
         ax.grid(ls=":")
         
-    @staticmethod
-    def linearity(y_observed, y_predicted):
-        slope, intercept, r, p, std_err = stats.linregress(y_observed, y_predicted)
-        return {"r":r, "slope":slope, "intercept":intercept}
-        
     def assess_fit(self):
         y_obs1 = self.y
         y_obs2 = self.yy
         y_thomas = self.thomas_curve(self.x)
         y_yoon_nelson = self.yoon_nelson_curve(self.x)
         y_adams_bohart = self.adams_bohart_curve(self.xx)
+        n1 = len(y_obs1)
+        n2 = len(y_obs2)
         
-        lin_thomas = self.linearity(y_obs1, y_thomas)
-        lin_yoon_nelson = self.linearity(y_obs1, y_yoon_nelson)
-        lin_adams_bohart = self.linearity(y_obs2, y_adams_bohart)       
+        R_thomas = 1-((np.sum((y_obs1 - y_thomas)**2))/\
+                   (np.sum((y_obs1 - np.mean(y_obs1))**2)))\
+                   *((n1-1)/(n1-len(self.thomas_params().items())))
+                   
+        R_yoon_nelson = 1-((np.sum((y_obs1 - y_yoon_nelson)**2))/\
+                   (np.sum((y_obs1 - np.mean(y_obs1))**2)))\
+                   *((n1-1)/(n1-len(self.yoon_nelson_params().items())))
         
-        R_thomas = lin_thomas['r']**2
-        R_yoon_nelson = lin_yoon_nelson['r']**2
-        R_adams_bohart = lin_adams_bohart['r']**2
+        R_adams_bohart = 1-((np.sum((y_obs2 - y_adams_bohart)**2))/\
+                   (np.sum((y_obs2 - np.mean(y_obs2))**2)))\
+                   *((n2-1)/(n2-len(self.adams_bohart_params().items())))
+        
         return {"THOMAS R2": R_thomas, 
                 "YOON-NELSON R2": R_yoon_nelson,
                 "ADAMS-BOHART R2": R_adams_bohart}
