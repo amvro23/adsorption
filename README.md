@@ -253,7 +253,7 @@ arrh.assess_fit()
 ```
   ```
 Out
-{'Arrhenius R2': 0.9967098965071525}
+{'Arrhenius R2': 0.9949596964116147}
 ```
 
 # AdsorptionDynamics
