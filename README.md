@@ -71,7 +71,7 @@ isotherm.best_fit()
 ```
 ```
 Out
-The best model is that of Langmuir R2 = 0.9853798413181968
+The best model is that of Langmuir R2 = 0.9817163923417866
 ```
 You can also obtain a dataframe with all the calculated parameters of isotherm equations with their units,
 ```Python
