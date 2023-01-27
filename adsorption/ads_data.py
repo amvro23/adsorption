@@ -37,15 +37,3 @@ y_dyn = df_dyn.loc[:, 'y'].values
 
 x_h = np.array([298.15, 308.15, 323.15, 348.15, 373.15])
 y_h = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588])
-
-# ------------------------------------------------------------------------------------------------
-# ISOSTERIC HEAT DATA
-# ------------------------------------------------------------------------------------------------
-
-df_iheat1 = pd.read_csv('iso_heat1.csv')
-x_iheat1 = df_iheat1.loc[:, 'x'].values
-y_iheat1 = df_iheat1.loc[:, 'y'].values
-
-df_iheat2 = pd.read_csv('iso_heat2.csv')
-x_iheat2 = df_iheat2.loc[:, 'x'].values
-y_iheat2 = df_iheat2.loc[:, 'y'].values
