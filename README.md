@@ -396,7 +396,8 @@ You can obtain either a plot of isosteric heat of adsorption vs the adsorbed qua
 ```Python
 iso_heat.plot_isoheat()
 ```
-![image](https://user-images.githubusercontent.com/91277572/215100746-4d9af938-d089-4dae-b7a3-c567c61aef50.png)
+![image](https://user-images.githubusercontent.com/91277572/215140960-8d648908-401b-4138-a98a-16616b78c617.png)
+
 
 or you can obtain a plot of lnkPa vs the adsorbed quantity.
 ```Python
