@@ -396,13 +396,18 @@ You can obtain either a plot of isosteric heat of adsorption vs the adsorbed qua
 ```Python
 iso_heat.plot_isoheat()
 ```
-![image](https://user-images.githubusercontent.com/91277572/215099574-57f72b75-218c-4b78-8422-ac6010441b8d.png)
+![image](https://user-images.githubusercontent.com/91277572/215100746-4d9af938-d089-4dae-b7a3-c567c61aef50.png)
 
 or you can obtain a plot of lnkPa vs the adsorbed quantity.
 ```Python
 iso_heat.plot_isoheat()
 ```
-![image](https://user-images.githubusercontent.com/91277572/215099876-a55e353c-212e-458a-b4df-04a66826a541.png)
+![image](https://user-images.githubusercontent.com/91277572/215100843-c24f0712-cb83-4b23-8d02-dbd45f99774f.png)
+
+You can get an excel file with the dataframe with all the calculated parameters.
+```Python
+ads_dyn.to_excel("IsostericHeat")
+```
 
 
 
