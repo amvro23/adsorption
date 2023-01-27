@@ -1,7 +1,7 @@
 # adsorption
 A python package with the purpose of assessing the most reliable isotherm models (i.e., Langmuir, Freundlich, Temkin, Toth, Sips, DR), kinetic models (i.e., PFO, PSO, Weber-Morris, Avrami, Bangham, Elovich) and Arrhenius parameters (i.e., Ea, A), adsorption dynamic models (i.e., Thomas, Yoon-Nelson, Adams-Bohart), and adsorption enthalpy and entropy.
 
-[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [AdsorptionDynamics](#AdsorptionDynamics) / [AdsorptionEnthalpy](#AdsorptionEnthalpy) / [References](#References) / [Contact](#Contact)
+[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [AdsorptionDynamics](#AdsorptionDynamics) / [AdsorptionEnthalpy](#AdsorptionEnthalpy) / [IsostericHeat](#IsostericHeat) / [References](#References) / [Contact](#Contact)
 
 # Install
 First, make sure you have a Python 3 environment installed.
@@ -326,7 +326,7 @@ Create an instance. Default optional values are C=0.01, Mr=44.01 g/mol, T=298.15
 ```Python
 ads_H = AdsorptionEnthalpy()
 ```
-Set inlet values for adsorption kinetics. Optional parameter x represents the adsorption temperature [K] and optional parameter y represents the equilibrium adsorption capacity [mg/g].
+Set inlet values for adsorption enthalpy. Optional parameter x represents the adsorption temperature [K] and optional parameter y represents the equilibrium adsorption capacity [mg/g].
 ```Python
 ads_H.set_inlet()
 ```
@@ -369,6 +369,30 @@ ads_H.vant_hoff_line(ads_H.x)
 Out
 array([2.4834227 , 2.19862352, 1.80447432, 1.22303396, 0.71950333])
 ```
+
+
+# IsostericHeat
+Create an instance. Default optional values are Mr=44.01 g/mol for CO2, T1=298.15 K, T2=423.15 K, P1=1 atm, P2=1 atm, N=25 points
+```Python
+iso_heat = IsostericHeat()
+```
+Set inlet values for isosteric heat. Optional parameter x1 represents the adsorption dimensionless number Ct/C0 of 1st adsorption test and optional parameter y1 represents the accumulative equilibrium adsorption capacity [mg/g]. Optional parameters x2 and y2 correspond to the second adsorption test.
+```Python
+ads_H.set_inlet()
+```
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).
+```Python
+df_iheat1 = pd.read_csv('iso_heat1.csv')
+x1 = df_iheat1.loc[:, 'x'].values
+y1 = df_iheat1.loc[:, 'y'].values
+
+df_iheat2 = pd.read_csv('iso_heat2.csv')
+x2 = df_iheat2.loc[:, 'x'].values
+y2 = df_iheat2.loc[:, 'y'].values
+
+ads_dyn.set_inlet(x1, y1, x2, y2)
+```
+
 
 # References
 
