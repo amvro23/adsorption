@@ -84,6 +84,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title("Langmuir fit")
         ax.grid(ls=":")
+        fig.tight_layout()
        
     def freundlich(self, x, k, n):
         x = np.array(x)
@@ -115,6 +116,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title("Freundlich fit")
         ax.grid(ls=":")
+        fig.tight_layout()
        
     def temkin(self, x, a, b):
         x = np.array(x)
@@ -146,6 +148,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title("Temkin fit")
         ax.grid(ls=":")
+        fig.tight_layout()
         
     def toth(self, x, k, n, q):
         x = np.array(x)
@@ -180,6 +183,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title("Toth fit")
         ax.grid(ls=":")
+        fig.tight_layout()
             
     def sips(self, x, k, n, q):
         x = np.array(x)
@@ -215,6 +219,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title("Sips fit")  
         ax.grid(ls=":")
+        fig.tight_layout()
             
     def dubinin_radushkevich(self, x, E, q):
         x = np.array(x)
@@ -246,6 +251,7 @@ class Isotherms(object):
         ax.legend()
         ax.set_title("DR fit") 
         ax.grid(ls=":")
+        fig.tight_layout()
     
     def plot_all_models(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
@@ -260,7 +266,8 @@ class Isotherms(object):
         ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
         ax.set_title("All models") 
-        ax.grid(ls=":")        
+        ax.grid(ls=":")
+        fig.tight_layout()
     
     def assess_fit(self):
         y_observed = self.y
@@ -387,6 +394,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title("PFO fit")
         ax.grid(ls=":")
+        fig.tight_layout()
      
     def pso(self, x, k, q):
         x = np.array(x)
@@ -418,6 +426,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title("PSO fit")
         ax.grid(ls=":")
+        fig.tight_layout()
         
     def weber_morris(self, x, k, c):
         x = np.array(x)
@@ -449,6 +458,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title("Weber-Morris fit")
         ax.grid(ls=":")
+        fig.tight_layout()
      
     def avrami(self, x, k, q, n):
         x = np.array(x)
@@ -483,6 +493,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title("Avrami fit")
         ax.grid(ls=":")
+        fig.tight_layout()
             
     def bangham(self, x, k, q, n):
         x = np.array(x)
@@ -517,6 +528,7 @@ class Kinetics(object):
         ax.legend()
         ax.set_title("Bangham fit")
         ax.grid(ls=":")
+        fig.tight_layout()
         
     def elovich(self, x, a, b):
         x = np.array(x)
@@ -549,6 +561,7 @@ class Kinetics(object):
         ax.set_title("Elovich fit")
         ax.set_ylim(0, np.max(self.y)+20)
         ax.grid(ls=":")
+        fig.tight_layout()
         
     def plot_all_models(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
@@ -565,6 +578,7 @@ class Kinetics(object):
         ax.set_title("All models") 
         ax.set_ylim(0, np.max(self.y)+20)
         ax.grid(ls=":")
+        fig.tight_layout()
 
     def assess_fit(self):
         y_observed = self.y
@@ -690,6 +704,7 @@ class ModifiedArrhenius(object):
         ax.set_ylabel("$k$", fontsize=10, fontweight="bold")
         ax.set_title("Modified Arrhenius", fontsize=10)
         ax.grid(linestyle=":")
+        fig.tight_layout()
         
     def assess_fit(self):
         y_observed = self.y
@@ -805,6 +820,7 @@ class AdsorptionDynamics(object):
         ax.legend()
         ax.set_title("Thomas fit")
         ax.grid(ls=":")
+        fig.tight_layout()
         
     def yoon_nelson(self, x, k, tau):
         x = np.array(x)
@@ -836,6 +852,7 @@ class AdsorptionDynamics(object):
         ax.legend()
         ax.set_title("Yoon-Nelson fit")
         ax.grid(ls=":")
+        fig.tight_layout()
 
     def adams_bohart(self, x, k, N0):
         x = np.array(x)
@@ -867,6 +884,7 @@ class AdsorptionDynamics(object):
         ax.legend()
         ax.set_title("Adams-Bohart fit")
         ax.grid(ls=":")
+        fig.tight_layout()
 
     def plot_all_models(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
@@ -879,6 +897,7 @@ class AdsorptionDynamics(object):
         ax.legend()
         ax.set_title("All models") 
         ax.grid(ls=":")
+        fig.tight_layout()
         
     def assess_fit(self):
         y_obs1 = self.y
@@ -1013,6 +1032,7 @@ class AdsorptionEnthalpy(object):
         ax.legend()
         ax.set_title("Vant Hoff") 
         ax.grid(ls=":")
+        fig.tight_layout()
         
 
 class IsostericHeat(object):
@@ -1116,15 +1136,17 @@ class IsostericHeat(object):
         plt.xlim([0, self.df4["qt_mmol/g"].max()+self.df4["qt_mmol/g"].max()/4])
         plt.title("Clausius-Clapeyron") 
         plt.grid(ls=":")
+        plt.tight_layout()
         
     def plot_lnkPa_vs_mmol(self):
         plt.figure(dpi = 200)
         plt.plot(self.df_final["qt_mmol/g"], self.df_final["lnkPa_1"], "r.", label = "exp. data at %d K" %self.T1)
         plt.plot(self.df_final["qt_mmol/g"], self.df_final["lnkPa_2"], "k.", label = "exp. data at %d K" %self.T2)
-        plt.ylabel("ln(kPa)")
-        plt.xlabel("Adsorbed amount (mmol/g)")
+        plt.ylabel("$ln(kPa)$", fontsize=10, fontweight="bold")
+        plt.xlabel("$Adsorbed~amount~[mmol/g]$", fontsize=10, fontweight="bold")
         plt.legend()
         plt.grid(ls=":")
+        plt.tight_layout()
         
     def to_excel(self, filename, **options):
         """Saves the pandas.DataFrame of profiles in an Excel file.
