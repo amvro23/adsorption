@@ -401,7 +401,7 @@ iso_heat.plot_isoheat()
 
 or you can obtain a plot of lnkPa vs the adsorbed quantity.
 ```Python
-iso_heat.plot_isoheat()
+iso_heat.plot_lnkPa_vs_mmol()
 ```
 ![image](https://user-images.githubusercontent.com/91277572/215109776-6349d9ca-0e4c-4d0d-9fe9-d4da0f943ea4.png)
 
