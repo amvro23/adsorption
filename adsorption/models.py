@@ -1128,9 +1128,9 @@ class IsostericHeat(object):
             self.df_final["Qst_kJ/mol"] = 8.314/1000*self.df_final["slope"].abs()
             
     def plot_isoheat(self):
-        plt.figure(dpi = 200)
+        plt.figure(dpi = 100)
         plt.plot(self.df_final["qt_mmol/g"], self.df_final["Qst_kJ/mol"], color = "r", marker = ".", mfc = "none", ls = "")
-        plt.ylabel("$Heat~of~adsorption~[kJ/mol]$", fontsize=10, fontweight="bold")
+        plt.ylabel("$-ΔH_{ads}~[kJ/mol]$", fontsize=10, fontweight="bold")
         plt.xlabel("$Adsorbed~amount~[mmol/g]$", fontsize=10, fontweight="bold")
         plt.ylim([0, self.df_final["Qst_kJ/mol"].max()+self.df_final["Qst_kJ/mol"].max()/2])
         plt.xlim([0, self.df4["qt_mmol/g"].max()+self.df4["qt_mmol/g"].max()/4])
