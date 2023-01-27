@@ -123,7 +123,7 @@ Create an instance.
 ```Python
 kinetic = Kinetics()
 ```
-Set inlet values for adsorption kinetic equations. Optional parameter x represents the adsorption time [min] and optional parameter y represents the cumulative adsorption capacity [mg/g].
+Set inlet values for adsorption kinetic equations. Optional parameter x represents the adsorption time [min] and optional parameter y represents the accumulative adsorption capacity [mg/g].
 ```Python
 kinetic.set_inlet()
 ```
