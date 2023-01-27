@@ -376,7 +376,7 @@ Create an instance. Default optional values are Mr=44.01 g/mol for CO2, T1=298.1
 ```Python
 iso_heat = IsostericHeat()
 ```
-Set inlet values for isosteric heat. Optional parameter x1 represents the adsorption dimensionless number Ct/C0 of 1st adsorption test and optional parameter y1 represents the accumulative equilibrium adsorption capacity [mg/g]. Optional parameters x2 and y2 correspond to the second adsorption test.
+Set inlet values for isosteric heat. Optional parameter x1 represents the adsorption dimensionless number Ct/C0 of 1st adsorption test and optional parameter y1 represents the accumulative adsorption capacity [mg/g]. Optional parameters x2 and y2 correspond to the second adsorption test.
 ```Python
 ads_H.set_inlet()
 ```
@@ -392,6 +392,19 @@ y2 = df_iheat2.loc[:, 'y'].values
 
 ads_dyn.set_inlet(x1, y1, x2, y2)
 ```
+You can obtain either a plot of isosteric heat of adsorption vs the adsorbed quantity,
+```Python
+iso_heat.plot_isoheat()
+```
+![image](https://user-images.githubusercontent.com/91277572/215099574-57f72b75-218c-4b78-8422-ac6010441b8d.png)
+
+or you can obtain a plot of lnkPa vs the adsorbed quantity.
+```Python
+iso_heat.plot_isoheat()
+```
+![image](https://user-images.githubusercontent.com/91277572/215099876-a55e353c-212e-458a-b4df-04a66826a541.png)
+
+
 
 
 # References
