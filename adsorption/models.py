@@ -1108,7 +1108,7 @@ class IsostericHeat(object):
             self.df_final["Qst_kJ/mol"] = 8.314/1000*self.df_final["slope"].abs()
             
     def plot_isoheat(self):
-        plt.figure(dpi = 100)
+        plt.figure(dpi = 200)
         plt.plot(self.df_final["qt_mmol/g"], self.df_final["Qst_kJ/mol"], color = "r", marker = ".", mfc = "none", ls = "")
         plt.ylabel("$Heat~of~adsorption~[kJ/mol]$", fontsize=10, fontweight="bold")
         plt.xlabel("$Adsorbed~amount~[mmol/g]$", fontsize=10, fontweight="bold")
@@ -1118,11 +1118,11 @@ class IsostericHeat(object):
         plt.grid(ls=":")
         
     def plot_lnkPa_vs_mmol(self):
-        plt.figure(dpi = 100)
+        plt.figure(dpi = 200)
         plt.plot(self.df_final["qt_mmol/g"], self.df_final["lnkPa_1"], "r.", label = "exp. data at %d K" %self.T1)
         plt.plot(self.df_final["qt_mmol/g"], self.df_final["lnkPa_2"], "k.", label = "exp. data at %d K" %self.T2)
         plt.ylabel("ln(kPa)")
-        plt.xlabel("adsorbed amount (mmol/g)")
+        plt.xlabel("Adsorbed amount (mmol/g)")
         plt.legend()
         plt.grid(ls=":")
         
