@@ -372,43 +372,7 @@ array([2.4834227 , 2.19862352, 1.80447432, 1.22303396, 0.71950333])
 
 
 # IsostericHeat
-Create an instance. Default optional values are Mr=44.01 g/mol for CO2, T1=298.15 K, T2=423.15 K, P1=1 atm, P2=1 atm, N=25 points
-```Python
-iso_heat = IsostericHeat()
-```
-Set inlet values for isosteric heat. Optional parameter x1 represents the adsorption dimensionless number Ct/C0 of 1st adsorption test and optional parameter y1 represents the accumulative adsorption capacity [mg/g]. Optional parameters x2 and y2 correspond to the 2nd adsorption test at different temperature.
-```Python
-iso_heat.set_inlet()
-```
-Adjust the values of x and y parameters according to your experimental results (the default values are the following).
-```Python
-df_iheat1 = pd.read_csv('iso_heat1.csv')
-x1 = df_iheat1.loc[:, 'x'].values
-y1 = df_iheat1.loc[:, 'y'].values
-
-df_iheat2 = pd.read_csv('iso_heat2.csv')
-x2 = df_iheat2.loc[:, 'x'].values
-y2 = df_iheat2.loc[:, 'y'].values
-
-iso_heat.set_inlet(x1, y1, x2, y2)
-```
-You can obtain either a plot of isosteric heat of adsorption vs the adsorbed quantity,
-```Python
-iso_heat.plot_isoheat()
-```
-![image](https://user-images.githubusercontent.com/91277572/215140960-8d648908-401b-4138-a98a-16616b78c617.png)
-
-
-or you can obtain a plot of lnkPa vs the adsorbed quantity.
-```Python
-iso_heat.plot_lnkPa_vs_mmol()
-```
-![image](https://user-images.githubusercontent.com/91277572/215109776-6349d9ca-0e4c-4d0d-9fe9-d4da0f943ea4.png)
-
-You can get an excel file with the dataframe with all the calculated parameters.
-```Python
-iso_heat.to_excel("IsostericHeat")
-```
+In progress...
 
 # References
 
