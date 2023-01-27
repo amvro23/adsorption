@@ -402,7 +402,7 @@ or you can obtain a plot of lnkPa vs the adsorbed quantity.
 ```Python
 iso_heat.plot_isoheat()
 ```
-![image](https://user-images.githubusercontent.com/91277572/215100843-c24f0712-cb83-4b23-8d02-dbd45f99774f.png)
+![image](https://user-images.githubusercontent.com/91277572/215109112-75278831-7d37-472b-ae02-24034a17547e.png)
 
 You can get an excel file with the dataframe with all the calculated parameters.
 ```Python
