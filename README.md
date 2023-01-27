@@ -406,7 +406,7 @@ iso_heat.plot_isoheat()
 
 You can get an excel file with the dataframe with all the calculated parameters.
 ```Python
-ads_dyn.to_excel("IsostericHeat")
+iso_heat.to_excel("IsostericHeat")
 ```
 
 
