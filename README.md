@@ -378,7 +378,7 @@ iso_heat = IsostericHeat()
 ```
 Set inlet values for isosteric heat. Optional parameter x1 represents the adsorption dimensionless number Ct/C0 of 1st adsorption test and optional parameter y1 represents the accumulative adsorption capacity [mg/g]. Optional parameters x2 and y2 correspond to the 2nd adsorption test at different temperature.
 ```Python
-ads_H.set_inlet()
+iso_heat.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
