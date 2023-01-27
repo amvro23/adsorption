@@ -376,7 +376,7 @@ Create an instance. Default optional values are Mr=44.01 g/mol for CO2, T1=298.1
 ```Python
 iso_heat = IsostericHeat()
 ```
-Set inlet values for isosteric heat. Optional parameter x1 represents the adsorption dimensionless number Ct/C0 of 1st adsorption test and optional parameter y1 represents the accumulative adsorption capacity [mg/g]. Optional parameters x2 and y2 correspond to the second adsorption test.
+Set inlet values for isosteric heat. Optional parameter x1 represents the adsorption dimensionless number Ct/C0 of 1st adsorption test and optional parameter y1 represents the accumulative adsorption capacity [mg/g]. Optional parameters x2 and y2 correspond to the 2nd adsorption test at different temperature.
 ```Python
 ads_H.set_inlet()
 ```
