@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from scipy import stats
 import pandas as pd
 from adsorption.ads_data import (x_iso, y_iso, x_kin, y_kin, x_arrh, y_arrh, 
-                      x_dyn, y_dyn, x_h, y_h)
+                      x_dyn, y_dyn, x_h, y_h, 
+                      x_iheat1, y_iheat1, x_iheat2, y_iheat2)
 
 class Isotherms(object):
     
@@ -65,23 +66,23 @@ class Isotherms(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.q = FitParams[1]
-        return {'K_Langmuir [L/mg]': self.k,
-                'qmax_Langmuir [mg/g]': self.q}
+        return {"K_Langmuir [L/mg]": self.k,
+                "qmax_Langmuir [mg/g]": self.q}
     
     def langmuir_curve(self, x):
         yfit = self.langmuir(x, 
-                             self.langmuir_params()['K_Langmuir [L/mg]'],
-                             self.langmuir_params()['qmax_Langmuir [mg/g]'])
+                             self.langmuir_params()["K_Langmuir [L/mg]"],
+                             self.langmuir_params()["qmax_Langmuir [mg/g]"])
         return yfit
     
     def plot_langmuir_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.xfit, self.langmuir_curve(self.xfit), 'k--', label = 'Predicted')
-        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = 'bold')
-        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = 'bold')
+        ax.plot(self.x_obs, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.xfit, self.langmuir_curve(self.xfit), "k--", label = "Predicted")
+        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = "bold")
+        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
-        ax.set_title('Langmuir fit')
+        ax.set_title("Langmuir fit")
         ax.grid(ls=":")
        
     def freundlich(self, x, k, n):
@@ -96,23 +97,23 @@ class Isotherms(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.n = FitParams[1]
-        return {'K_Freundlich [L^(1/n_Freundlich)·mg^(1-1/n_Freundlich)·g^-1]': 
-                self.k, 'n_Freundlich': self.n}
+        return {"K_Freundlich [L^(1/n_Freundlich)·mg^(1-1/n_Freundlich)·g^-1]": 
+                self.k, "n_Freundlich": self.n}
     
     def freundlich_curve(self, x):
         yfit = self.freundlich(x, 
-                               self.freundlich_params()['K_Freundlich [L^(1/n_Freundlich)·mg^(1-1/n_Freundlich)·g^-1]'],
-                               self.freundlich_params()['n_Freundlich'])
+                               self.freundlich_params()["K_Freundlich [L^(1/n_Freundlich)·mg^(1-1/n_Freundlich)·g^-1]"],
+                               self.freundlich_params()["n_Freundlich"])
         return yfit
     
     def plot_freundlich_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.xfit, self.freundlich_curve(self.xfit), 'k--', label = 'Predicted')
-        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = 'bold')
-        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = 'bold')
+        ax.plot(self.x_obs, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.xfit, self.freundlich_curve(self.xfit), "k--", label = "Predicted")
+        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = "bold")
+        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
-        ax.set_title('Freundlich fit')
+        ax.set_title("Freundlich fit")
         ax.grid(ls=":")
        
     def temkin(self, x, a, b):
@@ -127,23 +128,23 @@ class Isotherms(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.a = FitParams[0]
         self.b = FitParams[1]
-        return {'A_Temkin [L/mg]': self.a,
-                'B_Temkin [J/mol]': self.b}
+        return {"A_Temkin [L/mg]": self.a,
+                "B_Temkin [J/mol]": self.b}
     
     def temkin_curve(self, x):
         yfit = self.temkin(x, 
-                           self.temkin_params()['A_Temkin [L/mg]'],
-                           self.temkin_params()['B_Temkin [J/mol]'])
+                           self.temkin_params()["A_Temkin [L/mg]"],
+                           self.temkin_params()["B_Temkin [J/mol]"])
         return yfit
     
     def plot_temkin_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.xfit, self.temkin_curve(self.xfit), 'k--', label = 'Predicted')
-        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = 'bold')
-        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = 'bold')
+        ax.plot(self.x_obs, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.xfit, self.temkin_curve(self.xfit), "k--", label = "Predicted")
+        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = "bold")
+        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
-        ax.set_title('Temkin fit')
+        ax.set_title("Temkin fit")
         ax.grid(ls=":")
         
     def toth(self, x, k, n, q):
@@ -159,25 +160,25 @@ class Isotherms(object):
         self.k = FitParams[0]
         self.n = FitParams[1]
         self.q = FitParams[2]
-        return {'K_Toth [mg^z·L^-n_toth]': self.k,
-                'n_Toth': self.n,
-                'qmax_Toth [mg/g]': self.q}
+        return {"K_Toth [mg^z·L^-n_toth]": self.k,
+                "n_Toth": self.n,
+                "qmax_Toth [mg/g]": self.q}
     
     def toth_curve(self, x):
         yfit = self.toth(x, 
-                         self.toth_params()['K_Toth [mg^z·L^-n_toth]'],
-                         self.toth_params()['n_Toth'],
-                         self.toth_params()['qmax_Toth [mg/g]'])
+                         self.toth_params()["K_Toth [mg^z·L^-n_toth]"],
+                         self.toth_params()["n_Toth"],
+                         self.toth_params()["qmax_Toth [mg/g]"])
         return yfit
 
     def plot_toth_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.xfit, self.toth_curve(self.xfit), 'k--', label = 'Predicted')
-        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = 'bold')
-        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = 'bold')
+        ax.plot(self.x_obs, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.xfit, self.toth_curve(self.xfit), "k--", label = "Predicted")
+        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = "bold")
+        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
-        ax.set_title('Toth fit')
+        ax.set_title("Toth fit")
         ax.grid(ls=":")
             
     def sips(self, x, k, n, q):
@@ -193,26 +194,26 @@ class Isotherms(object):
         self.k = FitParams[0]
         self.n = FitParams[1]
         self.q = FitParams[2]
-        return {'K_Sips [L^n_Sips·mg^-n_Sips]': self.k,
-                'n_Sips': self.n,
-                'qmax_Sips [mg/g]': self.q}
+        return {"K_Sips [L^n_Sips·mg^-n_Sips]": self.k,
+                "n_Sips": self.n,
+                "qmax_Sips [mg/g]": self.q}
 
     def sips_curve(self, x):
         yfit = self.sips(x, 
-                         self.sips_params()['K_Sips [L^n_Sips·mg^-n_Sips]'],
-                         self.sips_params()['n_Sips'],
-                         self.sips_params()['qmax_Sips [mg/g]'])
+                         self.sips_params()["K_Sips [L^n_Sips·mg^-n_Sips]"],
+                         self.sips_params()["n_Sips"],
+                         self.sips_params()["qmax_Sips [mg/g]"])
         return yfit   
     
     def plot_sips_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         
-        ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.xfit, self.sips_curve(self.xfit), 'k--', label = 'Predicted')
-        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = 'bold')
-        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = 'bold')
+        ax.plot(self.x_obs, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.xfit, self.sips_curve(self.xfit), "k--", label = "Predicted")
+        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = "bold")
+        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
-        ax.set_title('Sips fit')  
+        ax.set_title("Sips fit")  
         ax.grid(ls=":")
             
     def dubinin_radushkevich(self, x, E, q):
@@ -227,38 +228,38 @@ class Isotherms(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.E = FitParams[0]
         self.q = FitParams[1]
-        return {'E_DR [J/mol]': self.E, 
-                'qmax_DR [mg/g]': self.q}
+        return {"E_DR [J/mol]": self.E, 
+                "qmax_DR [mg/g]": self.q}
     
     def dr_curve(self, x):
         yfit = self.dubinin_radushkevich(x, 
-                                         self.dubinin_radushkevich_params()['E_DR [J/mol]'],
-                                         self.dubinin_radushkevich_params()['qmax_DR [mg/g]'])
+                                         self.dubinin_radushkevich_params()["E_DR [J/mol]"],
+                                         self.dubinin_radushkevich_params()["qmax_DR [mg/g]"])
         return yfit
 
     def plot_dr_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.xfit, self.dr_curve(self.xfit), 'k--', label = 'Predicted')
-        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = 'bold')
-        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = 'bold')
+        ax.plot(self.x_obs, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.xfit, self.dr_curve(self.xfit), "k--", label = "Predicted")
+        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = "bold")
+        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
-        ax.set_title('DR fit') 
+        ax.set_title("DR fit") 
         ax.grid(ls=":")
     
     def plot_all_models(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x_obs, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.xfit, self.langmuir_curve(self.xfit), 'r--', label = 'Langmuir')
-        ax.plot(self.xfit, self.freundlich_curve(self.xfit), 'b--', label = 'Freundlich')
-        ax.plot(self.xfit, self.temkin_curve(self.xfit), 'g--', label = 'Temkin')
-        ax.plot(self.xfit, self.toth_curve(self.xfit), 'y--', label = 'Toth')
-        ax.plot(self.xfit, self.sips_curve(self.xfit), 'm--', label = 'Sips')
-        ax.plot(self.xfit, self.dr_curve(self.xfit), 'c--', label = 'DR')
-        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = 'bold')
-        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = 'bold')
+        ax.plot(self.x_obs, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.xfit, self.langmuir_curve(self.xfit), "r--", label = "Langmuir")
+        ax.plot(self.xfit, self.freundlich_curve(self.xfit), "b--", label = "Freundlich")
+        ax.plot(self.xfit, self.temkin_curve(self.xfit), "g--", label = "Temkin")
+        ax.plot(self.xfit, self.toth_curve(self.xfit), "y--", label = "Toth")
+        ax.plot(self.xfit, self.sips_curve(self.xfit), "m--", label = "Sips")
+        ax.plot(self.xfit, self.dr_curve(self.xfit), "c--", label = "DR")
+        ax.set_xlabel("$C_e$ $[mg/L]$", fontsize = 10, fontweight = "bold")
+        ax.set_ylabel("$q_e$ $[mg/g]$", fontsize = 10, fontweight = "bold")
         ax.legend()
-        ax.set_title('All models') 
+        ax.set_title("All models") 
         ax.grid(ls=":")        
     
     def assess_fit(self):
@@ -321,7 +322,7 @@ class Isotherms(object):
                            list(self.sips_params().items()),
                            list(self.dubinin_radushkevich_params().items()))
         
-        df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
+        df = pd.DataFrame(all_p, columns = ["Parameters", "Values"])
         return df
     
     def to_excel(self, filename, **options):
@@ -333,7 +334,7 @@ class Isotherms(object):
         """
         path = filename + '.xlsx'
         with pd.ExcelWriter(path) as writer:
-            self.all_params().to_excel(writer, sheet_name='Isotherms')
+            self.all_params().to_excel(writer, sheet_name="Isotherms")
     
 
 class Kinetics(object):
@@ -368,23 +369,23 @@ class Kinetics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.q = FitParams[1]
-        return {'k_pfo [1/min]': self.k,
-                'qmax_PFO [mg/g]': self.q}
+        return {"k_pfo [1/min]": self.k,
+                "qmax_PFO [mg/g]": self.q}
     
     def pfo_curve(self, x):
         yfit = self.pfo(x, 
-                        self.pfo_params()['k_pfo [1/min]'],
-                        self.pfo_params()['qmax_PFO [mg/g]'])
+                        self.pfo_params()["k_pfo [1/min]"],
+                        self.pfo_params()["qmax_PFO [mg/g]"])
         return yfit
     
     def plot_pfo_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.pfo_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.pfo_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('PFO fit')
+        ax.set_title("PFO fit")
         ax.grid(ls=":")
      
     def pso(self, x, k, q):
@@ -399,23 +400,23 @@ class Kinetics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.q = FitParams[1]
-        return {'k_pso [g mg^-1 min^-1]': self.k,
-                'qmax_PSO [mg/g]': self.q}
+        return {"k_pso [g mg^-1 min^-1]": self.k,
+                "qmax_PSO [mg/g]": self.q}
     
     def pso_curve(self, x):
         yfit = self.pso(x, 
-                        self.pso_params()['k_pso [g mg^-1 min^-1]'],
-                        self.pso_params()['qmax_PSO [mg/g]'])
+                        self.pso_params()["k_pso [g mg^-1 min^-1]"],
+                        self.pso_params()["qmax_PSO [mg/g]"])
         return yfit
 
     def plot_pso_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.pso_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.pso_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('PSO fit')
+        ax.set_title("PSO fit")
         ax.grid(ls=":")
         
     def weber_morris(self, x, k, c):
@@ -430,23 +431,23 @@ class Kinetics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.c = FitParams[1]
-        return {'k_wm [mg g^-1 min^-0.5]': self.k,
-                'C': self.c}
+        return {"k_wm [mg g^-1 min^-0.5]": self.k,
+                "C": self.c}
     
     def weber_morris_curve(self, x):
         yfit = self.weber_morris(x, 
-                                 self.weber_morris_params()['k_wm [mg g^-1 min^-0.5]'],
-                                 self.weber_morris_params()['C'])
+                                 self.weber_morris_params()["k_wm [mg g^-1 min^-0.5]"],
+                                 self.weber_morris_params()["C"])
         return yfit
 
     def plot_weber_morris_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.weber_morris_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.weber_morris_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Weber-Morris fit')
+        ax.set_title("Weber-Morris fit")
         ax.grid(ls=":")
      
     def avrami(self, x, k, q, n):
@@ -462,25 +463,25 @@ class Kinetics(object):
         self.k = FitParams[0]
         self.q = FitParams[1]
         self.n = FitParams[2]
-        return {'k_avrami [1/min]': self.k,
-                'qmax_avrami [mg/g]': self.q,
-                'n_avrami': self.n}
+        return {"k_avrami [1/min]": self.k,
+                "qmax_avrami [mg/g]": self.q,
+                "n_avrami": self.n}
 
     def avrami_curve(self, x):
         yfit = self.avrami(x, 
-                           self.avrami_params()['k_avrami [1/min]'],
-                           self.avrami_params()['qmax_avrami [mg/g]'],
-                           self.avrami_params()['n_avrami'])
+                           self.avrami_params()["k_avrami [1/min]"],
+                           self.avrami_params()["qmax_avrami [mg/g]"],
+                           self.avrami_params()["n_avrami"])
         return yfit
 
     def plot_avrami_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.avrami_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.avrami_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Avrami fit')
+        ax.set_title("Avrami fit")
         ax.grid(ls=":")
             
     def bangham(self, x, k, q, n):
@@ -496,25 +497,25 @@ class Kinetics(object):
         self.k = FitParams[0]
         self.q = FitParams[1]
         self.n = FitParams[2]
-        return {'k_bangham [1/min^n]': self.k,
-                'qmax_bangham [mg/g]': self.q,
-                'n_bangham': self.n}
+        return {"k_bangham [1/min^n]": self.k,
+                "qmax_bangham [mg/g]": self.q,
+                "n_bangham": self.n}
     
     def bangham_curve(self, x):
         yfit = self.bangham(x, 
-                           self.bangham_params()['k_bangham [1/min^n]'],
-                           self.bangham_params()['qmax_bangham [mg/g]'],
-                           self.bangham_params()['n_bangham'])
+                           self.bangham_params()["k_bangham [1/min^n]"],
+                           self.bangham_params()["qmax_bangham [mg/g]"],
+                           self.bangham_params()["n_bangham"])
         return yfit
 
     def plot_bangham_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.bangham_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.bangham_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Bangham fit')
+        ax.set_title("Bangham fit")
         ax.grid(ls=":")
         
     def elovich(self, x, a, b):
@@ -529,39 +530,39 @@ class Kinetics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.a = FitParams[0]
         self.b = FitParams[1]
-        return {'a_elovich [mg/g/min]': self.a,
-                'b_elovich [g/mg]': self.b}
+        return {"a_elovich [mg/g/min]": self.a,
+                "b_elovich [g/mg]": self.b}
     
     def elovich_curve(self, x):
         yfit = self.elovich(x, 
-                           self.elovich_params()['a_elovich [mg/g/min]'],
-                           self.elovich_params()['b_elovich [g/mg]'])
+                           self.elovich_params()["a_elovich [mg/g/min]"],
+                           self.elovich_params()["b_elovich [g/mg]"])
         return yfit
 
     def plot_elovich_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.elovich_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.elovich_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Elovich fit')
+        ax.set_title("Elovich fit")
         ax.set_ylim(0, np.max(self.y)+20)
         ax.grid(ls=":")
         
     def plot_all_models(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.pfo_curve(self.x), 'r--', label = 'PFO')
-        ax.plot(self.x, self.pso_curve(self.x), 'b--', label = 'PSO')     
-        ax.plot(self.x, self.weber_morris_curve(self.x), 'g--', label = 'Weber-Morris')
-        ax.plot(self.x, self.avrami_curve(self.x), 'y--', label = 'Avrami')
-        ax.plot(self.x, self.bangham_curve(self.x), 'm--', label = 'Bangham')
-        ax.plot(self.x, self.elovich_curve(self.x), 'c--', label = 'Elovich')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.pfo_curve(self.x), "r--", label = "PFO")
+        ax.plot(self.x, self.pso_curve(self.x), "b--", label = "PSO")     
+        ax.plot(self.x, self.weber_morris_curve(self.x), "g--", label = "Weber-Morris")
+        ax.plot(self.x, self.avrami_curve(self.x), "y--", label = "Avrami")
+        ax.plot(self.x, self.bangham_curve(self.x), "m--", label = "Bangham")
+        ax.plot(self.x, self.elovich_curve(self.x), "c--", label = "Elovich")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$q_t$ $[mg/g]$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('All models') 
+        ax.set_title("All models") 
         ax.set_ylim(0, np.max(self.y)+20)
         ax.grid(ls=":")
 
@@ -625,7 +626,7 @@ class Kinetics(object):
                            list(self.bangham_params().items()),
                            list(self.elovich_params().items()))
         
-        df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
+        df = pd.DataFrame(all_p, columns = ["Parameters", "Values"])
         return df
 
     def to_excel(self, filename, **options):
@@ -637,7 +638,7 @@ class Kinetics(object):
         """
         path = filename + '.xlsx'
         with pd.ExcelWriter(path) as writer:
-            self.all_params().to_excel(writer, sheet_name='Kinetics')
+            self.all_params().to_excel(writer, sheet_name="Kinetics")
 
     
 class ModifiedArrhenius(object):
@@ -671,24 +672,24 @@ class ModifiedArrhenius(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.Ea = FitParams[0]
         self.A = FitParams[1]
-        return {'Ea [J/mol]': self.Ea,
-                'A [same as k]': self.A}
+        return {"Ea [J/mol]": self.Ea,
+                "A [same as k]": self.A}
 
     def arrhenius_curve(self, x):
         yfit = self.arrhenius(x, 
-                              self.arrhenius_params()['Ea [J/mol]'],
-                              self.arrhenius_params()['A [same as k]'])
+                              self.arrhenius_params()["Ea [J/mol]"],
+                              self.arrhenius_params()["A [same as k]"])
         return yfit
         
     def plot_arrhenius_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         xfit = np.linspace(min(self.x), max(self.x), 200)
-        ax.plot(self.x, self.y, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(xfit, self.arrhenius_curve(xfit), 'g--', label = 'Arrhenius')
-        ax.set_xlabel("$Temperature$ $[K]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$k$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "ko", mfc = "none", label = "Observed")
+        ax.plot(xfit, self.arrhenius_curve(xfit), "g--", label = "Arrhenius")
+        ax.set_xlabel("$Temperature$ $[K]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$k$", fontsize=10, fontweight="bold")
         ax.set_title("Modified Arrhenius", fontsize=10)
-        ax.grid(linestyle=':')
+        ax.grid(linestyle=":")
         
     def assess_fit(self):
         y_observed = self.y
@@ -786,23 +787,23 @@ class AdsorptionDynamics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.q = FitParams[1]
-        return {'k_thomas [ml/mg/min]': self.k,
-                'qmax_thomas [mg/g]': self.q}       
+        return {"k_thomas [ml/mg/min]": self.k,
+                "qmax_thomas [mg/g]": self.q}       
 
     def thomas_curve(self, x):
         yfit = self.thomas(x, 
-                           self.thomas_params()['k_thomas [ml/mg/min]'],
-                           self.thomas_params()['qmax_thomas [mg/g]'])
+                           self.thomas_params()["k_thomas [ml/mg/min]"],
+                           self.thomas_params()["qmax_thomas [mg/g]"])
         return yfit
 
     def plot_thomas_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.thomas_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.thomas_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Thomas fit')
+        ax.set_title("Thomas fit")
         ax.grid(ls=":")
         
     def yoon_nelson(self, x, k, tau):
@@ -817,23 +818,23 @@ class AdsorptionDynamics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.tau = FitParams[1]
-        return {'k_yoon_nelson [1/min]': self.k,
-                'tau_yoon_nelson [min]': self.tau} 
+        return {"k_yoon_nelson [1/min]": self.k,
+                "tau_yoon_nelson [min]": self.tau} 
 
     def yoon_nelson_curve(self, x):
         yfit = self.yoon_nelson(x, 
-                                self.yoon_nelson_params()['k_yoon_nelson [1/min]'],
-                                self.yoon_nelson_params()['tau_yoon_nelson [min]'])
+                                self.yoon_nelson_params()["k_yoon_nelson [1/min]"],
+                                self.yoon_nelson_params()["tau_yoon_nelson [min]"])
         return yfit
 
     def plot_yoon_nelson_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.yoon_nelson_curve(self.x), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.yoon_nelson_curve(self.x), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Yoon-Nelson fit')
+        ax.set_title("Yoon-Nelson fit")
         ax.grid(ls=":")
 
     def adams_bohart(self, x, k, N0):
@@ -848,35 +849,35 @@ class AdsorptionDynamics(object):
                                       bounds=(0, [np.inf, np.inf]))
         self.k = FitParams[0]
         self.N0 = FitParams[1]
-        return {'k_adams_bohart [ml/mg/min]': self.k,
-                'N0_adams_bohart [mg/ml]': self.N0}
+        return {"k_adams_bohart [ml/mg/min]": self.k,
+                "N0_adams_bohart [mg/ml]": self.N0}
     
     def adams_bohart_curve(self, x):
         yfit = self.adams_bohart(x, 
-                                self.adams_bohart_params()['k_adams_bohart [ml/mg/min]'],
-                                self.adams_bohart_params()['N0_adams_bohart [mg/ml]'])
+                                self.adams_bohart_params()["k_adams_bohart [ml/mg/min]"],
+                                self.adams_bohart_params()["N0_adams_bohart [mg/ml]"])
         return yfit
 
     def plot_adams_bohart_fit(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.xx, self.adams_bohart_curve(self.xx), 'r--', label = 'Predicted')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.xx, self.adams_bohart_curve(self.xx), "r--", label = "Predicted")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Adams-Bohart fit')
+        ax.set_title("Adams-Bohart fit")
         ax.grid(ls=":")
 
     def plot_all_models(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x, self.y, 'k:', mfc = 'none', label = 'Observed')
-        ax.plot(self.x, self.thomas_curve(self.x), 'r--', label = 'Thomas')
-        ax.plot(self.x, self.yoon_nelson_curve(self.x), 'b--', label = 'Yoon-Nelson')
-        ax.plot(self.xx, self.adams_bohart_curve(self.xx), 'm--', label = 'Adams-Bohart')
-        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight='bold')
+        ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
+        ax.plot(self.x, self.thomas_curve(self.x), "r--", label = "Thomas")
+        ax.plot(self.x, self.yoon_nelson_curve(self.x), "b--", label = "Yoon-Nelson")
+        ax.plot(self.xx, self.adams_bohart_curve(self.xx), "m--", label = "Adams-Bohart")
+        ax.set_xlabel("$Time$ $[min]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$C_t/C_0$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('All models') 
+        ax.set_title("All models") 
         ax.grid(ls=":")
         
     def assess_fit(self):
@@ -919,7 +920,7 @@ class AdsorptionDynamics(object):
                            list(self.yoon_nelson_params().items()),
                            list(self.adams_bohart_params().items()))
         
-        df = pd.DataFrame(all_p, columns = ['Parameters', 'Values'])
+        df = pd.DataFrame(all_p, columns = ["Parameters", "Values"])
         return df
     
     def to_excel(self, filename, **options):
@@ -931,7 +932,7 @@ class AdsorptionDynamics(object):
         """
         path = filename + '.xlsx'
         with pd.ExcelWriter(path) as writer:
-            self.all_params().to_excel(writer, sheet_name='AdsDynamics')
+            self.all_params().to_excel(writer, sheet_name="AdsDynamics")
 
 
 class AdsorptionEnthalpy(object):
@@ -946,6 +947,8 @@ class AdsorptionEnthalpy(object):
              Molar mass of adsorbed molecule [g/mol], by default 44.01 for CO2
         T  : float or integer, optional
              Adsorption temperature [K], by default 298.15
+        P  : float or integer, optional
+             Adsorption pressure [atm], by default 1
         R  : float, optional
              Gas constant [atm.m3/mol/K], by default 8.205e-5
         
@@ -965,7 +968,7 @@ class AdsorptionEnthalpy(object):
         self.c0 = self.C*(self.P*self.Mr)/self.R/self.T
         
     def set_inlet(self, x=x_h, y=y_h):
-        """Set inlet parameters for modified Vant Hoff equation.
+        """Set inlet parameters for Vant Hoff equation.
         Parameters
         ----------
         x  : 1d array of floats, optional
@@ -990,23 +993,146 @@ class AdsorptionEnthalpy(object):
         slope, intercept, r, p, std_err = stats.linregress(self.x_inv, self.lnKd)
         enthlapy = -slope*8.314
         entropy = intercept*8.314
-        return {'enthalpy [J/mol]': enthlapy,
-                'entropy [J/mol/K]': entropy,
-                'R2': r**2, 
-                'slope': slope, 
-                'intercept': intercept}
+        return {"enthalpy [J/mol]": enthlapy,
+                "entropy [J/mol/K]": entropy,
+                "R2": r**2, 
+                "slope": slope, 
+                "intercept": intercept}
         
     def vant_hoff_line(self, x):
-        yfit = list(map(lambda x: self.vant_hoff_params()['slope']*x 
-                        + self.vant_hoff_params()['intercept'], 1/x))
+        yfit = list(map(lambda x: self.vant_hoff_params()["slope"]*x 
+                        + self.vant_hoff_params()["intercept"], 1/x))
         return np.array(yfit)
     
     def plot_vant_hoff(self):
         fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
-        ax.plot(self.x_inv, self.lnKd, 'ko', mfc = 'none', label = 'Observed')
-        ax.plot(self.x_inv, self.vant_hoff_line(self.x), 'r--', label = 'Vant Hoff')
-        ax.set_xlabel("$1/T$ $[1/K]$", fontsize=10, fontweight='bold')
-        ax.set_ylabel("$lnK_d$", fontsize=10, fontweight='bold')
+        ax.plot(self.x_inv, self.lnKd, "ko", mfc = "none", label = "Observed")
+        ax.plot(self.x_inv, self.vant_hoff_line(self.x), "r--", label = "Vant Hoff")
+        ax.set_xlabel("$1/T$ $[1/K]$", fontsize=10, fontweight="bold")
+        ax.set_ylabel("$lnK_d$", fontsize=10, fontweight="bold")
         ax.legend()
-        ax.set_title('Vant Hoff') 
+        ax.set_title("Vant Hoff") 
         ax.grid(ls=":")
+        
+
+class IsostericHeat(object):
+    
+    def __init__(self, Mr=44.01, T1=298.15, T2=423.15, P1=1, P2=1, N=25):
+        """Class for assessing isosteric heat of adsorption using (Clausius–Clapeyron).            
+        Parameters
+        ----------
+        Mr : float, optional
+             Molar mass of adsorbed molecule [g/mol], by default 44.01 for CO2
+        T1 : float or integer, optional
+             Adsorption temperature [K] for the 1st adsorption test, by default 298.15
+        T2 : float or integer, optional
+             Adsorption temperature [K] for the 2nd adsorption test, by default 423.15
+        P1  : float or integer, optional
+             Adsorption pressure [atm] for the 1st adsorption test, by default 1
+        P2  : float or integer, optional
+             Adsorption pressure [atm] for the 2nd adsorption test, by default 1
+        N   : number of points to interpolate
+        """   
+        self.Mr = Mr
+        self.T1 = T1
+        self.T2 = T2        
+        self.P1 = P1
+        self.P2 = P2
+        self.N = N
+        
+    def set_inlet(self, x1=x_iheat1, y1=y_iheat1, x2=x_iheat2, y2=y_iheat2):
+        """Set inlet parameters for Clausius-Clapeyron equation.
+        Parameters
+        ----------
+        x1  : 1d array of floats, optional
+              Adsorption dimensionless number Ct/C0 of 1st adsorption test
+        y1  : 1d array of floats, optional
+              Accumulative adsorption capacity [mg/g] of 1st adsorption test
+        x2  : 1d array of floats, optional
+              Adsorption dimensionless number Ct/C0 of 2nd adsorption test
+        y2  : 1d array of floats, optional
+              Accumulative adsorption capacity [mg/g] of 2nd adsorption test        
+        """
+        x1 = np.array(x1)
+        y1 = np.array(y1)
+        x2 = np.array(x2)
+        y2 = np.array(y2)
+        
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+               
+        self.df1 = pd.DataFrame()
+        self.df1["kPa"] = self.x1*self.P1*101.325
+        self.df1["lnkPa"] = np.log(self.df1["kPa"])
+        self.df1["qt_mmol/g"] = self.y1/self.Mr
+        
+        self.df2 = pd.DataFrame()
+        self.df2["kPa"] = self.x2*self.P2*101.325
+        self.df2["lnkPa"] = np.log(self.df2["kPa"])
+        self.df2["qt_mmol/g"] = self.y2/self.Mr
+            
+        self.df3 = self.df1.copy()[self.df1["kPa"] > 0]     
+        self.df4 = self.df2.copy()[self.df2["kPa"] > 0] 
+        
+        if max(self.df3["qt_mmol/g"]) > max(self.df4["qt_mmol/g"]):
+
+            xfit = np.linspace(min(self.df3["qt_mmol/g"]), max(self.df4["qt_mmol/g"]), self.N)
+
+            self.df_final = pd.DataFrame({"qt_mmol/g": xfit})
+
+            self.df_final["lnkPa_1"] = np.interp(xfit, self.df4["qt_mmol/g"], self.df4["lnkPa"])
+            
+            self.df_final.insert(2, "1/T1", 1/self.T1)
+            self.df_final["lnkPa_2"] = np.interp(xfit, self.df3["qt_mmol/g"], self.df3["lnkPa"])
+            self.df_final.insert(4, "1/T2", 1/self.T2)
+            self.df_final["slope"] = (self.df_final["lnkPa_2"]-self.df_final["lnkPa_1"])/\
+                (self.df_final["1/T2"]-self.df_final["1/T1"])
+            self.df_final["Qst_kJ/mol"] = 8.314/1000*self.df_final["slope"].abs()
+            
+            
+        if max(self.df3["qt_mmol/g"]) < max(self.df4["qt_mmol/g"]):
+
+            xfit = np.linspace(min(self.df4["qt_mmol/g"]), max(self.df3["qt_mmol/g"]), self.N)
+
+            self.df_final = pd.DataFrame({"qt_mmol/g": xfit})
+
+            self.df_final["lnkPa_1"] = np.interp(xfit, self.df3["qt_mmol/g"], self.df3["lnkPa"])
+            
+            self.df_final.insert(2, "1/T1", 1/self.T1)
+            self.df_final["lnkPa_2"] = np.interp(xfit, self.df4["qt_mmol/g"], self.df4["lnkPa"])
+            self.df_final.insert(4, "1/T2", 1/self.T2)
+            self.df_final["slope"] = (self.df_final["lnkPa_2"]-self.df_final["lnkPa_1"])/\
+                (self.df_final["1/T2"]-self.df_final["1/T1"])
+            self.df_final["Qst_kJ/mol"] = 8.314/1000*self.df_final["slope"].abs()
+            
+    def plot_isoheat(self):
+        plt.figure(dpi = 100)
+        plt.plot(self.df_final["qt_mmol/g"], self.df_final["Qst_kJ/mol"], color = "r", marker = ".", mfc = "none", ls = "")
+        plt.ylabel("$Heat~of~adsorption~[kJ/mol]$", fontsize=10, fontweight="bold")
+        plt.xlabel("$Adsorbed~amount~[mmol/g]$", fontsize=10, fontweight="bold")
+        plt.ylim([0, self.df_final["Qst_kJ/mol"].max()+self.df_final["Qst_kJ/mol"].max()/2])
+        plt.xlim([0, self.df4["qt_mmol/g"].max()+self.df4["qt_mmol/g"].max()/4])
+        plt.title("Clausius-Clapeyron") 
+        plt.grid(ls=":")
+        
+    def plot_lnkPa_vs_mmol(self):
+        plt.figure(dpi = 100)
+        plt.plot(self.df_final["qt_mmol/g"], self.df_final["lnkPa_1"], "r.", label = "exp. data at %d K" %self.T1)
+        plt.plot(self.df_final["qt_mmol/g"], self.df_final["lnkPa_2"], "k.", label = "exp. data at %d K" %self.T2)
+        plt.ylabel("ln(kPa)")
+        plt.xlabel("adsorbed amount (mmol/g)")
+        plt.legend()
+        plt.grid(ls=":")
+        
+    def to_excel(self, filename, **options):
+        """Saves the pandas.DataFrame of profiles in an Excel file.
+        Parameters
+        ----------
+        filename : str
+            Name of destination file without suffix .xlsx.
+        """
+        path = filename + '.xlsx'
+        with pd.ExcelWriter(path) as writer:
+            self.df_final.to_excel(writer, sheet_name="IsostericHeat")
