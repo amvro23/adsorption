@@ -390,7 +390,7 @@ df_iheat2 = pd.read_csv('iso_heat2.csv')
 x2 = df_iheat2.loc[:, 'x'].values
 y2 = df_iheat2.loc[:, 'y'].values
 
-ads_dyn.set_inlet(x1, y1, x2, y2)
+iso_heat.set_inlet(x1, y1, x2, y2)
 ```
 You can obtain either a plot of isosteric heat of adsorption vs the adsorbed quantity,
 ```Python
