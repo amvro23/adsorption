@@ -348,7 +348,7 @@ Out
  'slope': 2616.5902943059696,
  'intercept': -6.292664146507331}
 ```
-Tha package returns instantly the vant Hoff plot,
+Tha package returns directly the vant Hoff plot,
 ```Python
 ads_H.plot_vant_hoff()
 ```
@@ -404,6 +404,14 @@ iso_heat.assess_fit()
 Out
 {'Freundlich-Langmuir R2 for T1': 0.9998116123272973,
  'Freundlich-Langmuir R2 for T2': 0.9999895124385948}
+```
+You can also get the dataframe of the desired parameters to create your own plots if necessary,
+```Python
+iso_heat.get_dataframe()
+```
+and save them into an excel file
+```Python
+iso_heat.to_excel("IsoHeat")
 ```
 
 # References
