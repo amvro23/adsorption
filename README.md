@@ -396,7 +396,7 @@ Tha package returns instantly the Freundlich-Langmuir plot,
 
 ![image](https://user-images.githubusercontent.com/91277572/215266983-9816018a-f00f-4eee-ac83-6e45139687cc.png)
 
-You can assess the fit of Freundlich-Langmuir model applied at both T1 and T2.
+You can assess the fit of Freundlich-Langmuir model applied at both T1 and T2,
 ```Python
 iso_heat.assess_fit()
 ```
@@ -405,6 +405,21 @@ Out
 {'Freundlich-Langmuir R2 for T1': 0.9998116123272973,
  'Freundlich-Langmuir R2 for T2': 0.9999895124385948}
 ```
+while you can also get access to the calculated parameters of the freundlich-langmuir model at both T1 and T2.
+```Python
+iso_heat.all_params()
+```
+```
+Out
+                Parameters                Values
+0         a at T1 [mmol/g]     5.931481472276362
+1        b at T1 [1/kPa^c]   0.05028631551093073
+2  c at T1 [dimensionless]    1.0559760862112229
+3         a at T2 [mmol/g]     5.892741001110274
+4        b at T2 [1/kPa^c]  0.016824160548525938
+5  c at T2 [dimensionless]    1.0951835091030404
+```
+
 You can also get the dataframe of the desired parameters to create your own plots if necessary,
 ```Python
 iso_heat.get_dataframe()
