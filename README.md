@@ -1,7 +1,7 @@
 # adsorption
 A python package with the purpose of assessing the most reliable isotherm models (i.e., Langmuir, Freundlich, Temkin, Toth, Sips, DR), kinetic models (i.e., PFO, PSO, Weber-Morris, Avrami, Bangham, Elovich) and Arrhenius parameters (i.e., Ea, A), adsorption dynamic models (i.e., Thomas, Yoon-Nelson, Adams-Bohart), adsorption enthalpy and entropy as well as isosteric heat of adsorption.
 
-[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [AdsorptionDynamics](#AdsorptionDynamics) / [AdsorptionEnthalpy](#AdsorptionEnthalpy) / [References](#References) / [Contact](#Contact)
+[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [AdsorptionDynamics](#AdsorptionDynamics) / [AdsorptionEnthalpy](#AdsorptionEnthalpy) / [IsostericHeat](#IsostericHeat) / [References](#References) / [Contact](#Contact)
 
 # Install
 First, make sure you have a Python 3 environment installed.
@@ -14,7 +14,7 @@ Note: It might be useful to write "git+https://github.com/amvro23/adsorption/#eg
 # Usage
 
 ```Python
-from adsorption.models import (Isotherms, Kinetics, ModifiedArrhenius, AdsorptionDynamics, AdsorptionEnthalpy)
+from adsorption.models import (Isotherms, Kinetics, ModifiedArrhenius, AdsorptionDynamics, AdsorptionEnthalpy, IsostericHeat)
 import numpy as np
 import pandas as pd
 ```
@@ -348,7 +348,7 @@ Out
  'slope': 2616.5902943059696,
  'intercept': -6.292664146507331}
 ```
-
+Tha package returns instantly the vant Hoff plot,
 ```Python
 ads_H.plot_vant_hoff()
 ```
@@ -369,6 +369,33 @@ ads_H.vant_hoff_line(ads_H.x)
 Out
 array([2.4834227 , 2.19862352, 1.80447432, 1.22303396, 0.71950333])
 ```
+
+# IsostericHeat
+
+Create an instance. Default optional values are T1=273.15 K, T2=293.15 K.
+```Python
+iso_heat = IsostericHeat()
+```
+Set inlet values for adsorption isosteric heat. Optional parameter x1 represents the absolute pressure at kPa for adsorption isotherm at T1 and y1 represents the equilibrium adsorption capacity [mmol/g] for adsorption isotherm at T1. The same stands for x2 and y2 but for adsorption isotherm at T2.
+```Python
+iso_heat.set_inlet()
+```
+Adjust the values of x and y parameters according to your experimental results (the default values are the following).
+```Python
+df_iheat1 = pd.read_csv('iso_heat1.csv')
+x_iheat1 = df_iheat1.loc[:, 'x'].values
+y_iheat1 = df_iheat1.loc[:, 'y'].values
+
+df_iheat2 = pd.read_csv('iso_heat2.csv')
+x_iheat2 = df_iheat2.loc[:, 'x'].values
+y_iheat2 = df_iheat2.loc[:, 'y'].values
+
+iso_heat.set_inlet(x1=x_iheat1, y1=y_iheat1, x2=x_iheat2, y2=y_iheat2)
+```
+Tha package returns instantly the Freundlich-Langmuir plot,
+![image](https://user-images.githubusercontent.com/91277572/215266983-9816018a-f00f-4eee-ac83-6e45139687cc.png)
+
+
 
 # References
 
