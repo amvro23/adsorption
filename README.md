@@ -429,7 +429,9 @@ and save them into an excel file
 iso_heat.to_excel("IsoHeat")
 ```
 The package directly returns the plot of isosteric heat vs adsorbed quantity
-
+```Python
+iso_heat.plot_isoHeat_vs_mmol()
+```
 ![image](https://user-images.githubusercontent.com/91277572/215267368-5e9a62c5-f964-48b2-924d-b086300db94e.png)
 
 
