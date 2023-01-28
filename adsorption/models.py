@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 from scipy import stats
 import pandas as pd
 from adsorption.ads_data import (x_iso, y_iso, x_kin, y_kin, x_arrh, y_arrh, 
-                      x_dyn, y_dyn, x_h, y_h)
+                      x_dyn, y_dyn, x_h, y_h, 
+                      x_iheat1, y_iheat1, x_iheat2, y_iheat2)
+
 
 class Isotherms(object):
     
@@ -1032,3 +1034,192 @@ class AdsorptionEnthalpy(object):
         ax.set_title("Vant Hoff") 
         ax.grid(ls=":")
         fig.tight_layout()
+        
+        
+class IsostericHeat(object):
+    
+    def __init__(self, T1=273.15, T2=293.15):
+        """Class for assessing isosteric heat of adsorption using (Clausius–Clapeyron).            
+        Parameters
+        ----------
+        T1 : float or integer, optional
+             Adsorption temperature [K] for the 1st adsorption test, by default 273.15
+        T2 : float or integer, optional
+             Adsorption temperature [K] for the 2nd adsorption test, by default 293.15
+        """   
+        self.T1 = T1
+        self.T2 = T2
+        
+    
+    def set_inlet(self, x1=x_iheat1, y1=y_iheat1, x2=x_iheat2, y2=y_iheat2):
+        """Set inlet parameters for Clausius-Clapeyron equation.
+        Parameters
+        ----------
+        x1  : 1d array of floats, optional
+              Absolute pressure at kPa for adsorption isotherm at T1
+        y1  : 1d array of floats, optional
+              Equilibrium adsorption capacity [mmol/g] for adsorption isotherm at T1
+        x2  : 1d array of floats, optional
+              Absolute pressure at kPa for adsorption isotherm at T2
+        y1  : 1d array of floats, optional
+              Equilibrium adsorption capacity [mmol/g] for adsorption isotherm at T2    
+        """
+        x1 = np.array(x1)
+        y1 = np.array(y1)
+        x2 = np.array(x2)
+        y2 = np.array(y2)
+        
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+        
+        if y1.max()>y2.max():
+            self.nfit = np.linspace(min(y2)*10, max(y2))
+        else:
+            self.nfit = np.linspace(min(y1)*10, max(y1))
+    
+    def freundlich_langmuir(self, x, a, b, c):
+        x = np.array(x)
+        return a*b*x**c/(1+b*x**c)
+
+    def fl_params_at_T1(self):
+        FitParams, FitCov = curve_fit(self.freundlich_langmuir,
+                                      self.x1, 
+                                      self.y1,
+                                      np.array([1, 1, 1]),
+                                      bounds=(0, [np.inf, np.inf, np.inf]))
+        self.a = FitParams[0]
+        self.b = FitParams[1]
+        self.c = FitParams[2]
+        return {"a at T1 [mmol/g]": self.a,
+                "b at T1 [1/kPa^c]": self.b,
+                "c at T1 [dimensionless]": self.c,
+                }
+    
+    def fl_curve_at_T1(self, x):
+        yfit = self.freundlich_langmuir(x, 
+                             self.fl_params_at_T1()["a at T1 [mmol/g]"],
+                             self.fl_params_at_T1()["b at T1 [1/kPa^c]"],
+                             self.fl_params_at_T1()["c at T1 [dimensionless]"])
+        return yfit
+
+    def fl_params_at_T2(self):
+        FitParams, FitCov = curve_fit(self.freundlich_langmuir,
+                                      self.x2, 
+                                      self.y2,
+                                      np.array([1, 1, 1]),
+                                      bounds=(0, [np.inf, np.inf, np.inf]))
+        self.a = FitParams[0]
+        self.b = FitParams[1]
+        self.c = FitParams[2]
+        return {"a at T2 [mmol/g]": self.a,
+                "b at T2 [1/kPa^c]": self.b,
+                "c at T2 [dimensionless]": self.c,
+                }
+    
+    def fl_curve_at_T2(self, x):
+        yfit = self.freundlich_langmuir(x, 
+                             self.fl_params_at_T2()["a at T2 [mmol/g]"],
+                             self.fl_params_at_T2()["b at T2 [1/kPa^c]"],
+                             self.fl_params_at_T2()["c at T2 [dimensionless]"])
+        return yfit
+    
+        
+    def plot_freundlich_langmuir(self):
+        plt.figure(dpi = 100)
+        yfit1 = self.fl_curve_at_T1(self.x1)
+        yfit2 = self.fl_curve_at_T2(self.x2)
+        plt.plot(self.x1, self.y1, "ko", mfc="none", label = "$T_1={}K$".format(self.T1))
+        plt.plot(self.x1, yfit1, "k:", label = "$FL~model$")
+        plt.plot(self.x2, self.y2, "ro", mfc="none", label = "$T_2={}K$".format(self.T2))
+        plt.plot(self.x2, yfit2, "r:", label = "$FL~model$")
+        plt.xlabel("$Absolute~pressure~p~[kPa]$", fontsize=12)
+        plt.ylabel("$Amount~adsorbed~n~[mmol/g]$", fontsize=12)
+        plt.legend()
+        plt.grid(ls=":")  
+        plt.tight_layout()
+        
+    def assess_fit(self):
+        yfit1 = self.fl_curve_at_T1(self.x1)
+        yfit2 = self.fl_curve_at_T2(self.x2)
+        y_observed1 = self.y1
+        y_observed2 = self.y2
+        n1 = len(y_observed1)
+        n2 = len(y_observed2)
+         
+        R_fl_T1 = 1-((np.sum((y_observed1 - yfit1)**2))/\
+                   (np.sum((y_observed1 - np.mean(y_observed1))**2)))\
+                   *((n1-1)/(n1-len(self.fl_params_at_T1().items())))
+        
+        R_fl_T2 = 1-((np.sum((y_observed2 - yfit2)**2))/\
+                   (np.sum((y_observed2 - np.mean(y_observed2))**2)))\
+                   *((n2-1)/(n2-len(self.fl_params_at_T2().items())))
+        
+        return {"Freundlich-Langmuir R2 for T1": R_fl_T1, 
+                "Freundlich-Langmuir R2 for T2": R_fl_T2}
+    
+    def isosteric(self, n, a, b, c):
+        n = np.array(n)
+        return (n/(a*b-n*b))**(1/c)
+       
+    def clausius_clapeyron(self):
+        params_T1 = np.array(list(self.fl_params_at_T1().values()))
+        params_T2 = np.array(list(self.fl_params_at_T2().values())) 
+        pkPa_T1 = self.isosteric(self.nfit, *params_T1)
+        pkPa_T2 = self.isosteric(self.nfit, *params_T2)
+        iso_heat = -8.314*np.log(pkPa_T2/pkPa_T1)*self.T1*self.T2/(self.T2-self.T1)
+        return -iso_heat/1000
+    
+    def plot_isoHeat_vs_mmol(self):
+        plt.figure(dpi = 200)
+        y1 = self.y1
+        y2 = self.y2
+        yfit = self.clausius_clapeyron()
+        plt.plot(self.nfit, yfit, 'c.', label = "Isosteric heat via Freundlich-Langmuir fit")
+        plt.ylabel("$-ΔH_{ads}~[kJ/mol]$", fontsize=12)
+        plt.xlabel("$Amount~adsorbed~n~[mmol/g]$", fontsize=12)
+        plt.tight_layout()
+        plt.legend()
+        plt.grid(ls=":")
+        plt.ylim(0, yfit.max())
+        if y1.max()>y2.max():
+            plt.xlim(0, y1.max())
+        else:
+            plt.xlim(0, y2.max())
+            
+    def all_params(self):
+        
+        def get_params(*args):
+            params = np.vstack(args)
+            return params
+        
+        all_p = get_params(list(self.fl_params_at_T1().items()), 
+                           list(self.fl_params_at_T2().items()))
+        
+        df = pd.DataFrame(all_p, columns = ["Parameters", "Values"])
+        return df
+            
+    def get_dataframe(self):
+        params_T1 = np.array(list(self.fl_params_at_T1().values()))
+        params_T2 = np.array(list(self.fl_params_at_T2().values()))
+        pkPa_T1 = self.isosteric(self.nfit, *params_T1)
+        pkPa_T2 = self.isosteric(self.nfit, *params_T2)
+        yfit = self.clausius_clapeyron()
+        df = pd.DataFrame()
+        df["n [mmol/g]"] = self.nfit
+        df["pkPa_T1"] = pkPa_T1
+        df["pkPa_T2"] = pkPa_T2
+        df["ΔH ads [kJ/mol]"] = yfit
+        return df
+    
+    def to_excel(self, filename, **options):
+        """Saves the pandas.DataFrame of profiles in an Excel file.
+        Parameters
+        ----------
+        filename : str
+            Name of destination file without suffix .xlsx.
+        """
+        path = filename + '.xlsx'
+        with pd.ExcelWriter(path) as writer:
+            self.get_dataframe().to_excel(writer, sheet_name="IsoHeat")
