@@ -394,7 +394,7 @@ iso_heat.set_inlet(x1=x_iheat1, y1=y_iheat1, x2=x_iheat2, y2=y_iheat2)
 ```
 Tha package returns instantly the Freundlich-Langmuir plot,
 
-![image](https://user-images.githubusercontent.com/91277572/215266983-9816018a-f00f-4eee-ac83-6e45139687cc.png)
+![image](https://user-images.githubusercontent.com/91277572/215267886-13eb004e-bf9a-4c71-b9d7-2ee4a42b06a4.png)
 
 You can assess the fit of Freundlich-Langmuir model applied at both T1 and T2,
 ```Python
