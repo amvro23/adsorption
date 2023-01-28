@@ -443,6 +443,8 @@ The package directly returns the plot of isosteric heat vs adsorbed quantity
 
 [Siakavelas, G. I., Georgiadis, A. G., Charisiou, N. D., Yentekakis, I. V., & Goula, M. A. (2021). Cost‐Effective Adsorption of Oxidative Coupling‐Derived Ethylene Using a Molecular Sieve. Chemical Engineering & Technology, 44(11), 2041-2048.](https://onlinelibrary.wiley.com/doi/abs/10.1002/ceat.202100147)
 
+[Nuhnena, A., & Christoph Janiak, C. (2020), A practical guide to calculate the isosteric heat/enthalpy of adsorption via adsorption isotherms in metal-organic frameworks, MOFs](https://pubs.rsc.org/en/content/articlelanding/2020/dt/d0dt01784a)
+
 # Contact
 amvro23@gmail.com
 
