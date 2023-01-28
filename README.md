@@ -425,7 +425,7 @@ You can also get the dataframe of the desired parameters to create your own plot
 ```Python
 iso_heat.get_dataframe()
 ```
-and save them into an excel file
+and save them into an excel file.
 ```Python
 iso_heat.to_excel("IsoHeat")
 ```
