@@ -393,9 +393,18 @@ y_iheat2 = df_iheat2.loc[:, 'y'].values
 iso_heat.set_inlet(x1=x_iheat1, y1=y_iheat1, x2=x_iheat2, y2=y_iheat2)
 ```
 Tha package returns instantly the Freundlich-Langmuir plot,
+
 ![image](https://user-images.githubusercontent.com/91277572/215266983-9816018a-f00f-4eee-ac83-6e45139687cc.png)
 
-
+You can assess the fit of Freundlich-Langmuir model applied at both T1 and T2.
+```Python
+iso_heat.assess_fit()
+```
+```
+Out
+{'Freundlich-Langmuir R2 for T1': 0.9998116123272973,
+ 'Freundlich-Langmuir R2 for T2': 0.9999895124385948}
+```
 
 # References
 
