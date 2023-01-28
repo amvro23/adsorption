@@ -1127,7 +1127,7 @@ class IsostericHeat(object):
     
         
     def plot_freundlich_langmuir(self):
-        plt.figure(dpi = 100)
+        plt.figure(dpi = 200)
         yfit1 = self.fl_curve_at_T1(self.x1)
         yfit2 = self.fl_curve_at_T2(self.x2)
         plt.plot(self.x1, self.y1, "ko", mfc="none", label = "$T_1={}K$".format(self.T1))
