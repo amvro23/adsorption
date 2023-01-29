@@ -429,7 +429,7 @@ and save them into an excel file.
 ```Python
 iso_heat.to_excel("IsoHeat")
 ```
-The package directly returns the plot of isosteric heat vs adsorbed quantity
+The package directly returns the plot of isosteric heat (calculated via Clausius-Clapeyron equation) vs adsorbed quantity.
 ```Python
 iso_heat.plot_isoHeat_vs_mmol()
 ```
