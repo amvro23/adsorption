@@ -463,7 +463,7 @@ class Kinetics(object):
      
     def avrami(self, x, k, q, n):
         x = np.array(x)
-        return q*(1-np.exp(-k*x))**n
+        return q*(1-np.exp(-(k*x)**n))
 
     def avrami_params(self):
         FitParams, FitCov = curve_fit(self.avrami,
@@ -565,7 +565,7 @@ class Kinetics(object):
         fig.tight_layout()
         
     def plot_all_models(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
         ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
         ax.plot(self.x, self.pfo_curve(self.x), "r--", label = "PFO")
         ax.plot(self.x, self.pso_curve(self.x), "b--", label = "PSO")     
@@ -1173,8 +1173,6 @@ class IsostericHeat(object):
     
     def plot_isoHeat_vs_mmol(self):
         plt.figure(dpi = 200)
-        y1 = self.y1
-        y2 = self.y2
         yfit = self.clausius_clapeyron()
         plt.plot(self.nfit, yfit, 'c.', label = "Isosteric heat via Freundlich-Langmuir fit")
         plt.ylabel("$-ΔH_{ads}~[kJ/mol]$", fontsize=12)
@@ -1183,10 +1181,10 @@ class IsostericHeat(object):
         plt.legend()
         plt.grid(ls=":")
         plt.ylim(0, yfit.max())
-        if y1.max()>y2.max():
-            plt.xlim(0, y1.max())
+        if self.y1.max()>self.y2.max():
+            plt.xlim(0, self.y1.max())
         else:
-            plt.xlim(0, y2.max())
+            plt.xlim(0, self.y2.max())
             
     def all_params(self):
         
