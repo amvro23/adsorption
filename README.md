@@ -149,7 +149,7 @@ or you can obtain all kinetic models.
 ```Python
 kinetic.plot_all_models()
 ```
-![kinetics_all](https://user-images.githubusercontent.com/91277572/212331580-23b4c03d-374d-4f8a-9013-e8ecb94758e7.png)
+![image](https://user-images.githubusercontent.com/91277572/215773255-cc467731-f111-4d9e-8d4a-644f7054cf38.png)
 
 You can assess the fit of kinetic models.
 ```Python
@@ -160,7 +160,7 @@ Out
 {'PFO R2': 0.9835043733020796,
  'PSO R2': 0.9762472082928675,
  'WEBER-MORRIS R2': 0.9280676006898012,
- 'AVRAMI R2': 0.9964111275988798,
+ 'AVRAMI R2': 0.9980776118158866,
  'BANGHAM R2': 0.9980776118158825,
  'ELOVICH R2': 0.874909009634501}
  ```
@@ -170,7 +170,7 @@ kinetic.best_fit()
 ```
  ```
 Out
- The best model is that of BANGHAM R2 = 0.9980776118158825
+ The best model is that of AVRAMI R2 = 0.9980776118158866
  ```
 You can also obtain a dataframe with all the calculated parameters of kinetic equations with their units,
  ```Python
@@ -185,9 +185,9 @@ Out
 3           qmax_PSO [mg/g]      109.00232132690607
 4   k_wm [mg g^-1 min^-0.5]       6.184044312110834
 5                         C   6.836063566443158e-18
-6          k_avrami [1/min]    0.035198182776525935
-7        qmax_avrami [mg/g]       65.19974372878553
-8                  n_avrami      1.7755718014035597
+6          k_avrami [1/min]    0.024543231342313475
+7        qmax_avrami [mg/g]      63.298324486155906
+8                  n_avrami      1.4416620072834452
 9       k_bangham [1/min^n]   0.0047733638932455965
 10      qmax_bangham [mg/g]       63.29831524175902
 11                n_bangham      1.4416628511124052
@@ -200,9 +200,9 @@ kinetic.avrami_params()
 ```
  ```
 Out
-{'k_avrami [1/min]': 0.035198182776525935,
- 'qmax_avrami [mg/g]': 65.19974372878553,
- 'n_avrami': 1.7755718014035597}
+{'k_avrami [1/min]': 0.024543231342313475,
+ 'qmax_avrami [mg/g]': 63.298324486155906,
+ 'n_avrami': 1.4416620072834452}
 ```
   ```Python
 kinetic.pso_curve(kinetic.x)
@@ -219,7 +219,7 @@ kinetic.to_excel("Kinetics")
 
 # Arrhenius
 
-After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following instance. In this example Bangham model was the best to describe the process of CO2 adsorption.
+After finding the best kinetic model, the equation is applied to the data obtained at 3 to 4 different temperatures (at least) in order to create the following instance. In this example Bangham model is regarded as the best to describe the process of CO2 adsorption.
   ```Python
 arrh = ModifiedArrhenius()
 ```
