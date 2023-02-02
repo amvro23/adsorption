@@ -565,7 +565,7 @@ class Kinetics(object):
         fig.tight_layout()
         
     def plot_all_models(self):
-        fig, ax = plt.subplots(figsize = (6,4), dpi = 100)
+        fig, ax = plt.subplots(figsize = (6,4), dpi = 200)
         ax.plot(self.x, self.y, "k:", mfc = "none", label = "Observed")
         ax.plot(self.x, self.pfo_curve(self.x), "r--", label = "PFO")
         ax.plot(self.x, self.pso_curve(self.x), "b--", label = "PSO")     
