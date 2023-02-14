@@ -12,7 +12,7 @@ y_iso = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 2
 # KINETIC DATA
 # ------------------------------------------------------------------------------------------------
 
-df_kin = pd.read_csv('Python/adsorption/adsorption_kinetics.csv')
+df_kin = pd.read_csv('adsorption/adsorption_kinetics.csv')
 x_kin = df_kin.loc[:, 'minutes'].values
 y_kin = df_kin.loc[:, 'qt'].values
 
@@ -27,7 +27,7 @@ y_arrh = np.array([0.00478, 0.00583, 0.00728, 0.01956])
 # DYNAMIC DATA
 # ------------------------------------------------------------------------------------------------
 
-df_dyn = pd.read_csv('Python/adsorption/Co_10%.csv')
+df_dyn = pd.read_csv('adsorption/Co_10%.csv')
 x_dyn = df_dyn.loc[:, 'x'].values
 y_dyn = df_dyn.loc[:, 'y'].values
 
@@ -42,10 +42,10 @@ y_h = np.array([203.6870035, 162.2365645, 116.2852302, 65.14332759, 34.46486588]
 # ISOSTERIC HEAT DATA
 # ------------------------------------------------------------------------------------------------
 
-df_iheat1 = pd.read_csv('Python/adsorption/iso_heat1.csv')
+df_iheat1 = pd.read_csv('adsorption/iso_heat1.csv')
 x_iheat1 = df_iheat1.loc[:, 'x'].values
 y_iheat1 = df_iheat1.loc[:, 'y'].values
 
-df_iheat2 = pd.read_csv('Python/adsorption/iso_heat2.csv')
+df_iheat2 = pd.read_csv('adsorption/iso_heat2.csv')
 x_iheat2 = df_iheat2.loc[:, 'x'].values
 y_iheat2 = df_iheat2.loc[:, 'y'].values
