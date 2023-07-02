@@ -14,7 +14,6 @@ class Isotherms(object):
         """Class for evaluating 6 different adsorption isotherms.
         Parameters
         ----------
-             Equilibrium adsorption capacity [mg/g]
         P  : float or integer, optional
              Adsorption pressure [atm], by default 1
         Mr : float, optional
