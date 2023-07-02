@@ -3,9 +3,8 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 from scipy import stats
 import pandas as pd
-from adsorption.ads_data import (x_iso, y_iso, x_kin, y_kin, x_arrh, y_arrh, 
-                      x_dyn, y_dyn, x_h, y_h, 
-                      x_iheat1, y_iheat1, x_iheat2, y_iheat2)
+from adsorption.data import (x_iso, y_iso, x_kin, y_kin, x_arrh, y_arrh, 
+                             x_dyn, y_dyn, x_h, y_h, x_iheat1, y_iheat1, x_iheat2, y_iheat2)
 
 
 class Isotherms(object):
@@ -1220,3 +1219,49 @@ class IsostericHeat(object):
         path = filename + '.xlsx'
         with pd.ExcelWriter(path) as writer:
             self.get_dataframe().to_excel(writer, sheet_name="IsoHeat")
+
+
+class Adsorbent_ScaleUp(object):
+  
+    def __init__(self, Mr=34.1, y=0.001):
+        """Class for calculating the adsorbent quantity in a scaled-up adsorption bed.
+        Parameters
+        ----------
+        Mr : float, optional
+             Molar mass of adsorbed molecule [g/mol], by default 34.1 for H2S
+        y  : float, optional
+             Molar fraction [dimensionless], by default 0.001
+        """
+        self.Mr = Mr
+        self.y = y
+
+    
+    def exp_unit(self, ads_capacity=125, exp_ads_time=500):
+        """
+        Parameters
+        ----------
+        ads_capacity  : float, optional
+                        Adsorption capacity of target molecule (TM) [mg_TM/g_ads], by default 125 mg_TM/g_ads
+        exp_ads_time  : float, optional
+                        Adsorption time in experimental unit, by default 500 min
+        """
+        self.ads_capacity = ads_capacity
+        self.exp_ads_time = exp_ads_time
+        
+    def pilot_unit(self, total_flow_rate=2500, pilot_ads_time=2000, print_results = None):
+        """
+        Parameters
+        ----------
+        total_flow_rate  : float, optional
+                           Total flow rate in pilot unit, by default 2500 mL/min
+        pilot_ads_time   : float, optional
+                           Desired adsorption time in pilot unit, by default 2000 min
+        """
+        self.total_flow_rate = total_flow_rate
+        self.pilot_ads_time = pilot_ads_time
+        self.pilot_unit_target_molecule_flow_rate = self.total_flow_rate*self.y
+        self.pilot_unit_target_molecule_flow_rate = self.pilot_unit_target_molecule_flow_rate*(self.Mr/22.4)
+        self.mg_adsorbed_quantity_target_molecule = self.pilot_unit_target_molecule_flow_rate*self.pilot_ads_time
+        self.quantity_ads_in_pilot_unit = self.mg_adsorbed_quantity_target_molecule/self.ads_capacity
+
+        print("The quantity of adsorbent in the pilot unit in (g) is:", self.quantity_ads_in_pilot_unit)
