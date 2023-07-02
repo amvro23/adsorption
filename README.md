@@ -442,7 +442,7 @@ Create an instance. Default optional values are Mr=34.1 as H2S is the targe mole
 scale_up = Adsorbent_ScaleUp()
 ```
 
-Set inlet values for the experimental and pilot unit. Default values are given herein. 
+Set inlet values for the experimental and pilot unit. Default values are given herein. Adsorption capacity in mg/g, adsorption time in min, and flow rate in mL/min.
 ```Python
 scale_up.exp_unit(ads_capacity=125, exp_ads_time=500)
 scale_up.pilot_unit(total_flow_rate=2500, pilot_ads_time=2000)
