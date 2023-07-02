@@ -15,7 +15,7 @@ Note: It might be useful to write "git+https://github.com/amvro23/adsorption/#eg
 
 ```Python
 from adsorption.models import (Isotherms, Kinetics, ModifiedArrhenius, 
-                               AdsorptionDynamics, AdsorptionEnthalpy, IsostericHeat)
+                               AdsorptionDynamics, AdsorptionEnthalpy, IsostericHeat, Adsorbent_ScaleUp)
 import numpy as np
 import pandas as pd
 ```
@@ -450,6 +450,10 @@ scale_up.pilot_unit(total_flow_rate=2500, pilot_ads_time=2000)
 The amount of the adsorbent needed for the pilot unit is automaticaly printed, however you can also have access to it as an attribute.
 ```Python
 scale_up.quantity_ads_in_pilot_unit
+```
+```
+Out
+60.89285714285715
 ```
 
 # References
