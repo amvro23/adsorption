@@ -1,7 +1,7 @@
 # adsorption
 A python package with the purpose of assessing the most reliable isotherm models (i.e., Langmuir, Freundlich, Temkin, Toth, Sips, DR), kinetic models (i.e., PFO, PSO, Weber-Morris, Avrami, Bangham, Elovich) and Arrhenius parameters (i.e., Ea, A), adsorption dynamic models (i.e., Thomas, Yoon-Nelson, Adams-Bohart), adsorption enthalpy and entropy as well as isosteric heat of adsorption.
 
-[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [AdsorptionDynamics](#AdsorptionDynamics) / [AdsorptionEnthalpy](#AdsorptionEnthalpy) / [IsostericHeat](#IsostericHeat) / [References](#References) / [Contact](#Contact)
+[Install](#Install) / [Usage](#Usage) /  [Isotherms](#Isotherms) / [Kinetics](#Kinetics) / [Arrhenius](#Arrhenius) / [AdsorptionDynamics](#AdsorptionDynamics) / [AdsorptionEnthalpy](#AdsorptionEnthalpy) / [IsostericHeat](#IsostericHeat) / [ScaleUP](#ScaleUP) / [References](#References) / [Contact](#Contact)
 
 # Install
 First, make sure you have a Python 3 environment installed.
@@ -433,6 +433,24 @@ iso_heat.plot_isoHeat_vs_mmol()
 ```
 ![image](https://user-images.githubusercontent.com/91277572/215267368-5e9a62c5-f964-48b2-924d-b086300db94e.png)
 
+# ScaleUp
+
+The package offers the opportunity of calculating the amount of adsorbent needed in a scaled-up adsorption unit.
+
+Create an instance. Default optional values are Mr=34.1 as H2S is the targe molecule, and molar fraction is y=0.001.
+```Python
+scale_up = Adsorbent_ScaleUp()
+```
+
+Set inlet values for the experimental and pilot unit. Default values are given herein. 
+```Python
+scale_up.exp_unit(ads_capacity=125, exp_ads_time=500)
+scale_up.pilot_unit(total_flow_rate=2500, pilot_ads_time=2000)
+```
+The amount of the adsorbent needed for the pilot unit is automaticaly printed, however you can also have access to it as an attribute.
+```Python
+scale_up.quantity_ads_in_pilot_unit
+```
 
 # References
 
