@@ -14,9 +14,9 @@ setup(
    author_email='amvro23@gmail.com',
    packages=['adsorption'],
    install_requires=[
-      'numpy==1.19.*',
-      'scipy>=1.7.*',
-      'pandas>=1.1.*',
+      'numpy==1.19',
+      'scipy>=1.7',
+      'pandas>=1.1',
       'matplotlib',
       ],
 )
