@@ -447,7 +447,7 @@ Set inlet values for the experimental and pilot unit. Default values are given h
 scale_up.exp_unit(ads_capacity=125, exp_ads_time=500)
 scale_up.pilot_unit(total_flow_rate=2500, pilot_ads_time=2000)
 ```
-The amount of the adsorbent needed for the pilot unit is automaticaly printed, however you can also have access to it as an attribute.
+The amount of the adsorbent needed for the pilot unit is automaticaly printed in grams, however you can also have access to it as an attribute.
 ```Python
 scale_up.quantity_ads_in_pilot_unit
 ```
