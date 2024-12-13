@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/8fb34a2a-3a8f-450e-9f03-ab7fdd183ed9)
+![smaller_logo_python_package](https://github.com/user-attachments/assets/f7379afe-5956-42e9-bbff-c817bccb6ce1)
 
 
 # adsorption
