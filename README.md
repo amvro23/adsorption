@@ -1,4 +1,4 @@
-![smaller_logo_python_package](https://github.com/user-attachments/assets/f7379afe-5956-42e9-bbff-c817bccb6ce1)
+![fda](https://github.com/user-attachments/assets/4fc5a09b-3965-4c5e-b2b3-6b185bf7659f)
 
 
 # adsorption
