@@ -161,9 +161,15 @@ kinetic.set_inlet()
 Adjust the values of x and y parameters according to your experimental results (the default values are the following). 
 
 ```Python
-df_kin = pd.read_csv('adsorption_kinetics.csv')
-x = df_kin.loc[:, 'minutes'].values
-y = df_kin.loc[:, 'qt'].values
+from adsorption.ads_data import kinetic_data
+from io import StringIO
+
+df = pd.read_csv(StringIO(kinetic_data))
+
+# Convert to numpy arrays
+x = df["x"].to_numpy()
+y = df["y"].to_numpy()
+
 kinetic.set_inlet(x, y)
 ```
 You can obtain either a single kinetic model plot (e.g., Bangham model),
@@ -231,8 +237,24 @@ Out
  'qmax_avrami [mg/g]': 63.298324486155906,
  'n_avrami': 1.4416620072834452}
 ```
+You can also have access to the predicted values and plot then yourself.
   ```Python
-kinetic.pso_curve(kinetic.x)
+from adsorption.ads_data import kinetic_data
+from io import StringIO
+
+df = pd.read_csv(StringIO(kinetic_data))
+
+# Convert to numpy arrays
+x = df["x"].to_numpy()
+y = df["y"].to_numpy()
+
+kinetic.set_inlet(x, y)
+x_fit = np.linspace(min(x), max(x), 100) # x values for plotting the fit
+y_fit = kinetic.bangham_curve(x_fit) # y values for plotting the fit
+
+plt.plot(x, y, '.', label='data')
+plt.plot(x_fit, y_fit, '--', label='fit')
+plt.legend()
 ```
   ```
   Out
