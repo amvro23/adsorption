@@ -1,4 +1,4 @@
-<img width="1024" height="1024" alt="logo_adsorption" src="https://github.com/user-attachments/assets/23004156-62d1-4533-85b8-e5b76bba37ec" />
+<img width="300" height="300" alt="logo_adsorption" src="https://github.com/user-attachments/assets/23004156-62d1-4533-85b8-e5b76bba37ec" />
 
 
 # adsorption
