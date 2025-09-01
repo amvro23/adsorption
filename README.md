@@ -1,4 +1,4 @@
-![fda](https://github.com/user-attachments/assets/4fc5a09b-3965-4c5e-b2b3-6b185bf7659f)
+<img width="1024" height="1024" alt="logo_adsorption" src="https://github.com/user-attachments/assets/23004156-62d1-4533-85b8-e5b76bba37ec" />
 
 
 # adsorption
