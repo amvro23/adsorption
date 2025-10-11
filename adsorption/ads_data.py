@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from io import StringIO
 
 # ------------------------------------------------------------------------------------------------
 # ISOTHERM DATA
@@ -2173,15 +2174,8 @@ x,y
 
 """
 
-with open('temp.csv', 'w') as file:
-    file.write(kinetic_data)
-
-# Read the CSV file using pandas
-df_kin = pd.read_csv('temp.csv', delimiter=',')
-
-# Extract the values into separate arrays
-x_kin = df_kin['x'].values
-y_kin = df_kin['y'].values
+df_kin = pd.read_csv(StringIO(kinetic_data), names=['x', 'y'])
+x_kin, y_kin = df_kin['x'].values, df_kin['y'].values
 
 # ------------------------------------------------------------------------------------------------
 # ARRHENIUS DATA
@@ -3853,13 +3847,10 @@ x,y
 59.77723333,1
 """
 
-with open('temp.csv', 'w') as file:
-    file.write(concentration)
+# Read directly from the string as if it were a CSV file
+df_dyn = pd.read_csv(StringIO(concentration), names=['x', 'y'])
 
-# Read the CSV file using pandas
-df_dyn = pd.read_csv('temp.csv', delimiter=',')
-
-# Extract the values into separate arrays
+# Extract the values
 x_dyn = df_dyn['x'].values
 y_dyn = df_dyn['y'].values
 
@@ -3960,23 +3951,10 @@ x,y
 96.4436,4.2253
 """
 
-with open('temp.csv', 'w') as file:
-    file.write(heat1)
+# Read directly from the string data
+df_iheat1 = pd.read_csv(StringIO(heat1), names=['x', 'y'])
+df_iheat2 = pd.read_csv(StringIO(heat2), names=['x', 'y'])
 
-# Read the CSV file using pandas
-df_iheat1 = pd.read_csv('temp.csv', delimiter=',')
-
-# Extract the values into separate arrays
-x_iheat1 = df_iheat1['x'].values
-y_iheat1 = df_iheat1['y'].values
-
-
-with open('temp.csv', 'w') as file:
-    file.write(heat2)
-
-# Read the CSV file using pandas
-df_iheat2 = pd.read_csv('temp.csv', delimiter=',')
-
-# Extract the values into separate arrays
-x_iheat2 = df_iheat2['x'].values
-y_iheat2 = df_iheat2['y'].values
+# Extract arrays
+x_iheat1, y_iheat1 = df_iheat1['x'].values, df_iheat1['y'].values
+x_iheat2, y_iheat2 = df_iheat2['x'].values, df_iheat2['y'].values
