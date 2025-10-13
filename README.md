@@ -29,7 +29,7 @@ Create an instance. Default optional values are P = 1 atm, Mr = 44.01 g/mol for 
 ```Python
 isotherm = Isotherms()
 ```
-Set inlet values for adsorption isotherm equations. Optional parameter x represents the dimensionless equilibrium concentration [%] and optional parameter y represents the equilibrium capacity [mg/g].
+Set inlet values for adsorption isotherm equations. Optional parameter x represents the dimensionless equilibrium concentration [molar ratio] and optional parameter y represents the equilibrium capacity [mg/g].
 ```Python
 isotherm.set_inlet()
 ```
