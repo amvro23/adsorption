@@ -2176,6 +2176,8 @@ x,y
 
 df_kin = pd.read_csv(StringIO(kinetic_data), names=['x', 'y'])
 x_kin, y_kin = df_kin['x'].values, df_kin['y'].values
+x_kin = np.array(x_kin[1:], dtype=float)
+y_kin = np.array(y_kin[1:], dtype=float)
 
 # ------------------------------------------------------------------------------------------------
 # ARRHENIUS DATA
@@ -3853,6 +3855,8 @@ df_dyn = pd.read_csv(StringIO(concentration), names=['x', 'y'])
 # Extract the values
 x_dyn = df_dyn['x'].values
 y_dyn = df_dyn['y'].values
+x_dyn = np.array(x_dyn[1:], dtype=float)
+y_dyn = np.array(y_dyn[1:], dtype=float)
 
 # ------------------------------------------------------------------------------------------------
 # ENTHALPY DATA
@@ -3958,3 +3962,7 @@ df_iheat2 = pd.read_csv(StringIO(heat2), names=['x', 'y'])
 # Extract arrays
 x_iheat1, y_iheat1 = df_iheat1['x'].values, df_iheat1['y'].values
 x_iheat2, y_iheat2 = df_iheat2['x'].values, df_iheat2['y'].values
+
+
+x_iheat1,y_iheat1 = np.array(x_iheat1[1:], dtype=float), np.array(y_iheat1[1:], dtype=float)
+x_iheat2,y_iheat2 = np.array(x_iheat2[1:], dtype=float), np.array(y_iheat2[1:], dtype=float)
