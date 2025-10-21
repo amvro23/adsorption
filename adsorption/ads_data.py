@@ -2,6 +2,22 @@ import numpy as np
 import pandas as pd
 from io import StringIO
 
+
+def read_xy(text):
+    df = pd.read_csv(
+        StringIO(text.strip()),
+        sep=None,              # auto-detect delimiter
+        engine="python",       # required for sep=None
+        header="infer",        # use header if present (e.g., x,y)
+        comment="#",           # ignore commented lines
+        skipinitialspace=True  # handle spaces after delimiters
+    )
+    # Keep only the first two columns, coerce to float
+    df = df.iloc[:, :2].astype(float)
+    x = df.iloc[:, 0].to_numpy()
+    y = df.iloc[:, 1].to_numpy()
+    return x, y
+
 # ------------------------------------------------------------------------------------------------
 # ISOTHERM DATA
 # ------------------------------------------------------------------------------------------------
@@ -2174,10 +2190,7 @@ x,y
 
 """
 
-df_kin = pd.read_csv(StringIO(kinetic_data), names=['x', 'y'])
-x_kin, y_kin = df_kin['x'].values, df_kin['y'].values
-x_kin = np.array(x_kin[1:], dtype=float)
-y_kin = np.array(y_kin[1:], dtype=float)
+x_kin, y_kin = read_xy(kinetic_data)
 
 # ------------------------------------------------------------------------------------------------
 # ARRHENIUS DATA
@@ -3849,14 +3862,7 @@ x,y
 59.77723333,1
 """
 
-# Read directly from the string as if it were a CSV file
-df_dyn = pd.read_csv(StringIO(concentration), names=['x', 'y'])
-
-# Extract the values
-x_dyn = df_dyn['x'].values
-y_dyn = df_dyn['y'].values
-x_dyn = np.array(x_dyn[1:], dtype=float)
-y_dyn = np.array(y_dyn[1:], dtype=float)
+x_dyn, y_dyn = read_xy(concentration)
 
 # ------------------------------------------------------------------------------------------------
 # ENTHALPY DATA
@@ -3955,14 +3961,5 @@ x,y
 96.4436,4.2253
 """
 
-# Read directly from the string data
-df_iheat1 = pd.read_csv(StringIO(heat1), names=['x', 'y'])
-df_iheat2 = pd.read_csv(StringIO(heat2), names=['x', 'y'])
-
-# Extract arrays
-x_iheat1, y_iheat1 = df_iheat1['x'].values, df_iheat1['y'].values
-x_iheat2, y_iheat2 = df_iheat2['x'].values, df_iheat2['y'].values
-
-
-x_iheat1,y_iheat1 = np.array(x_iheat1[1:], dtype=float), np.array(y_iheat1[1:], dtype=float)
-x_iheat2,y_iheat2 = np.array(x_iheat2[1:], dtype=float), np.array(y_iheat2[1:], dtype=float)
+x_iheat1, y_iheat1 = read_xy(heat1)
+x_iheat2, y_iheat2 = read_xy(heat2)
