@@ -1,30 +1,32 @@
-from adsorption import Isotherms
+from adsorption import Kinetics
+from adsorption import kinetic_data
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
+from io import StringIO
 
 
-iso = Isotherms()
+kin = Kinetics()
 
-x = np.array([0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1]) 
-y = np.array([52.64, 72.59, 99.67, 141.79, 182.48, 203.68, 203.56, 204.33, 204.90])
+df = pd.read_csv(StringIO(kinetic_data))
 
-iso.set_inlet(x, y)
+# Convert to numpy arrays
+x = df["x"].to_numpy()
+y = df["y"].to_numpy()
 
-iso.plot_langmuir_fit()
+kin.set_inlet(x, y)
 
-iso.plot_all_models()
+kin.plot_bangham_fit()
+kin.plot_all_models()
 
 print("")
-df = pd.DataFrame.from_dict(iso.assess_fit(), orient="index", columns=["R²"])
+df = pd.DataFrame.from_dict(kin.assess_fit(), orient="index", columns=["R²"])
 print(df)
 print("")
 
-iso.best_fit()
+kin.best_fit()
 
 print("")
-print(iso.all_params())
+print(kin.all_params())
 print("")
 
 plt.show()
-
