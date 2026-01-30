@@ -1,19 +1,13 @@
 from adsorption import Kinetics
-from adsorption import kinetic_data
+from adsorption import x_kin, y_kin
 import matplotlib.pyplot as plt
 import pandas as pd
-from io import StringIO
 
 
 kin = Kinetics()
 
-df = pd.read_csv(StringIO(kinetic_data))
 
-# Convert to numpy arrays
-x = df["x"].to_numpy()
-y = df["y"].to_numpy()
-
-kin.set_inlet(x, y)
+kin.set_inlet(x_kin, y_kin)
 
 kin.plot_bangham_fit()
 kin.plot_all_models()
