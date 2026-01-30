@@ -6,7 +6,6 @@ import pandas as pd
 
 kin = Kinetics()
 
-
 kin.set_inlet(x_kin, y_kin)
 
 kin.plot_bangham_fit()
