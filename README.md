@@ -237,7 +237,7 @@ You can also have access to the predicted values and plot then yourself.
 from adsorption import x_kin, y_kin
 
 kinetic.set_inlet(x_kin, y_kin)
-x_fit = np.linspace(min(x), max(x), 100) # x values for plotting the fit
+x_fit = np.linspace(min(x_kin), max(x_kin), 100) # x values for plotting the fit
 y_fit = kinetic.bangham_curve(x_fit) # y values for plotting the fit
 
 plt.plot(x, y, '.', label='data')
