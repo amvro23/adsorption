@@ -17,7 +17,7 @@ Note: It might be useful to write "git+https://github.com/amvro23/adsorption/#eg
 # Usage
 
 ```Python
-from adsorption.models import (Isotherms, Kinetics, ModifiedArrhenius, 
+from adsorption import (Isotherms, Kinetics, ModifiedArrhenius, 
                                AdsorptionDynamics, AdsorptionEnthalpy, IsostericHeat, Adsorbent_ScaleUp)
 import numpy as np
 import pandas as pd
@@ -161,16 +161,11 @@ kinetic.set_inlet()
 Adjust the values of x and y parameters according to your experimental results (the default values are the following). 
 
 ```Python
-from adsorption.ads_data import kinetic_data
-from io import StringIO
+from adsorption import x_kin, y_kin
 
-df = pd.read_csv(StringIO(kinetic_data))
+kin = Kinetics()
 
-# Convert to numpy arrays
-x = df["x"].to_numpy()
-y = df["y"].to_numpy()
-
-kinetic.set_inlet(x, y)
+kin.set_inlet(x_kin, y_kin)
 ```
 You can obtain either a single kinetic model plot (e.g., Bangham model),
 ```Python
@@ -239,16 +234,9 @@ Out
 ```
 You can also have access to the predicted values and plot then yourself.
   ```Python
-from adsorption.ads_data import kinetic_data
-from io import StringIO
+from adsorption import x_kin, y_kin
 
-df = pd.read_csv(StringIO(kinetic_data))
-
-# Convert to numpy arrays
-x = df["x"].to_numpy()
-y = df["y"].to_numpy()
-
-kinetic.set_inlet(x, y)
+kinetic.set_inlet(x_kin, y_kin)
 x_fit = np.linspace(min(x), max(x), 100) # x values for plotting the fit
 y_fit = kinetic.bangham_curve(x_fit) # y values for plotting the fit
 
@@ -338,10 +326,9 @@ Adjust the values of x and y parameters according to your experimental results (
 
 
 ```Python
-df_dyn = pd.read_csv('Co_10%.csv')
-x = df_dyn.loc[:, 'x'].values
-y = df_dyn.loc[:, 'y'].values
-ads_dyn.set_inlet(x, y)
+from adsorption import x_dyn, y_dyn
+
+ads_dyn.set_inlet(x_dyn, y_dyn)
 ```
 You can obtain a single adsorption dynamic model plot (e.g., Yoon-nelson model).
 ```Python
@@ -448,13 +435,7 @@ iso_heat.set_inlet()
 ```
 Adjust the values of x and y parameters according to your experimental results (the default values are the following).
 ```Python
-df_iheat1 = pd.read_csv('iso_heat1.csv')
-x_iheat1 = df_iheat1.loc[:, 'x'].values
-y_iheat1 = df_iheat1.loc[:, 'y'].values
-
-df_iheat2 = pd.read_csv('iso_heat2.csv')
-x_iheat2 = df_iheat2.loc[:, 'x'].values
-y_iheat2 = df_iheat2.loc[:, 'y'].values
+from adsorption import x_iheat1, x_iheat2, y_iheat1, y_iheat2
 
 iso_heat.set_inlet(x1=x_iheat1, y1=y_iheat1, x2=x_iheat2, y2=y_iheat2)
 ```
