@@ -240,7 +240,7 @@ kinetic.set_inlet(x_kin, y_kin)
 x_fit = np.linspace(min(x_kin), max(x_kin), 100) # x values for plotting the fit
 y_fit = kinetic.bangham_curve(x_fit) # y values for plotting the fit
 
-plt.plot(x, y, '.', label='data')
+plt.plot(x_kin, y_kin, '.', label='data')
 plt.plot(x_fit, y_fit, '--', label='fit')
 plt.legend()
 ```
